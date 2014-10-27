@@ -1,0 +1,29 @@
+##############################
+# Sass - Compass
+# INSTALLATION NIGHTMARE
+# Ubuntu 12.04
+##############################
+
+1. Follow installation instructions on ruby-rails-rvm folder.
+2. Install compass (it also installs sass)
+  gem install compass
+
+##############################
+# Bootstrap Sass
+# INSTALLATION NIGHTMARE
+# Ubuntu 12.04
+# from: https://github.com/twbs/bootstrap-sass
+##############################
+
+1. gem install bootstrap-sass
+2. create project:
+  compass create my-new-project -r bootstrap-sass --using bootstrap
+
+Notes: 
+* I had an error for an undefined method split at compass (caused by the @import "bootstrap-compass"; at the main sass file). I solved it by changing the compass version.
+  a) gem install compass -v 1.0.1
+  b) gem uninstall compass (and choose other version, mine it was 1.1.0-alpha3)
+Now it seems to work. I have:
+  Ruby 2.1.3p242 
+  Sass 3.4.6
+  Compass 1.0.1

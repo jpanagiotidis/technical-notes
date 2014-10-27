@@ -1,0 +1,29 @@
+## Get node on HTML variables
+  In hook_preprocess_html:
+    $node = menu_get_object();
+    if(isset($node->nid)){}
+
+## Add tpl per node type
+  in hook_preprocess_html or hook_preprocess_page or ... add suggestion at:
+    $vars['theme_hook_suggestions'][] = 'page__'. $vars['node']->type;
+
+## Add custom tpl
+  1) in custom module add hook_theme()
+    example:
+    function twfq_configuration_theme(){
+      return array(
+        'front_page' => array(
+          'variables' => array(
+            'front_data' => NULL
+          ),
+          'template' => 'front-page',
+        ),
+      );
+    }
+  2) add front-page.tpl.php inside module folder
+  3) inside module return array from callback
+    example:
+    return array(
+      '#front_data' => $content,
+      '#theme' => 'front_page',
+    );

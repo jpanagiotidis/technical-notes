@@ -1,0 +1,9 @@
+## Install Drush
+  cd ~
+  curl -sS https://getcomposer.org/installer | php54 -- --install-dir=$HOME/bin
+  wget https://github.com/drush-ops/drush/archive/6.x.zip
+  unzip 6.x.zip
+  ln -s ~/drush-6.x/drush ~/bin/
+  echo "export DRUSH_PHP=php54" >> ~/.bash_profile
+  source ~/.bash_profile
+  hash -r

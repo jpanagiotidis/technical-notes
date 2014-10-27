@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)http://blog.coolaj86.com/articles/installing-ruby-on-ubuntu-12-04.html -->
+<html lang="en"><script src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/cb=gapi.loaded_1" async=""></script><script src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/cb=gapi.loaded_0" async=""></script><script id="twitter-wjs" async="" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/widgets.js"></script><script type="text/javascript" async="" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/plusone.js" gapi_processed="true"></script><script type="text/javascript" async="" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/ga.js"></script><script async="" type="text/javascript" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/ca-pub-8389988710887724.js"></script><script id="facebook-jssdk" async="" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/all.js"></script><script id="tinyhippos-injected">if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>How to install Ruby (and RVM) on Ubuntu (for technotards)</title>
+    <!-- Le Summaries pour Google, Open Graph, and Twitter -->
+    <link rel="icon" type="image/png" href="http://blog.coolaj86.com/assets/media/coolaj86-logo-16x16.png">
+    <!-- link rel="shortcut icon" href="/assets/media/coolaj86-logo-16x16.ico" /-->
+    <link rel="canonical" href="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/How to install Ruby (and RVM) on Ubuntu (for technotards).html">
+    <meta property="og:url" content="http://blog.coolaj86.com/articles/installing-ruby-on-ubuntu-12-04.html">
+    <link rel="alternate" type="application/rss+xml" title="CoolAJ86" href="http://blog.coolaj86.com/rss.xml">
+    <link rel="author" href="https://plus.google.com/111222501744950155474">
+    <link rel="author" href="https://www.facebook.com/coolaj86">
+    <link rel="author" href="https://twitter.com/coolaj86">
+    <meta name="description" content="The only way to avoid ruby version hell is with the companionship of RVM.">
+    <meta property="og:description" content="The only way to avoid ruby version hell is with the companionship of RVM.">
+    <meta property="og:title" content="How to install Ruby (and RVM) on Ubuntu (for technotards)">
+    <meta name="author" content="AJ ONeal">
+    <meta name="twitter:site" content="coolaj86">
+    <meta name="twitter:site:id" content="15191378">
+    <meta property="og:image" content="http://blog.coolaj86.com/assets/media/coolaj86-logo.png">
+    <meta property="og:image:height" content="400">
+    <meta property="og:image:width" content="400">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+<link href="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/bootstrap.min-14bea766d4815e39a8970821087d6cf1.css" type="text/css" rel="stylesheet" media="all">
+<link href="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/style-a5087abfb0865bca3f48f82f19c56d27.css" type="text/css" rel="stylesheet" media="all">
+<link href="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/sons-of-obsidian-1063443c4d80aa7e73a0fb594b5ef033.css" type="text/css" rel="stylesheet" media="all">
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  <script type="text/javascript" async="" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/embed.js"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fbpluginrecommendationsbarleft,.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}.fbpluginrecommendationsbarleft{left:10px}.fbpluginrecommendationsbarright{right:10px}</style><script src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/alfie.f51946af45e0b561c60f768335c9eb79.js" async="" charset="UTF-8"></script></head>
+
+  <body data-twttr-rendered="true">
+    <div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/w9JKbyW340G.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/w9JKbyW340G(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id; js.async=true;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=213439508797174";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a href="http://blog.coolaj86.com/"><img alt="coolaj86 logo" width="32" height="32" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/coolaj86-logo.png" style="margin-top: 4px; float: left; margin-right: 1em;"></a>
+          <a class="brand" href="http://blog.coolaj86.com/">CoolAJ86</a>
+          <ul class="nav">
+              
+                <li><a href="http://blog.coolaj86.com/portfolio">Portfolio</a></li>
+              
+              
+                <li><a href="http://blog.coolaj86.com/archive">Blog</a></li>
+              
+              
+                <li><a href="http://blog.coolaj86.com/tags">Tags</a></li>
+              
+              
+                <li><a href="http://blog.coolaj86.com/categories">Categories</a></li>
+              
+            <li>
+              <a href="http://blog.coolaj86.com/rss.xml"><img alt="rss feed" width="16px" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/rss-32x32.png"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        <script>
+  window.disqus_identifier = "" || undefined;
+</script>
+<div class="page-header">
+  <h1>How to install Ruby (and RVM) on Ubuntu (for technotards) </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <!--em>Video not available.</em-->
+    <br>
+    <p><a href="http://blog.coolaj86.com/articles/dont-panic.html" target="_blank"><button type="button">Don't Panic!</button></a></p>
+    <br>
+    <h2 id="toc_0">Ruby what?</h2>
+
+<p><code>ruby</code> is a programming language.
+Almost every static blog generator -
+<a href="http://blog.coolaj86.com/articles/hosting-your-blog-on-ruhoh-com.html"><strong>ruhoh</strong></a>, <strong>octopress</strong>, <strong>jekyll</strong>, <strong>nanoc</strong>, etc -
+is written in <strong>ruby</strong>.
+A lot of web apps (such as the original <a href="http://engineering.twitter.com/2011/03/building-faster-ruby-garbage-collector.html">twitter</a>)
+and system utilities are written in <strong>ruby</strong> as well.</p>
+
+<p>Ruby is probably the easiest to learn of all the programming languages.
+Check out <a href="http://tryruby.org/">http://tryruby.org</a> when you have 15 minutes to spare.</p>
+
+<h2 id="toc_1">RVM and Bundler What?</h2>
+
+<p>Among the many great things that <strong>ruby</strong> has done for the world,
+it brought us <em>ruby gems</em> (versioned ruby modules).
+<em>gems</em> make <strong>ruby</strong> programming really <em>really</em> fast because you can
+usually find a <strong>gem</strong> that already solves your problem
+(such as parsing JSON or logging in through facebook)
+much faster than you can read the documentation or specification
+(or otherwise figure out how) to solve the problem yourself.
+Also, the language itself is amazingly simple to work with.</p>
+
+<p>As an unfortunate side effect of people making programs in record time,
+many modules were iterated over several versions in short time.
+Thus was born <em>version hell</em>.</p>
+
+<p><em>version hell</em> is the state of confusion encountered by mere mortals
+during which they are unable to figure out how to
+install an app or module because one of the modules it depends on
+was updated to a newer version which is not compatible with another
+app or module which you are also using.</p>
+
+<p><code>rvm</code> (<strong>r</strong>uby <strong>v</strong>ersion <strong>m</strong>anager)
+and
+<code>bundler</code> (bundles ruby gems for a single app or module,
+rather than installing them globally on your system),
+along with the <a href="http://semver.org/">semver specification</a>,
+were created to vanquish <em>version hell</em>.</p>
+
+<h2 id="toc_2">Let's install Ruby!</h2>
+
+<p>Can we install it? Yes we can!</p>
+
+<h2 id="toc_3">Removing Ubuntu's old rvm and ruby</h2>
+
+<p>Ironically, Ubuntu's desktop edition ships with a version of <strong>rvm</strong>
+that is...  a wrong version.</p>
+
+<p>If it's installed and you leave it, your Ubuntu will become sad when
+you try to install the <em>real</em> <strong>rvm</strong>.</p>
+
+<p>It's not a big deal, but we do need to get rid of it from the system
+before we start.</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> remove </span><span class="pun">--</span><span class="pln">purge ruby</span><span class="pun">-</span><span class="pln">rvm ruby</span></code></li><li class="L1"><code><span class="pln">sudo rm </span><span class="pun">-</span><span class="pln">rf </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">share</span><span class="pun">/</span><span class="pln">ruby</span><span class="pun">-</span><span class="pln">rvm </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">rmvrc </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">profile</span><span class="pun">.</span><span class="pln">d</span><span class="pun">/</span><span class="pln">rvm</span><span class="pun">.</span><span class="pln">sh</span></code></li></ol></pre>
+
+<p>It will also probably be useful to get rid of any <strong>rvm</strong> bits laying around
+your user folder as well (you may not have any, and that's okay).</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="com"># See if there is anything</span></code></li><li class="L1"><code><span class="pln">ls </span><span class="pun">-</span><span class="pln">d </span><span class="pun">~</span><span class="str">/.rvm*</span></code></li><li class="L2"><code><span class="str">ls -d ~/</span><span class="pun">.</span><span class="pln">gem</span><span class="pun">*</span></code></li><li class="L3"><code><span class="pln">ls </span><span class="pun">-</span><span class="pln">d </span><span class="pun">~</span><span class="str">/.bundle*</span></code></li><li class="L4"><code></code></li><li class="L5"><code><span class="str"># Delete them (ignoring those that don't exist)</span></code></li><li class="L6"><code><span class="str">rm -rf ~/</span><span class="pun">.</span><span class="pln">rvm</span><span class="pun">*</span><span class="pln"> </span><span class="pun">~</span><span class="str">/.gem/</span><span class="pln"> </span><span class="pun">~/.</span><span class="pln">bundle</span><span class="pun">*</span></code></li></ol></pre>
+
+<p><strong>Note</strong>: <code>#</code> is a comment marker.
+Everything after it is ignored by the terminal.
+It's just there for your reading pleasure.</p>
+
+<p>Once you've done that, <code>&lt;ctrl&gt;+d</code> to exit out of your terminal. Then open a new one.</p>
+
+<h2 id="toc_4">Not installing rdoc and ri</h2>
+
+<p>Many ruby modules install documentation in <code>rdoc</code> and <code>ri</code> format
+and it makes the install go so much slower.</p>
+
+<p>To install modules without documentation by default,
+you can append <code>gem: --no-rdoc --no-ri</code> to the file <code>.gemrc</code>
+in your home folder. The fastest way to do this is to
+use <code>echo</code> (print to output) with the <code>&gt;&gt;</code>
+(redirect output to append to end of file) operator.
+You can then double check by using <code>tail</code>
+which is like <code>cat</code>, but only outputs the last few lines of the file
+instead of the whole thing.</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="pln">echo </span><span class="str">'gem: --no-rdoc --no-ri'</span><span class="pln"> </span><span class="pun">&gt;&gt;</span><span class="pln"> </span><span class="pun">~</span><span class="str">/.gemrc</span></code></li><li class="L1"><code><span class="str">tail ~/</span><span class="pun">.</span><span class="pln">gemrc</span></code></li></ol></pre>
+
+<p>You should see <code>gem: --no-rdoc --no-ri</code> printed out as the contents of
+the file (possibly with other output before it)</p>
+
+<p>Alternatively, you could <code>vim ~/.gemrc</code> and then add the line
+<code>gem: --no-rdoc --no-ri</code> on any line of the file.</p>
+
+<p>If you inspect <code>.gemrc</code> (i.e. using <code>vim</code>) and
+find that that line is repeated more than once, delete the extra lines.
+There's no harm in having it in there extra times,
+but there's no benefit to it either.</p>
+
+<h2 id="toc_5">Installing via rvm</h2>
+
+<p>First we'll make sure that your system has all the prerequisite system
+utilities.
+There's no harm in doing this gain if you've done it before.
+It will simply skip whatever has been installed previously.</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> update</span></code></li><li class="L1"><code><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install </span><span class="pun">-</span><span class="pln">y \</span></code></li><li class="L2"><code><span class="pln">  git \</span></code></li><li class="L3"><code><span class="pln">  build</span><span class="pun">-</span><span class="pln">essential \</span></code></li><li class="L4"><code><span class="pln">  curl \</span></code></li><li class="L5"><code><span class="pln">  wget</span></code></li></ol></pre>
+
+<p><strong>Note</strong>: When you are copy-pasting commands and a line ends with <code>\</code>,
+you must copy all of the following lines up until the last one that does not have a <strong>\</strong>.
+Usually the lines will be indented as you see above.
+In this case the indentation doesn't mean anything to the computer,
+it's just a cue to the reader.</p>
+
+<p><strong>Note</strong>: For some stupid reason, <code>apt-get</code> will often ask you something
+to the affect of <em>are you sure?</em> whenever an installation is more than
+a few killobytes in size.
+Effectively <code>-y</code> (same as <code>--yes</code>) tells <strong>apt-get</strong>
+<em>shut up and do what I say unless there's real problem</em>.</p>
+
+<p>Next we'll add a script that tells <code>bash</code> and <code>zsh</code> to load <strong>rvm</strong> at
+each login.</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="com"># For bash</span></code></li><li class="L1"><code><span class="pln">echo </span><span class="str">"[[ -s '${HOME}/.rvm/scripts/rvm' ]] &amp;&amp; source '${HOME}/.rvm/scripts/rvm'"</span><span class="pln"> </span><span class="pun">&gt;&gt;</span><span class="pln"> </span><span class="pun">~</span><span class="str">/.bashrc</span></code></li><li class="L2"><code></code></li><li class="L3"><code><span class="str"># For zsh</span></code></li><li class="L4"><code><span class="str">echo "[[ -s '${HOME}/.rvm/scripts/rvm' ]] &amp;&amp; source '${HOME}/</span><span class="pun">.</span><span class="pln">rvm</span><span class="pun">/</span><span class="pln">scripts</span><span class="pun">/</span><span class="pln">rvm</span><span class="str">'" &gt;&gt; ~/.zshrc</span></code></li></ol></pre>
+
+<p><strong>Note</strong>: The <code>&amp;&amp;</code> is a way to say <em>run this next command, but only if the previous command had no errors</em>.</p>
+
+<p>Now for the meat of the issue, installing <strong>rvm</strong>:</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="pln">curl </span><span class="pun">-</span><span class="pln">L https</span><span class="pun">:</span><span class="com">//get.rvm.io | bash -s stable</span></code></li></ol></pre>
+
+<p>There's a lot going on in that one little line. Essentially it's saying <em>Hey <code>curl</code>, go get <a href="http://get.rvm.io/">http://get.rvm.io</a> and hand it off to <code>bash</code> which will run it as a script with the <code>-s stable</code> argument... whatever that means</em>.</p>
+
+<p><strong>IMPORTANT NOTE</strong>: You'll might see a notice telling you to install about a brazillion things,
+but I recommend <em>not</em> installing <code>sqlite3</code>, <code>libsqlite3</code>, or <code>libsqlite3-dev</code>,
+because the Ubuntu repository is out of date and lacks SQLite3-FTS support.</p>
+
+<p>See <a href="https://github.com/coolaj86/node-sqlite-fts-demo">github.com/coolaj86/node-sqlite-fts-demo</a> for instructions on
+installing <code>sqlite3</code> and co. with FTS support.</p>
+
+<p>Oh, and ignore any warnings about <code>.profile</code></p>
+
+<p>Anyway, to install the approximately 3 brazillion things it needs (and may or may not ask you about), copy and paste the whole block of the following into the terminal:</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install </span><span class="pun">-</span><span class="pln">y \</span></code></li><li class="L1"><code><span class="pln">  build</span><span class="pun">-</span><span class="pln">essential \</span></code></li><li class="L2"><code><span class="pln">  openssl \</span></code></li><li class="L3"><code><span class="pln">  libreadline6 \</span></code></li><li class="L4"><code><span class="pln">  libreadline6</span><span class="pun">-</span><span class="pln">dev \</span></code></li><li class="L5"><code><span class="pln">  curl \</span></code></li><li class="L6"><code><span class="pln">  git</span><span class="pun">-</span><span class="pln">core \</span></code></li><li class="L7"><code><span class="pln">  zlib1g \</span></code></li><li class="L8"><code><span class="pln">  zlib1g</span><span class="pun">-</span><span class="pln">dev \</span></code></li><li class="L9"><code><span class="pln">  libssl</span><span class="pun">-</span><span class="pln">dev \</span></code></li><li class="L0"><code><span class="pln">  libyaml</span><span class="pun">-</span><span class="pln">dev \</span></code></li><li class="L1"><code><span class="pln">  libxml2</span><span class="pun">-</span><span class="pln">dev \</span></code></li><li class="L2"><code><span class="pln">  libxslt</span><span class="pun">-</span><span class="pln">dev \</span></code></li><li class="L3"><code><span class="pln">  autoconf \</span></code></li><li class="L4"><code><span class="pln">  libc6</span><span class="pun">-</span><span class="pln">dev \</span></code></li><li class="L5"><code><span class="pln">  ncurses</span><span class="pun">-</span><span class="pln">dev \</span></code></li><li class="L6"><code><span class="pln">  automake \</span></code></li><li class="L7"><code><span class="pln">  libtool \</span></code></li><li class="L8"><code><span class="pln">  bison \</span></code></li><li class="L9"><code><span class="pln">  subversion \</span></code></li><li class="L0"><code><span class="pln">  pkg</span><span class="pun">-</span><span class="pln">config</span></code></li></ol></pre>
+
+<p>And again, <strong>either</strong> you need to follow the <a href="https://github.com/coolaj86/node-sqlite-fts-demo">sqlite-fts installation instructions</a> <strong>or</strong> install non-fts sqlite with the following:</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install </span><span class="pun">-</span><span class="pln">y \</span></code></li><li class="L1"><code><span class="pln">  sqlite3 \</span></code></li><li class="L2"><code><span class="pln">  libsqlite3</span><span class="pun">-</span><span class="pln">dev</span></code></li></ol></pre>
+
+<p>And then run the <strong>rvm</strong> installer again, but this time we'll add <code>--ruby</code>
+to tell it that we are, in fact, prepared to install <strong>ruby</strong> in all of its
+glory.</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="pln">curl </span><span class="pun">-</span><span class="pln">L https</span><span class="pun">:</span><span class="com">//get.rvm.io | bash -s stable --ruby</span></code></li></ol></pre>
+
+<p>That will take a while to run... maybe 10 minutes. Time for a coffee break!</p>
+
+<p>Now test that the installation was successful by loading <strong>ruby</strong>:</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="pln">source </span><span class="pun">~</span><span class="str">/.rvm/</span><span class="pln">scripts</span><span class="pun">/</span><span class="pln">rvm</span></code></li><li class="L1"><code><span class="pln">rvm reload</span></code></li><li class="L2"><code><span class="pln">rvm </span><span class="kwd">use</span><span class="pln"> </span><span class="kwd">default</span></code></li><li class="L3"><code><span class="pln">ruby </span><span class="pun">--</span><span class="pln">version</span></code></li></ol></pre>
+
+<p><code>cyaml</code> isn't installed by default, but you'll need it (I promise), so install it now.</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="pln">gem install cyaml </span><span class="pun">--</span><span class="kwd">no</span><span class="pun">-</span><span class="pln">ri </span><span class="pun">--</span><span class="kwd">no</span><span class="pun">-</span><span class="pln">rdoc</span></code></li></ol></pre>
+
+<p><strong>If you skipped installing <code>sqlite3</code> from source</strong> and didn't install it from <strong>apt-get</strong> either,
+when you do get around to <a href="https://github.com/coolaj86/node-sqlite-fts-demo">installing it</a>
+you'll nee to run.</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="pln">bash </span><span class="pun">-</span><span class="pln">c </span><span class="str">"rvm reinstall 1.9.3"</span></code></li></ol></pre>
+
+<p>IMPORTANT NOTE: For compiling and installing, <code>bash</code> seems to be more successful than <code>zsh</code>.
+Once installed, <code>zsh</code> should work just as well for running ruby.</p>
+
+<h2 id="toc_6">Install bundler</h2>
+
+<p>For whatever reason, <strong>bundler</strong> doesn't get installed with <strong>rvm</strong> by default.</p>
+
+<p>Install it like so:</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="pln">gem install bundler </span><span class="pun">--</span><span class="kwd">no</span><span class="pun">-</span><span class="pln">ri </span><span class="pun">--</span><span class="kwd">no</span><span class="pun">-</span><span class="pln">rdoc</span></code></li></ol></pre>
+
+<h2 id="toc_7">Ruby Playground</h2>
+
+<p>If you want to play around with ruby you can enter the "ruby shell"
+(so-to-speak). Enter <code>irb</code> (<strong>i</strong>nteractive <strong>r</strong>u<strong>b</strong>y) into the terminal.</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="pln">irb</span></code></li></ol></pre>
+
+<p>When you're done (or completely lost) hit <code>&lt;ctrl&gt;+d</code> to exit back to your normal shell.</p>
+
+<h2 id="toc_8">Appendix</h2>
+
+<h3 id="toc_9">Installing via apt-get</h3>
+
+<p>Ruby used to be a very fast-moving target (kinda like how NodeJS is today),
+but it's slowed down enough that the Ubuntu repositories have a pretty recent
+version that's probably good enough.</p>
+
+<p><strong>If you were successful</strong> with the method above, <strong>don't do this</strong>!</p>
+
+<p>If you find later on that you were unsuccessful in installing <strong>ruby</strong>, and <strong>bundler</strong>
+in a way that works for your project using the method above, give this a try:</p>
+
+<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><code><span class="pln">rm </span><span class="pun">-</span><span class="pln">rf </span><span class="pun">~</span><span class="str">/.bundle ~/</span><span class="pun">.</span><span class="pln">gem </span><span class="pun">~/.</span><span class="pln">rvm</span></code></li><li class="L1"><code><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> update</span></code></li><li class="L2"><code><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install ruby1</span><span class="pun">.</span><span class="lit">9.3</span></code></li><li class="L3"><code><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install \</span></code></li><li class="L4"><code><span class="pln">  libxslt1</span><span class="pun">-</span><span class="pln">dev \</span></code></li><li class="L5"><code><span class="pln">  libxml2</span><span class="pun">-</span><span class="pln">dev \</span></code></li><li class="L6"><code><span class="pln">  libyaml</span><span class="pun">-</span><span class="pln">dev</span></code></li><li class="L7"><code></code></li><li class="L8"><code><span class="pln">sudo gem install cyaml </span><span class="pun">--</span><span class="kwd">no</span><span class="pun">-</span><span class="pln">ri </span><span class="pun">--</span><span class="kwd">no</span><span class="pun">-</span><span class="pln">rdoc</span></code></li><li class="L9"><code></code></li><li class="L0"><code><span class="pln">sudo gem install bundler </span><span class="pun">--</span><span class="kwd">no</span><span class="pun">-</span><span class="pln">ri </span><span class="pun">--</span><span class="kwd">no</span><span class="pun">-</span><span class="pln">rdoc</span></code></li></ol></pre>
+
+<h3 id="toc_10">Resources</h3>
+
+<ul>
+<li><a href="http://www.andrehonsberg.com/article/install-rvm-ubuntu-1204-linux-for-ruby-193">INSTALL RVM ( RUBY VERSION MANAGER ) IN UBUNTU 12.04 LINUX FOR RUBY 1.9.3</a></li>
+<li><a href="http://stackoverflow.com/questions/9056008/installed-ruby-1-9-3-with-rvm-but-command-line-doesnt-show-ruby-v/9056395">http://stackoverflow.com/questions/9056008/installed-ruby-1-9-3-with-rvm-but-command-line-doesnt-show-ruby-v/9056395</a></li>
+</ul>
+
+    <br>
+    By AJ ONeal
+    <br>
+    <p><em>Was this useful to you?</em> <strong>Share it!</strong>
+    </p>
+    <!-- likes and shares -->
+    <div class="css-end-shares">
+      <!-- twitter -->
+      <span class="css-tweet">
+        <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/tweet_button.d4db41a5a14a4516e6d4ecf6250c7419.en.html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 108px; height: 20px;"></iframe>
+      </span>
+
+      <!-- g+ -->
+      <span class="css-plusone">
+        <!-- Place this tag where you want the +1 button to render. -->
+        <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1413891619842" name="I0_1413891619842" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div>
+      </span>
+
+      <!-- facebook -->
+      <span class="css-like">
+        <div class="fb-like fb_iframe_widget" data-href="http://blog.coolaj86.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=213439508797174&amp;href=http%3A%2F%2Fblog.coolaj86.com%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=450"><span style="vertical-align: bottom; width: 77px; height: 20px;"><iframe name="fae97979c" width="450px" height="1000px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/like(1).html" style="border: none; visibility: visible; width: 77px; height: 20px;" class=""></iframe></span></div>
+      </span>
+    </div>
+    Also, you can <a href="http://gittip.com/coolaj86">give me a tip</a> or <a href="http://coolaj86.com/">hire me</a>.
+    <br>
+    <hr>
+    <div class="pagination">
+      <ul>
+          <li class="prev"><a href="http://blog.coolaj86.com/articles/free-dns-hosting-with-freedns-afraid-org.html" title="Free DNS hosting with freedns.afraid.org">← Previous</a></li>
+
+          <li><a href="http://blog.coolaj86.com/articles/archive">Archive</a></li>
+
+          <li class="next"><a href="http://blog.coolaj86.com/articles/migrate-from-blogger-to-ruhoh-with-proper-redirects.html" title="Migrate from Blogger to ruhoh with proper redirects">Next →</a></li>
+      </ul>
+    </div>
+    <hr>
+    <div id="disqus_thread"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/saved_resource.html" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 1265px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'coolaj86-gh'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;</noscript>
+
+
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>2013-01-18</span></div>
+    <br>
+    <!-- TODO if gittip account -->
+    <script src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/0002.js" data-gittip-username="coolaj86"></script>
+    <br>
+    <iframe style="border: 0; margin: 0; padding: 0;" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/widget.html" width="48pt" height="22pt"></iframe>
+    <p>Help a brother out.</p>
+    <br>
+    <h4>Categories</h4>
+    <ul class="tag_box">
+      <li>
+        <a href="http://blog.coolaj86.com/categories#howto-ref">howto <span>8</span></a>
+      </li>
+      <li>
+        <a href="http://blog.coolaj86.com/categories#procedure-ref">procedure <span>1</span></a>
+      </li>
+    </ul>
+    <br>
+    <h4>Tags</h4>
+    <ul class="tag_box">
+      <li>
+        <a href="http://blog.coolaj86.com/tags#ruby-ref">ruby <span>1</span></a>
+      </li>
+      <li>
+        <a href="http://blog.coolaj86.com/tags#rvm-ref">rvm <span>1</span></a>
+      </li>
+      <li>
+        <a href="http://blog.coolaj86.com/tags#bundler-ref">bundler <span>1</span></a>
+      </li>
+      <li>
+        <a href="http://blog.coolaj86.com/tags#version hell-ref">version hell <span>1</span></a>
+      </li>
+    </ul>
+
+    <br>
+    <script type="text/javascript"><!--
+      google_ad_client = "ca-pub-8389988710887724";
+      /* CoolAJ86 Blog Large Skyscraper */
+      google_ad_slot = "1768080248";
+      google_ad_width = 300;
+      google_ad_height = 600;
+      //-->
+    </script>
+    <script type="text/javascript" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/show_ads.js">
+    </script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="600" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+    <!-- Note to self: the script literally runs twice, hence the double insertion-->
+    <script type="text/javascript"><!--
+      google_ad_client = "ca-pub-8389988710887724";
+      /* CoolAJ86 Blog Right Skyscraper */
+      google_ad_slot = "9291347043";
+      google_ad_width = 160;
+      google_ad_height = 600;
+      //-->
+    </script>
+    <script type="text/javascript" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/show_ads.js">
+    </script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><iframe width="160" height="600" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+    <script type="text/javascript"><!--
+      google_ad_client = "ca-pub-8389988710887724";
+      /* coolaj86-media-skyscraper */
+      google_ad_slot = "6749363044";
+      google_ad_width = 160;
+      google_ad_height = 600;
+      //-->
+    </script>
+    <script type="text/javascript" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/show_ads.js">
+    </script><ins id="aswift_2_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><iframe width="160" height="600" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+
+    <!-- likes and shares -->
+    <div class="css-shares">
+      <!-- twitter -->
+      <span class="css-tweet">
+        <iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/tweet_button.d4db41a5a14a4516e6d4ecf6250c7419.en(1).html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 108px; height: 20px;"></iframe>
+      </span>
+
+      <!-- g+ -->
+      <span class="css-plusone">
+        <!-- Place this tag where you want the +1 button to render. -->
+        <div id="___plusone_1" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I1_1413891619858" name="I1_1413891619858" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/fastbutton(1).html" data-gapiattached="true" title="+1"></iframe></div>
+      </span>
+
+      <!-- facebook -->
+      <span class="css-like">
+        <div class="fb-like fb_iframe_widget" data-href="http://blog.coolaj86.com" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=213439508797174&amp;href=http%3A%2F%2Fblog.coolaj86.com%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=true&amp;show_faces=false&amp;width=450"><span style="vertical-align: bottom; width: 122px; height: 20px;"><iframe name="f33cdb38ec" width="450px" height="1000px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/like.html" style="border: none; visibility: visible; width: 122px; height: 20px;" class=""></iframe></span></div>
+      </span>
+
+      <p>
+        I'm available for <a href="http://blog.coolaj86.com/">hire</a>
+        (and I appreciate <a href="http://gittip.com/coolaj86">tips</a>)
+      </p>
+    </div>
+
+  </div>
+</div>
+
+      </div>
+
+      <footer>
+        <p>
+          <!-- http://googlewebmastercentral.blogspot.com/2009/02/specify-your-canonical.html -->
+          <!-- also needs updating at http://plus.google.com/me/about/edit/co -->
+          <a href="mailto:awesome@coolaj86.com" rel="me">awesome@coolaj86.com</a>
+          | 
+          <a href="https://twitter.com/coolaj86?rel=author" rel="me">Twitter</a>
+          |
+          <a href="https://www.facebook.com/coolaj86?rel=author" rel="me">Facebook</a>
+          |
+          <a href="https://github.com/coolaj86?rel=author" rel="me">Github</a>
+          |
+          <a href="https://plus.google.com/111222501744950155474?rel=author" data-user="AJ ONeal" rel="me">Google+</a>
+          <!-- a href="http://plus.google.com/108828336602055066537?rel=author" data-user="coolaj86" rel="me">Google+</a -->
+          |
+          <a href="http://stackoverflow.com/users/151312/coolaj86?rel=author" rel="me">StackOverflow</a>
+          |
+          <a href="http://youtube.com/coolaj86?rel=author" rel="me">YouTube</a>
+          |
+          <a href="https://pinterest.com/coolaj86?rel=author" rel="me">Pinterest</a>
+          |
+          <a href="https://linkedin.com/in/coolaj86?rel=author" rel="me">LinkedIn</a>
+          |
+          <a href="http://okcupid.com/profile/coolaj86?rel=author" rel="me">OkCupid</a>
+          <!-- a href="http://blag.coolaj86.com/?rel=author" rel="me">Blag</a -->
+          <!-- a href="http://about.me/coolaj86/?rel=author" rel="me">about.me</a -->
+          <!-- a href="https://www.gittip.com/niftylettuce/?rel=author" rel="me">GitTip</a -->
+          <!-- a href="https://flattr.com/profile/coolaj86/?rel=author" rel="me">Flattr</a -->
+        </p>
+        <p>© AJ ONeal 2004-2013 
+          with help from <a href="http://ruhoh.com/" target="_blank" title="The Definitive Technical Blogging Framework">ruhoh</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Google Prettify -->
+<script src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/prettify.js"></script>
+<script>
+  var pres = document.getElementsByTagName("pre");
+  for (var i=0; i < pres.length; ++i) {
+    pres[i].className = "prettyprint linenums";
+  }
+  prettyPrint();
+</script>
+<!-- end Google Prettify -->
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18902063-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+    <!-- amazon -->
+    <script async="true" type="text/javascript" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/link-enhancer-common.js">
+    </script>
+    <noscript>
+        &lt;img src="http://wms.assoc-amazon.com/20070822/US/img/noscript.gif?tag=co0dcd-20" alt="" /&gt;
+    </noscript>
+
+    <!-- g+ -->
+    <!-- Place this tag after the last +1 button tag. -->
+    <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+
+    <!-- twitter -->
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  
+
+<iframe name="oauth2relay742999689" id="oauth2relay742999689" src="./How to install Ruby (and RVM) on Ubuntu (for technotards)_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

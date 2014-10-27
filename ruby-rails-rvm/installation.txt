@@ -1,0 +1,6 @@
+##############################
+# INSTALLATION NIGHTMARE
+# Ubuntu 12.04
+##############################
+1. Because ubuntu has an old and broken version of rvm/ruby you have to uninstall it and re-install it using the instructions of the following url:
+http://blog.coolaj86.com/articles/installing-ruby-on-ubuntu-12-04.html (or open it from file html)
