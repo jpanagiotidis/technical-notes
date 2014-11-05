@@ -1,0 +1,15 @@
+## Cordova Installation
+1) Install nodejs and npm
+2) Install a git client
+3) Install cordova using:
+  sudo npm install -g cordova
+  * If npm ERR! fetch failed https://... 
+    then:
+      npm config set registry http://registry.npmjs.org/ 
+    and repeat step (3)
+
+## See available cordova versions
+  npm view cordova versions
+
+## Install specific cordova version
+  sudo npm install -g cordova@3.6.3-0.2.13
