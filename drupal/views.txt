@@ -1,0 +1,8 @@
+## Call Views Programmatically 
+
+$view = views_get_view('view_name');
+$view->set_display('view_block_name');
+$view->set_arguments(array($argument_goes_here));
+$view->pre_execute();
+$view->execute();
+print $view->render();

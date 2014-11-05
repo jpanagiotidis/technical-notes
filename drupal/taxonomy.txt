@@ -1,0 +1,14 @@
+## Get vocabulary metadata from machine name
+	taxonomy_vocabulary_machine_name_load('machine_name');
+
+## Get vocabulary tree
+	taxonomy_get_tree($vid, $parent = 0, $max_depth = NULL, $load_entities = FALSE);
+
+	PARAMETERS
+	$vid: Which vocabulary to generate the tree for.
+
+	$parent: The term ID under which to generate the tree. If 0, generate the tree for the entire vocabulary.
+
+	$max_depth: The number of levels of the tree to return. Leave NULL to return all levels.
+
+	$load_entities: If TRUE, a full entity load will occur on the term objects. Otherwise they are partial objects queried directly from the {taxonomy_term_data} table to save execution time and memory consumption when listing large numbers of terms. Defaults to FALSE.

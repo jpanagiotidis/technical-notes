@@ -1,0 +1,8 @@
+## Get module/theme path
+	drupal_get_path('project_type', 'project_name')
+
+## Get base url
+	global $base_url OR $GLOBALS['base_url'];
+
+## Get base path
+	base_path()
