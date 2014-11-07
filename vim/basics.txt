@@ -1,0 +1,10 @@
+## Go to Insert Mode
+  i
+## Exit Insert Mode
+  esc
+## Exit vim
+  :q
+## Exit without saving
+  :q!
+## Save and quit
+  :wq
