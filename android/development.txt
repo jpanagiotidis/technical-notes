@@ -1,0 +1,10 @@
+## Enable Developer Tools on 4.2 and higher
+  Go at "Settings"->"About" Phone and tap "Build Number" 7 times
+
+## Add hardware device (UBUNTU)
+  create (if not exists) the file:
+    /etc/udev/rules.d/51-android.rules
+  edit file and add the following line for each device and filling the vendor code
+    SUBSYSTEM=="usb", ATTR{idVendor}=="[vendor_code]", MODE="0666", GROUP="plugdev"
+  make sure everyone can read the file
+    chmod a+r /etc/udev/rules.d/51-android.rules

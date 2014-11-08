@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://developer.android.com/tools/device.html -->
+<html><script src="./Using Hardware Devices   Android Developers_files/cb=gapi.loaded_1" async=""></script><script src="./Using Hardware Devices   Android Developers_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Using Hardware Devices   Android Developers_files/plusone.js" gapi_processed="true"></script><script async="" src="./Using Hardware Devices   Android Developers_files/analytics.js"></script><script id="tinyhippos-injected">if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+<meta name="viewport" content="width=device-width">
+
+<meta name="Description" content="When building a mobile application, it&#39;s important that you always test your application on a real device before releasing it to users. This page describes how to set up your development environment and Android-powered device for testing and debugging…">
+<link rel="shortcut icon" type="image/x-icon" href="http://developer.android.com/favicon.ico">
+<title>Using Hardware Devices | Android Developers</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto+Condensed">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="./Using Hardware Devices   Android Developers_files/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="./Using Hardware Devices   Android Developers_files/jsapi" type="text/javascript"></script>
+<script src="./Using Hardware Devices   Android Developers_files/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  var metaTags = [];
+  var devsite = false;
+</script>
+<script src="./Using Hardware Devices   Android Developers_files/docs.js" type="text/javascript"></script><script type="text/javascript" src="./Using Hardware Devices   Android Developers_files/saved_resource"></script>
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5831155-1', 'android.com');
+  ga('create', 'UA-49880327-2', 'android.com', {'name': 'universal'});  // New tracker);
+  ga('send', 'pageview');
+  ga('universal.send', 'pageview'); // Send page view for new tracker.
+</script>
+
+<link type="text/css" href="./Using Hardware Devices   Android Developers_files/default+en.css" rel="stylesheet"><script type="text/javascript" src="./Using Hardware Devices   Android Developers_files/default+en.I.js"></script></head>
+
+<body class="gc-documentation
+
+develop" itemscope="" itemtype="http://schema.org/Article">
+
+<a name="top"></a>
+
+  <!-- Header -->
+  <div id="header-wrapper">
+    <div id="header">
+
+    
+
+
+      <div class="wrap" id="header-wrap">
+        <div class="col-3 logo">
+          <a href="http://developer.android.com/index.html">
+            <img src="./Using Hardware Devices   Android Developers_files/dac_logo.png" srcset="/assets/images/dac_logo@2x.png 2x" width="123" height="25" alt="Android Developers">
+          </a>
+          <div class="btn-quicknav" id="btn-quicknav">
+            <a href="http://developer.android.com/tools/device.html#" class="arrow-inactive">Quicknav</a>
+            <a href="http://developer.android.com/tools/device.html#" class="arrow-active">Quicknav</a>
+          </div>
+        </div>
+        <ul class="nav-x col-9">
+            <li class="design">
+              <a href="http://developer.android.com/design/index.html" zh-tw-lang="設計" zh-cn-lang="设计" ru-lang="Проектирование" ko-lang="디자인" ja-lang="設計" es-lang="Diseñar">Design</a></li>
+            <li class="develop"><a href="http://developer.android.com/develop/index.html" zh-tw-lang="開發" zh-cn-lang="开发" ru-lang="Разработка" ko-lang="개발" ja-lang="開発" es-lang="Desarrollar" class="selected">Develop</a></li>
+            <li class="distribute last"><a href="http://developer.android.com/distribute/index.html" zh-tw-lang="發佈" zh-cn-lang="分发" ru-lang="Распространение" ko-lang="배포" ja-lang="配布" es-lang="Distribuir">Distribute</a></li>
+        </ul>
+
+
+        
+        
+<div class="menu-container">
+  <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Links</div>
+      <ul>
+        <li><a href="https://play.google.com/apps/publish/" target="_googleplay">Google Play Developer Console</a></li>
+        <li><a href="http://android-developers.blogspot.com/">Android Developers Blog</a></li>
+        <li><a href="http://developer.android.com/about/index.html">About Android</a></li>
+      </ul>
+      <div class="header">Android Sites</div>
+      <ul>
+        <li><a href="http://www.android.com/">Android.com</a></li>
+        <li class="active"><a>Android Developers</a></li>
+        <li><a href="http://source.android.com/">Android Open Source Project</a></li>
+      </ul>
+
+      
+      
+        <div class="header">Language</div>
+          <div id="language" class="locales">
+            <select name="language" onchange="changeLangPref(this.value, true)">
+                <option value="en" selected="selected">English</option>
+                <option value="es">Español</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+                <option value="ru">Русский</option>
+                <option value="zh-cn">中文 (中国)</option>
+                <option value="zh-tw">中文 (台灣)</option>
+            </select>
+          </div>
+        <script type="text/javascript">
+          <!--
+          loadLangPref();
+            //-->
+        </script>
+      
+      
+      <br class="clearfix">
+    </div><!-- end 'mid' -->
+    <div class="bottom"></div>
+  </div><!-- end 'moremenu' -->
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q" onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)" onkeydown="return search_changed(event, true, &#39;/&#39;)" onkeyup="return search_changed(event, false, &#39;/&#39;)">
+      </form>
+      <div class="right"></div>
+      <a class="close hide">close</a>
+      <div class="left"></div>
+      <div class="right"></div>
+    </div><!-- end search-inner -->
+  </div><!-- end search-container -->
+
+  <div class="search_filtered_wrapper reference">
+    <div class="suggest-card reference no-display">
+      <ul class="search_filtered">
+      </ul>
+    </div>
+  </div>
+
+  <div class="search_filtered_wrapper docs">
+    <div class="suggest-card dummy no-display">&nbsp;</div>
+    <div class="suggest-card develop no-display">
+      <ul class="search_filtered">
+      </ul>
+      <div class="child-card guides no-display">
+      </div>
+      <div class="child-card training no-display">
+      </div>
+      <div class="child-card samples no-display">
+      </div>
+    </div>
+    <div class="suggest-card design no-display">
+      <ul class="search_filtered">
+      </ul>
+    </div>
+    <div class="suggest-card distribute no-display">
+      <ul class="search_filtered">
+      </ul>
+    </div>
+  </div>
+</div><!-- end menu-container (search and menu widget) -->
+
+
+
+        <!-- Expanded quicknav -->
+        <div id="quicknav" class="col-13">
+          <ul>
+            <li class="about">
+              <ul>
+                <li><a href="http://developer.android.com/about/index.html">About</a></li>
+                <li><a href="http://developer.android.com/wear/index.html">Wear</a></li>
+                <li><a href="http://developer.android.com/tv/index.html">TV</a></li>
+                <li><a href="http://developer.android.com/auto/index.html">Auto</a></li>
+              </ul>
+            </li>
+            <li class="design">
+              <ul>
+                <li><a href="http://developer.android.com/design/index.html">Get Started</a></li>
+                <li><a href="http://developer.android.com/design/devices.html">Devices</a></li>
+                <li><a href="http://developer.android.com/design/style/index.html">Style</a></li>
+                <li><a href="http://developer.android.com/design/patterns/index.html">Patterns</a></li>
+                <li><a href="http://developer.android.com/design/building-blocks/index.html">Building Blocks</a></li>
+                <li><a href="http://developer.android.com/design/downloads/index.html">Downloads</a></li>
+                <li><a href="http://developer.android.com/design/videos/index.html">Videos</a></li>
+              </ul>
+            </li>
+            <li class="develop">
+              <ul>
+                <li><a href="http://developer.android.com/training/index.html" zh-tw-lang="訓練課程" zh-cn-lang="培训" ru-lang="Курсы" ko-lang="교육" ja-lang="トレーニング" es-lang="Capacitación" class="selected">Training</a></li>
+                <li><a href="http://developer.android.com/guide/index.html" zh-tw-lang="API 指南" zh-cn-lang="API 指南" ru-lang="Руководства по API" ko-lang="API 가이드" ja-lang="API ガイド" es-lang="Guías de la API" class="selected">API Guides</a></li>
+                <li><a href="http://developer.android.com/reference/packages.html" zh-tw-lang="參考資源" zh-cn-lang="参考" ru-lang="Справочник" ko-lang="참조문서" ja-lang="リファレンス" es-lang="Referencia" class="selected">Reference</a></li>
+                <li><a href="http://developer.android.com/sdk/index.html" zh-tw-lang="相關工具" zh-cn-lang="工具" ru-lang="Инструменты" ko-lang="도구" ja-lang="ツール" es-lang="Herramientas" class="selected">Tools</a>
+                </li>
+                <li><a href="http://developer.android.com/google/index.html" class="selected">Google Services</a>
+                </li>
+                
+                  <li><a href="http://developer.android.com/samples/index.html" class="selected">Samples</a>
+                  </li>
+                
+              </ul>
+            </li>
+            <li class="distribute last">
+              <ul>
+                <li><a href="http://developer.android.com/distribute/googleplay/index.html">Google Play</a></li>
+                <li><a href="http://developer.android.com/distribute/essentials/index.html">Essentials</a></li>
+                <li><a href="http://developer.android.com/distribute/users/index.html">Get Users</a></li>
+                <li><a href="http://developer.android.com/distribute/engage/index.html">Engage &amp; Retain</a></li>
+                <li><a href="http://developer.android.com/distribute/monetize/index.html">Monetize</a></li>
+                <li><a href="http://developer.android.com/distribute/tools/index.html">Tools &amp; Reference</a></li>
+                <li><a href="http://developer.android.com/distribute/stories/index.html">Developer Stories</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /Expanded quicknav -->
+      </div><!-- end header-wrap.wrap -->
+    </div><!-- end header -->
+
+  
+    <!-- Secondary x-nav -->
+    <div id="nav-x">
+        <div class="wrap" style="position:relative;z-index:1">
+
+        
+
+            <ul class="nav-x col-9 develop" style="width:100%">
+                <li class="training"><a href="http://developer.android.com/training/index.html" zh-tw-lang="訓練課程" zh-cn-lang="培训" ru-lang="Курсы" ko-lang="교육" ja-lang="トレーニング" es-lang="Capacitación">Training</a></li>
+                <li class="guide"><a href="http://developer.android.com/guide/index.html" zh-tw-lang="API 指南" zh-cn-lang="API 指南" ru-lang="Руководства по API" ko-lang="API 가이드" ja-lang="API ガイド" es-lang="Guías de la API">API Guides</a></li>
+                <li class="reference"><a href="http://developer.android.com/reference/packages.html" zh-tw-lang="參考資源" zh-cn-lang="参考" ru-lang="Справочник" ko-lang="참조문서" ja-lang="リファレンス" es-lang="Referencia">Reference</a></li>
+                <li class="tools"><a href="http://developer.android.com/sdk/index.html" zh-tw-lang="相關工具" zh-cn-lang="工具" ru-lang="Инструменты" ko-lang="도구" ja-lang="ツール" es-lang="Herramientas" class="selected">Tools</a></li>
+                <li class="google"><a href="http://developer.android.com/google/index.html">Google Services</a>
+                </li>
+                
+                  <li class="samples"><a href="http://developer.android.com/samples/index.html">Samples</a>
+                  </li>
+                
+            </ul>
+        </div>
+    </div>
+    <!-- /Sendondary x-nav DEVELOP -->
+
+  
+
+    <div id="searchResults" class="wrap" style="display: none;">
+      <h2 id="searchTitle" style="margin-bottom: 0px;">Results</h2><hr>
+      <div id="leftSearchControl" class="search-control">Loading...</div>
+    </div>
+  </div> <!--end header-wrapper -->
+
+  <div id="sticky-header" class="develop" style="display: none;">
+    <div>
+      <a class="logo" href="http://developer.android.com/tools/device.html#top"></a>
+      <a class="top" href="http://developer.android.com/tools/device.html#top"></a>
+      <ul class="breadcrumb"><li><a href="http://developer.android.com/develop/index.html" zh-tw-lang="開發" zh-cn-lang="开发" ru-lang="Разработка" ko-lang="개발" ja-lang="開発" es-lang="Desarrollar" class="">Develop</a></li><li><a href="http://developer.android.com/sdk/index.html" zh-tw-lang="相關工具" zh-cn-lang="工具" ru-lang="Инструменты" ko-lang="도구" ja-lang="ツール" es-lang="Herramientas" class="">Tools</a></li>
+        
+        <li class="current">Using Hardware Devices</li>
+      </ul>
+    </div>
+  </div>
+
+
+
+
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-3" id="side-nav" itemscope="" itemtype="http://schema.org/SiteNavigationElement"><div id="devdoc-nav" class="scroll-pane jspScrollable" style="overflow: hidden; padding: 0px; height: 465px; left: 173px; width: 160px;">
+<!-- nav -->
+
+
+
+        
+        
+      <div class="jspContainer" style="width: 160px; height: 465px;"><div class="jspPane" style="padding: 0px; top: 0px; width: 156px;"><ul id="nav" style="width: 156px;">
+
+  <li class="nav-section">
+    <div class="nav-section-header"><a href="http://developer.android.com/sdk/index.html"><span class="en">Download</span></a></div>
+    <ul>
+      <li><a href="http://developer.android.com/sdk/installing/index.html">
+          <span class="en">Installing the SDK</span></a></li>
+
+      <li><a href="http://developer.android.com/sdk/installing/adding-packages.html">
+          <span class="en">Adding SDK Packages</span></a></li>
+    </ul>
+  </li>
+
+
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>
+    </div>
+    <ul>
+      <li><a href="http://developer.android.com/sdk/installing/migrate.html">
+          Migrating from Eclipse</a></li>
+      <li><a href="http://developer.android.com/sdk/installing/create-project.html">
+          Creating a Project</a></li>
+      <li><a href="http://developer.android.com/sdk/installing/studio-tips.html">
+          Tips and Tricks</a></li>
+      <li><a href="http://developer.android.com/sdk/installing/studio-androidview.html">
+          Using the Android Project View</a></li>
+      <li><a href="http://developer.android.com/sdk/installing/studio-layout.html">
+          Using the Layout Editor</a></li>
+      <li><a href="http://developer.android.com/sdk/installing/studio-build.html">
+          Building Your Project with Gradle</a></li>
+      <li><a href="http://developer.android.com/sdk/installing/studio-debug.html">
+          Debugging with Android Studio</a></li>
+      </ul>
+  </li>
+
+  <li class="nav-section expanded">
+    <div class="nav-section-header">
+        <a href="http://developer.android.com/tools/workflow/index.html"><span class="en">Workflow</span></a>
+    </div>
+    <ul style="display: block;">
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="http://developer.android.com/tools/devices/index.html"><span class="en">Setting Up Virtual Devices</span></a></div>
+        <ul>
+          <li><a href="http://developer.android.com/tools/devices/managing-avds.html"><span class="en">With AVD Manager</span></a></li>
+          <li><a href="http://developer.android.com/tools/devices/managing-avds-cmdline.html"><span class="en">From the Command Line</span></a></li>
+          <li><a href="http://developer.android.com/tools/devices/emulator.html"><span class="en">Using the Emulator</span></a></li>
+        </ul>
+      </li>
+      <li class="nav-section selected expanded">
+        <div class="nav-section-header"><a href="./Using Hardware Devices   Android Developers_files/Using Hardware Devices   Android Developers.html"><span class="en">Using Hardware Devices</span></a></div>
+        <ul style="display: block;">
+          <li><a href="http://developer.android.com/tools/extras/oem-usb.html"><span class="en">USB Drivers</span></a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="http://developer.android.com/tools/projects/index.html"><span class="en">Setting Up Projects</span></a></div>
+        <ul>
+          <li><a href="http://developer.android.com/tools/projects/projects-eclipse.html"><span class="en">From Eclipse with ADT</span></a></li>
+          <li><a href="http://developer.android.com/tools/projects/projects-cmdline.html"><span class="en">From the Command Line</span></a></li>
+          <li><a href="http://developer.android.com/tools/projects/templates.html"><span class="en">Using Code Templates</span></a></li>
+        </ul>
+      </li>
+
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://developer.android.com/tools/building/index.html">
+          <span class="en">Building and Running</span></a>
+        </div>
+        <ul>
+          <li><a href="http://developer.android.com/tools/building/building-eclipse.html">
+            <span class="en">From Eclipse with ADT</span></a></li>
+          <li><a href="http://developer.android.com/tools/building/building-cmdline.html">
+            <span class="en">From the Command Line</span></a></li>
+          <li><a href="http://developer.android.com/tools/building/multidex.html">
+            <span class="en">Apps Over 65K Methods</span></a></li>
+        </ul>
+      </li>
+
+
+  <li class="nav-section">
+        <div class="nav-section-header"><a href="http://developer.android.com/tools/testing/index.html">
+            <span class="en">Testing</span>
+          </a></div>
+        <ul>
+          <li>
+            <a href="http://developer.android.com/tools/testing/testing_android.html">
+            <span class="en">Fundamentals</span></a>
+          </li>
+          <li><a href="http://developer.android.com/tools/testing/testing_eclipse.html">
+            <span class="en">From Eclipse</span></a>
+          </li>
+          <li><a href="http://developer.android.com/tools/testing/testing_otheride.html">
+            <span class="en">From Other IDEs</span></a>
+          </li>
+          <li>
+            <a href="http://developer.android.com/tools/testing/activity_testing.html">
+            <span class="en">Activity Testing</span></a>
+          </li>
+          <li>
+            <a href="http://developer.android.com/tools/testing/service_testing.html">
+            <span class="en">Service Testing</span></a>
+          </li>
+          <li>
+            <a href="http://developer.android.com/tools/testing/contentprovider_testing.html">
+            <span class="en">Content Provider Testing</span></a>
+          </li>
+          <li>
+            <a href="http://developer.android.com/tools/testing/testing_accessibility.html">
+            <span class="en">Accessibility Testing</span></a>
+          </li>
+           <li>
+            <a href="http://developer.android.com/tools/testing/testing_ui.html">
+            <span class="en">UI Testing</span></a>
+          </li>
+          <li>
+            <a href="http://developer.android.com/tools/testing/what_to_test.html">
+            <span class="en">What To Test</span></a>
+          </li>
+          <li>
+            <a href="http://developer.android.com/tools/testing/activity_test.html">
+            <span class="en">Activity Testing Tutorial</span></a>
+          </li>
+        </ul>
+  </li><!-- end of testing -->
+
+  <li class="nav-section">
+    <div class="nav-section-header"><a href="http://developer.android.com/tools/debugging/index.html"><span class="en">Debugging</span></a></div>
+    <ul>
+      <li><a href="http://developer.android.com/tools/debugging/debugging-projects.html"><span class="en">From Eclipse with ADT</span></a></li>
+      <li><a href="http://developer.android.com/tools/debugging/debugging-projects-cmdline.html"><span class="en">From Other IDEs</span></a></li>
+      <li><a href="http://developer.android.com/tools/debugging/ddms.html"><span class="en">Using DDMS</span></a></li>
+      <li><a href="http://developer.android.com/tools/debugging/debugging-log.html"><span class="en">Reading and Writing Logs</span></a></li>
+      <li><a href="http://developer.android.com/tools/debugging/improving-w-lint.html"><span class="en">Improving Your Code with lint</span></a></li>
+      <li><a href="http://developer.android.com/tools/debugging/debugging-ui.html"><span class="en">Optimizing your UI</span></a></li>
+      <li><a href="http://developer.android.com/tools/debugging/debugging-tracing.html"><span class="en">Profiling with Traceview and dmtracedump</span></a></li>
+      <li><a href="http://developer.android.com/tools/debugging/systrace.html"><span class="en">Analyzing Display and Performance</span></a></li>
+      <li><a href="http://developer.android.com/tools/debugging/debugging-memory.html">Investigating Your RAM Usage</a></li>
+      <li><a href="http://developer.android.com/tools/debugging/debugging-devtools.html"><span class="en">Using the Dev Tools App</span></a></li>
+    </ul>
+  </li>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="http://developer.android.com/tools/publishing/publishing_overview.html"><span class="en">Publishing</span></a></div>
+        <ul>
+          <li><a href="http://developer.android.com/tools/publishing/preparing.html"><span class="en">Preparing for Release</span></a></li>
+          <li><a href="http://developer.android.com/tools/publishing/versioning.html"><span class="en">Versioning Your Apps</span></a></li>
+          <li><a href="http://developer.android.com/tools/publishing/app-signing.html"><span class="en">Signing Your Apps</span></a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-section">
+    <div class="nav-section-header"><a href="http://developer.android.com/tools/support-library/index.html"><span class="en">Support Library</span></a></div>
+    <ul>
+      <li><a href="http://developer.android.com/tools/support-library/features.html">Features</a></li>
+      <li><a href="http://developer.android.com/tools/support-library/setup.html">Setup</a></li>
+    </ul>
+  </li>
+
+  <li class="nav-section">
+    <div class="nav-section-header"><a href="http://developer.android.com/tools/help/index.html"><span class="en">Tools Help</span></a></div>
+    <ul>
+      <li><a href="http://developer.android.com/tools/help/adb.html">adb</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="http://developer.android.com/tools/help/adt.html">ADT</a></div>
+        <ul>
+          <li><a href="http://developer.android.com/sdk/installing/installing-adt.html">
+              <span class="en">Installing the Eclipse Plugin</span></a></li>
+        </ul>
+      </li>
+      <li><a href="http://developer.android.com/tools/help/android.html">android</a></li>
+      <li><a href="http://developer.android.com/tools/help/avd-manager.html">AVD Manager</a></li>
+      <li><a href="http://developer.android.com/tools/help/bmgr.html">bmgr</a>
+      </li><li><a href="http://developer.android.com/tools/help/monitor.html">Device Monitor</a></li>
+      <li><a href="http://developer.android.com/tools/help/dmtracedump.html">dmtracedump</a></li>
+      <li><a href="http://developer.android.com/tools/help/draw9patch.html">Draw 9-Patch</a></li>
+      <li><a href="http://developer.android.com/tools/help/emulator.html">Emulator</a></li>
+      <li><a href="http://developer.android.com/tools/help/etc1tool.html">etc1tool</a></li>
+      <li><a href="http://developer.android.com/tools/help/hierarchy-viewer.html">Hierarchy Viewer</a></li>
+      <li><a href="http://developer.android.com/tools/help/hprof-conv.html">hprof-conv</a></li>
+      <li><a href="http://developer.android.com/tools/help/jobb.html">jobb</a></li>
+      <li><a href="http://developer.android.com/tools/help/lint.html">lint</a></li>
+      <li><a href="http://developer.android.com/tools/help/logcat.html">logcat</a></li>
+      <li><a href="http://developer.android.com/tools/help/mksdcard.html">mksdcard</a></li>
+      <li><a href="http://developer.android.com/tools/help/monkey.html">monkey</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="http://developer.android.com/tools/help/monkeyrunner_concepts.html"><span class="en">monkeyrunner</span></a></div>
+        <ul>
+          <li><a href="http://developer.android.com/tools/help/MonkeyDevice.html"><span class="en">MonkeyDevice</span></a></li>
+          <li><a href="http://developer.android.com/tools/help/MonkeyImage.html"><span class="en">MonkeyImage</span></a></li>
+          <li><a href="http://developer.android.com/tools/help/MonkeyRunner.html"><span class="en">MonkeyRunner</span></a></li>
+        </ul>
+      </li>
+       <li><a href="http://developer.android.com/tools/help/proguard.html">ProGuard</a></li>
+       <li><a href="http://developer.android.com/tools/help/sdk-manager.html">SDK Manager</a></li>
+       <li><a href="http://developer.android.com/tools/help/systrace.html">Systrace</a></li>
+       <li><a href="http://developer.android.com/tools/help/gltracer.html">Tracer for OpenGL ES</a></li>
+       <li><a href="http://developer.android.com/tools/help/traceview.html">Traceview</a></li>
+       <li class="nav-section">
+          <div class="nav-section-header"><a href="http://developer.android.com/tools/help/uiautomator/index.html"><span class="en">uiautomator</span></a></div>
+          <ul>
+             <li><a href="http://developer.android.com/tools/help/uiautomator/Configurator.html"><span class="en">Configurator</span></a></li>
+             <li><a href="http://developer.android.com/tools/help/uiautomator/IAutomationSupport.html"><span class="en">IAutomationSupport</span></a></li>
+             <li><a href="http://developer.android.com/tools/help/uiautomator/UiAutomatorTestCase.html"><span class="en">UiAutomatorTestCase</span></a></li>
+             <li><a href="http://developer.android.com/tools/help/uiautomator/UiCollection.html"><span class="en">UiCollection</span></a></li>
+             <li><a href="http://developer.android.com/tools/help/uiautomator/UiDevice.html"><span class="en">UiDevice</span></a></li>
+             <li><a href="http://developer.android.com/tools/help/uiautomator/UiObject.html"><span class="en">UiObject</span></a></li>
+             <li><a href="http://developer.android.com/tools/help/uiautomator/UiObjectNotFoundException.html"><span class="en">UiObjectNotFoundException</span></a></li>
+             <li><a href="http://developer.android.com/tools/help/uiautomator/UiScrollable.html"><span class="en">UiScrollable</span></a></li>
+             <li><a href="http://developer.android.com/tools/help/uiautomator/UiSelector.html"><span class="en">UiSelector</span></a></li>
+             <li><a href="http://developer.android.com/tools/help/uiautomator/UiWatcher.html"><span class="en">UiWatcher</span></a></li>
+          </ul>
+       </li>
+       <li><a href="http://developer.android.com/tools/help/zipalign.html">zipalign</a></li>
+    </ul>
+  </li>
+
+  <li class="nav-section">
+    <div class="nav-section-header"><a href="http://developer.android.com/tools/revisions/index.html"><span class="en">Revisions</span></a></div>
+    <ul>
+      <li><a href="http://developer.android.com/tools/sdk/tools-notes.html">
+        <span class="en">SDK Tools</span>
+      </a></li>
+      <li><a href="http://developer.android.com/tools/sdk/eclipse-adt.html">
+        <span class="en">ADT Plugin</span>
+      </a></li>
+      <li><a href="http://developer.android.com/tools/revisions/build-tools.html">
+        <span class="en">Build Tools</span>
+      </a></li>
+      <li><a href="http://developer.android.com/tools/revisions/platforms.html"><span class="en">Platforms</span></a></li>
+    </ul>
+  </li>
+
+  <li class="nav-section">
+    <div class="nav-section-header empty">
+      <a href="http://developer.android.com/tools/sdk/ndk/index.html">NDK</a>
+    </div>
+  </li>
+
+  <li class="nav-section">
+    <div class="nav-section-header">
+    <a href="http://developer.android.com/tools/adk/index.html">
+      <span class="en">ADK</span></a>
+    </div>
+    <ul>
+      <li><a href="http://developer.android.com/tools/adk/adk2.html">ADK 2012 Guide</a></li>
+      <li><a href="http://developer.android.com/tools/adk/adk.html">ADK 2011 Guide</a></li>
+    </ul>
+  </li>
+
+</ul></div><div class="jspVerticalBar"><div class="jspCap jspCapTop"></div><div class="jspTrack" style="height: 457px;"><div class="jspDrag" style="height: 348px;"><div class="jspDragTop"></div><div class="jspDragBottom"></div></div></div><div class="jspCap jspCapBottom"></div></div></div></div>
+      
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+
+
+
+<div class="col-13" id="doc-col">
+
+
+  
+
+  
+    
+      
+        <h1 itemprop="name">Using Hardware Devices</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+
+    <div class="jd-descr" itemprop="articleBody">
+    <div id="qv-wrapper">
+<div id="qv">
+  <h2>In this document</h2>
+  <ol>
+    <li><a href="http://developer.android.com/tools/device.html#device-developer-options">Enabling On-device Developer Options</a></li>
+    <li><a href="http://developer.android.com/tools/device.html#setting-up">Setting up a Device for Development</a>
+      <ol>
+        <li><a href="http://developer.android.com/tools/device.html#VendorIds">USB Vendor IDs</a></li>
+      </ol>
+    </li>
+  </ol>
+  <h2>See also</h2>
+  <ol>
+    <li><a href="http://developer.android.com/sdk/win-usb.html">Google USB Driver</a></li>
+    <li><a href="http://developer.android.com/tools/extras/oem-usb.html">OEM USB Drivers</a></li>
+  </ol>
+</div>
+</div>
+
+<p>When building a mobile application, it's important that you always test your application on a
+real device before releasing it to users. This page describes how to set up your development
+environment and Android-powered device for testing and debugging on the device.</p>
+
+<p>You can use any Android-powered device as an environment for running,
+debugging, and testing your applications. The tools included in the SDK make it easy to install and
+run your application on the device each time you compile. You can install your application on the
+device directly from Eclipse or from the command line with ADB. If
+you don't yet have a device, check with the service providers in your area to determine which
+Android-powered devices are available.</p>
+
+<p>If you want a SIM-unlocked phone, then you might consider a Nexus phone. To purchase a
+Nexus phone, visit the <a href="https://play.google.com/store/devices">Google Play</a> store.</p>
+
+<p class="note"><strong>Note:</strong> When developing on a device, keep in mind that you should
+still use the <a href="http://developer.android.com/tools/devices/emulator.html">Android emulator</a> to test your
+application
+on configurations that are not equivalent to those of your real device. Although the emulator
+does not allow you to test every device feature (such as the accelerometer), it does
+allow you to verify that your application functions properly on different versions of the Android
+platform, in different screen sizes and orientations, and more.</p>
+
+
+<h2 id="developer-device-options" style="margin-bottom: 0px;">Enabling On-device Developer Options</h2><hr>
+
+<img src="./Using Hardware Devices   Android Developers_files/dev-options-inmilk.png" alt="" style="float:right;margin-left:30px">
+
+<p>Android-powered devices have a host of developer options that you can
+access on the phone, which let you:</p>
+<ul>
+  <li>Enable debugging over USB.</li>
+  <li>Quickly capture bug reports onto the device.</li>
+  <li>Show CPU usage on screen.</li>
+  <li>Draw debugging information on screen such as layout bounds,
+    updates on GPU views and hardware layers, and other information.</li>
+  <li>Plus many more options to simulate app stresses or enable debugging options.</li>
+</ul>
+<p>To access these settings, open the <em>Developer options</em> in the
+system Settings. On Android 4.2 and higher, the Developer options screen is
+hidden by default. To make it visible, go to
+<b>Settings &gt; About phone</b> and tap <b>Build number</b> seven times. Return to the previous
+screen to find Developer options at the bottom.</p>
+
+
+
+
+<h2 id="setting-up" style="margin-bottom: 0px;">Setting up a Device for Development</h2><hr>
+
+<p>With an Android-powered device, you can develop and debug your Android applications just as you
+would on the emulator. Before you can start, there are just a few things to do:</p>
+
+<ol>
+  <li>Declare your application as "debuggable" in your Android Manifest.
+    <p>When using Eclipse, you can skip this step, because running your app directly from
+the Eclipse IDE automatically enables debugging.</p>
+    <p>In the <code>AndroidManifest.xml</code> file, add <code>android:debuggable="true"</code> to
+the <code>&lt;application&gt;</code> element.</p>
+    <p class="note"><strong>Note:</strong> If you manually enable debugging in the manifest
+ file, be sure to disable it before you build for release (your published application
+should usually <em>not</em> be debuggable).</p></li>
+  <li>Enable <strong>USB debugging</strong> on your device.
+    <ul>
+      <li>On most devices running Android 3.2 or older, you can find the option under
+        <strong>Settings &gt; Applications &gt; Development</strong>.</li>
+      <li>On Android 4.0 and newer, it's in <strong>Settings &gt; Developer options</strong>.
+        <p class="note"><strong>Note:</strong> On Android 4.2 and newer, <strong>Developer
+        options</strong> is hidden by default. To make it available, go
+        to <strong>Settings &gt; About phone</strong> and tap <strong>Build number</strong>
+        seven times. Return to the previous screen to find <strong>Developer options</strong>.</p>
+      </li>
+    </ul>
+  </li>
+  <li>Set up your system to detect your device.
+    <ul>
+      <li>If you're developing on Windows, you need to install a USB driver for adb. For an
+installation guide and links to OEM drivers, see the <a href="http://developer.android.com/tools/extras/oem-usb.html">OEM USB
+Drivers</a> document.</li>
+      <li>If you're developing on Mac OS X, it just works. Skip this step.</li>
+      <li>If you're developing on Ubuntu Linux, you need to add a
+<code>udev</code> rules file that contains a USB configuration for each type of device
+you want to use for development. In the rules file, each device manufacturer
+is identified by a unique vendor ID, as specified by the
+<code>ATTR{idVendor}</code> property. For a list of vendor IDs, see  <a href="http://developer.android.com/tools/device.html#VendorIds">USB Vendor IDs</a>, below. To set up device detection on
+Ubuntu Linux:
+
+        <ol type="a">
+          <li>Log in as root and create this file:
+            <code>/etc/udev/rules.d/51-android.rules</code>.
+            <p>Use this format to add each vendor to the file:<br>
+              <code>SUBSYSTEM=="usb", ATTR{idVendor}=="0bb4", MODE="0666", GROUP="plugdev"</code>
+              <br><br>
+
+              In this example, the vendor ID is for HTC. The <code>MODE</code>
+assignment specifies read/write permissions, and <code>GROUP</code> defines
+which Unix group  owns the device node. </p>
+
+            <p class="note"><strong>Note:</strong> The rule syntax
+may vary slightly depending on your  environment. Consult the <code>udev</code>
+documentation for your system as needed. For an overview of rule syntax, see
+this guide to <a href="http://www.reactivated.net/writing_udev_rules.html">writing udev
+rules</a>.</p>
+          </li>
+          <li>Now execute:<br>
+            <code>chmod a+r /etc/udev/rules.d/51-android.rules</code>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+
+<p class="note"><strong>Note:</strong> When you connect a device running Android 4.2.2 or higher
+to your computer, the system shows a dialog asking whether to accept an RSA key that allows
+debugging through this computer. This security mechanism protects user devices because it ensures
+that USB debugging and other adb commands cannot be executed unless you're able to unlock the
+device and acknowledge the dialog. This requires that you have adb version 1.0.31 (available with
+SDK Platform-tools r16.0.1 and higher) in order to debug on a device running Android 4.2.2 or
+higher.</p>
+
+
+<p>When plugged in over USB, you can verify that your device is connected by executing <code>adb
+devices</code> from your SDK <code>platform-tools/</code> directory. If connected,
+you'll see the device name listed as a "device."</p>
+
+<p>If using Eclipse, run or debug your application as usual. You will be
+presented with a <b>Device Chooser</b> dialog that lists the available
+emulator(s) and connected device(s). Select the device upon which you want to
+install and run the application.</p>
+
+<p>If using the <a href="http://developer.android.com/tools/help/adb.html">Android
+Debug Bridge</a> (adb), you can issue commands with the <code>-d</code> flag to
+target your connected device.</p>
+
+<h3 id="VendorIds">USB Vendor IDs</h3>
+
+<p>This table provides a reference to the vendor IDs needed in order to add USB
+device support on Linux. The USB Vendor ID is the value given to the
+<code>ATTR{idVendor}</code> property in the rules file, as described
+above.</p>
+
+<table>
+  <tbody><tr>
+    <th>Company</th><th>USB Vendor ID</th></tr>
+  <tr>
+    <td>Acer</td>
+    <td><code>0502</code></td>
+  </tr>
+  <tr>
+    <td>ASUS</td>
+    <td><code>0b05</code></td>
+  </tr>
+  <tr>
+    <td>Dell</td>
+    <td><code>413c</code></td>
+  </tr>
+  <tr>
+    <td>Foxconn</td>
+    <td><code>0489</code></td>
+  </tr>
+  <tr>
+    <td>Fujitsu</td>
+    <td><code>04c5</code></td>
+  </tr>
+  <tr>
+    <td>Fujitsu Toshiba</td>
+    <td><code>04c5</code></td>
+  </tr>
+  <tr>
+    <td>Garmin-Asus</td>
+    <td><code>091e</code></td>
+  </tr>
+  <tr>
+    <td>Google</td>
+    <td><code>18d1</code></td>
+  </tr>
+  <tr>
+    <td>Haier</td>
+    <td><code>201E</code></td>
+  </tr>
+  <tr>
+    <td>Hisense</td>
+    <td><code>109b</code></td>
+  </tr>
+  <tr>
+    <td>HTC</td>
+    <td><code>0bb4</code></td>
+  </tr>
+  <tr>
+    <td>Huawei</td>
+    <td><code>12d1</code></td>
+  </tr>
+  <tr>
+    <td>Intel</td>
+    <td><code>8087</code></td>
+  </tr>
+  <tr>
+    <td>K-Touch</td>
+    <td><code>24e3</code></td>
+  </tr>
+  <tr>
+    <td>KT Tech</td>
+    <td><code>2116</code></td>
+  </tr>
+  <tr>
+    <td>Kyocera</td>
+    <td><code>0482</code></td>
+  </tr>
+  <tr>
+    <td>Lenovo</td>
+    <td><code>17ef</code></td>
+  </tr>
+  <tr>
+    <td>LG</td>
+    <td><code>1004</code></td>
+  </tr>
+  <tr>
+    <td>Motorola</td>
+    <td><code>22b8</code></td>
+  </tr>
+  <tr>
+    <td>MTK</td>
+    <td><code>0e8d</code></td>
+  </tr>
+  <tr>
+    <td>NEC</td>
+    <td><code>0409</code></td>
+  </tr>
+  <tr>
+    <td>Nook</td>
+    <td><code>2080</code></td>
+  </tr>
+  <tr>
+    <td>Nvidia</td>
+    <td><code>0955</code></td>
+  </tr>
+  <tr>
+    <td>OTGV</td>
+    <td><code>2257</code></td>
+  </tr>
+  <tr>
+    <td>Pantech</td>
+    <td><code>10a9</code></td>
+  </tr>
+  <tr>
+    <td>Pegatron</td>
+    <td><code>1d4d</code></td>
+  </tr>
+  <tr>
+    <td>Philips</td>
+    <td><code>0471</code></td>
+  </tr>
+  <tr>
+    <td>PMC-Sierra</td>
+    <td><code>04da</code></td>
+  </tr>
+  <tr>
+    <td>Qualcomm</td>
+    <td><code>05c6</code></td>
+  </tr>
+  <tr>
+    <td>SK Telesys</td>
+    <td><code>1f53</code></td>
+  </tr>
+  <tr>
+    <td>Samsung</td>
+    <td><code>04e8</code></td>
+  </tr>
+  <tr>
+    <td>Sharp</td>
+    <td><code>04dd</code></td>
+  </tr>
+  <tr>
+    <td>Sony</td>
+    <td><code>054c</code></td>
+  </tr>
+  <tr>
+    <td>Sony Ericsson</td>
+    <td><code>0fce</code></td>
+  </tr>
+  <tr>
+    <td>Sony Mobile Communications</td>
+    <td><code>0fce</code></td>
+  </tr>
+  <tr>
+    <td>Teleepoch</td>
+    <td><code>2340</code></td>
+  </tr>
+  <tr>
+    <td>Toshiba</td>
+    <td><code>0930</code></td>
+  </tr>
+  <tr>
+    <td>ZTE</td>
+    <td><code>19d2</code></td>
+  </tr>
+</tbody></table>
+
+    </div>
+
+      <div class="content-footer layout-content-row" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+        
+        <div class="paging-links layout-content-col col-10">
+          
+        </div>
+        <div class="layout-content-col plus-container col-2">
+          
+            <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1415451886749" name="I0_1415451886749" src="./Using Hardware Devices   Android Developers_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div>
+          
+        </div>
+        
+      </div>
+
+  </div> <!-- end jd-content -->
+
+<div id="footer" class="wrap">
+        
+
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="http://developer.android.com/license.html">Content 
+  License</a>.
+  </div>
+
+
+  <div id="footerlinks">
+    
+  <p>
+    <a href="http://developer.android.com/about/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="http://developer.android.com/legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+    <a href="http://developer.android.com/support.html">Support</a>
+  </p>
+  </div>
+
+</div> <!-- end footer -->
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+  <script src="./Using Hardware Devices   Android Developers_files/ytblogger_lists_unified.js" type="text/javascript"></script>
+  <script src="./Using Hardware Devices   Android Developers_files/jd_lists_unified.js" type="text/javascript"></script>
+  <script src="./Using Hardware Devices   Android Developers_files/jd_extras.js" type="text/javascript"></script>
+  <script src="./Using Hardware Devices   Android Developers_files/jd_collections.js" type="text/javascript"></script>
+  <script src="./Using Hardware Devices   Android Developers_files/jd_tag_helpers.js" type="text/javascript"></script>
+
+
+
+
+
+
+<iframe name="oauth2relay843476013" id="oauth2relay843476013" src="./Using Hardware Devices   Android Developers_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>
