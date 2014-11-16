@@ -1,0 +1,5 @@
+## Segmentation fault
+  if
+    child pid 3250 exit signal Segmentation fault (11), possible coredump in /etc/apache2
+  then
+    restart server

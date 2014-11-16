@@ -23,3 +23,15 @@
 ## Change an environment variable (permanent change) 
   edit ~/.bashrc file and add:
     export $VAR_NAME=some/path
+
+## Download Site
+  wget \
+  --recursive \
+  --no-clobber \
+  --page-requisites \
+  --html-extension \
+  --convert-links \
+  --restrict-file-names=windows \
+  --domains api.drupalcommerce.org \
+  --no-parent \
+     http://api.drupalcommerce.org/

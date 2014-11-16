@@ -1,0 +1,2 @@
+## Drupagedon
+  select * from menu_router where access_callback = 'file_put_contents'
