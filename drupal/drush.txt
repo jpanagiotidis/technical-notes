@@ -1,0 +1,55 @@
+## Modules, Themes
+  ## Download
+    drush dl module_name
+    (for specific version: dush dl module_name-version_suffix)
+  
+  ## Enable
+    drush en module_name
+  
+  ## Disable
+    drush dis module_name
+  
+  ## Uninstall
+    drysh pm-uninstall module_name
+  
+  ## List
+    ## List all
+      drush pm-list
+    ## Only modules
+      drush pm-list --type=module
+    ## No core modules
+      drush pm-list --no-core
+    ## Only comre modules
+      drush pm-list --core
+    ## Only enabled
+      drush pm-list --status=enabled
+    ## By package
+      drush pm-list --package=package_name
+    ## Help menu
+      drush help pm-list
+
+## Clear caches
+  ## menu
+    drush cc
+  ## clear all
+    drush cc all
+  ## specific cache
+    drush cc cache_name
+
+## Update
+  drush up
+
+## Change user password
+  drush upwd user_name --password="password"
+
+## Backup files and database
+  ## Backup
+    drush arb --destination=/path/to/backup/file.tar
+  ## Restore
+    drush arr /path/to/backup/file.tar
+
+## Maintenance mode
+  ## On
+    drush vset maintenance_mode 1
+  ## Off
+    drush vset maintenance_mode 0

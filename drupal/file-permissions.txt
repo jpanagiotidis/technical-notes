@@ -1,0 +1,18 @@
+## File permissions (linux generic from https://www.drupal.org/node/244924)
+  cd /path_to_drupal_installation
+  chown -R greg:www-data .
+  find . -type d -exec chmod u=rwx,g=rx,o= '{}' \;
+  find . -type f -exec chmod u=rw,g=r,o= '{}' \;
+
+  cd /path_to_drupal_installation/sites
+  find . -type d -name files -exec chmod ug=rwx,o= '{}' \;
+  for d in ./*/files
+  do
+     find $d -type d -exec chmod ug=rwx,o= '{}' \;
+     find $d -type f -exec chmod ug=rw,o= '{}' \;
+  done
+
+## File permissions (webfaction)
+  go to site root directory
+  find . -type d -exec chmod u=rwx,g=rws,o=rx '{}' \;
+  find . -type f -exec chmod u=rw,g=rw,o=r '{}' \;

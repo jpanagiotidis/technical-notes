@@ -35,3 +35,7 @@
   --domains api.drupalcommerce.org \
   --no-parent \
      http://api.drupalcommerce.org/
+
+## RAM statistics
+  ## Free ram
+    free -m

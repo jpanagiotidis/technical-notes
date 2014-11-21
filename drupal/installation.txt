@@ -1,4 +1,0 @@
-## File permissions (webfaction)
-  go to site root directory
-  find . -type d -exec chmod u=rwx,g=rws,o=rx '{}' \;
-  find . -type f -exec chmod u=rw,g=rw,o=r '{}' \;
