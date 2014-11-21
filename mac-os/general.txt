@@ -1,2 +1,7 @@
 ## Show/Hide hidden files
-	
+	## Show
+		type in terminal:
+			defaults write com.apple.finder AppleShowAllFiles YES
+		relaunch finder:
+			press alt + right click finder and choos relaunch
+	## Hide
