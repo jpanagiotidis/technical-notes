@@ -1,0 +1,31 @@
+## Ubuntu 14.04 LTS
+	sudo apt-get install apache2
+	sudo apt-get install mysql-server
+	sudo apt-get install php5 libapache2-mod-php5
+	sudo /etc/init.d/apache2 restart
+
+	** Apache WARNING
+		AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+
+		## Solution (14.04)
+			edit /etc/apache2/conf-available/servername.conf
+			write:
+				ServerName localhost
+			sudo a2enconf servername
+			sudo service apache2 reload
+
+	** MySQL WARNING
+		141122  1:28:20 [Warning] Using unique option prefix key_buffer instead of key_buffer_size is deprecated and will be removed in a future release. Please use the full name instead.
+
+		## Solution
+			edit /etc/mysql/my.cnf
+			change:
+				[mysqld]
+				...
+				key_buffer         = 16M
+				myisam-recover         = BACKUP
+			into:
+				[mysqld]
+				...
+				key_buffer_size = 16M
+				myisam-recover-options = BACKUP

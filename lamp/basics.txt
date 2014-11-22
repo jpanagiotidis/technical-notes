@@ -1,0 +1,7 @@
+## Apache
+	## Restart
+		sudo service apache2 restart
+
+## MySQL 
+	## restart (14.04)
+		sudo /etc/init.d/mysql start
