@@ -1,3 +1,26 @@
+## Install with composer (Ubuntu 14.04)
+  curl -sS https://getcomposer.org/installer | php
+  sudo mv composer.phar /usr/local/bin/composer
+  sed -i '1i export PATH="$HOME/.composer/vendor/bin:$PATH"' $HOME/.bashrc
+  source $HOME/.bashrc
+  sudo composer global require drush/drush:6.*
+
+  ## ERROR
+    Drush needs to download a library from                               [error]
+    http://download.pear.php.net/package/Console_Table-1.1.3.tgz in order
+    to function, and the attempt to download this file automatically
+    failed because you do not have permission to write to the library
+    directory /home/jpanagiotidis/.composer/vendor/drush/drush/lib. To
+    continue you will need to manually download the package from
+    http://download.pear.php.net/package/Console_Table-1.1.3.tgz, extract
+    it, and copy the directory into your
+    /home/jpanagiotidis/.composer/vendor/drush/drush/lib directory.
+
+    ## Solution
+      wget http://download.pear.php.net/package/Console_Table-1.1.3.tgz
+      tar zxvf Console_Table-1.1.3.tgz
+      sudo cp Console_Table-1.1.3/Table.php /home/jpanagiotidis/.composer/vendor/drush/drush/lib/
+
 ## Modules, Themes
   ## Download
     drush dl module_name

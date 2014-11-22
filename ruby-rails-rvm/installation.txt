@@ -2,5 +2,18 @@
 # INSTALLATION NIGHTMARE
 # Ubuntu 12.04
 ##############################
-1. Because ubuntu has an old and broken version of rvm/ruby you have to uninstall it and re-install it using the instructions of the following url:
-http://blog.coolaj86.com/articles/installing-ruby-on-ubuntu-12-04.html (or open it from file html)
+	1. Because ubuntu has an old and broken version of rvm/ruby you have to uninstall it and re-install it using the instructions of the following url:
+		http://blog.coolaj86.com/articles/installing-ruby-on-ubuntu-12-04.html (or open it from file html)
+
+## 2.1.3 for Ubuntu 14.04
+	sudo apt-get update
+	sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties
+
+	sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+	curl -L https://get.rvm.io | bash -s stable
+	source ~/.rvm/scripts/rvm
+	echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
+	rvm install 2.1.3
+	rvm use 2.1.3 --default
+	ruby -v
+	echo "gem: --no-ri --no-rdoc" > ~/.gemrc

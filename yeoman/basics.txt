@@ -1,0 +1,6 @@
+## Add generator
+	npm install -g generator-genname
+
+## create project with generator
+	go into empty project folder
+	yo genname

@@ -1,0 +1,2 @@
+## Installation (Ubuntu 14.04)
+	npm install -g yo (NO SUDO, if fails check nodejs installation)
