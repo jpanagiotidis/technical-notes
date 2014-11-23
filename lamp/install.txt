@@ -14,6 +14,16 @@
 			sudo a2enconf servername
 			sudo service apache2 reload
 
+	## Enable mod_rewrite
+		sudo a2enmod rewrite
+		sudo service apache2 restart
+		sudo vim /etc/apache2/sites-available/000-default.conf
+			under "DocumentRoot /var/www/html" add:
+			<Directory "/var/www/html">
+			    AllowOverride All
+			</Directory>
+		sudo service apache2 restart
+
 	** MySQL WARNING
 		141122  1:28:20 [Warning] Using unique option prefix key_buffer instead of key_buffer_size is deprecated and will be removed in a future release. Please use the full name instead.
 

@@ -1,0 +1,6 @@
+## For Ubuntu
+	## Settings file	The settings file does not exist.
+		cp sites/default/default.settings.php sites/default/settings.php
+		chmod a+w sites/default/settings.php
+	## File system	The directory sites/default/files does not exist.
+		chmod a+w sites/default/
