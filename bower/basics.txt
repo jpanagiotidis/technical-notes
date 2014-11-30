@@ -1,0 +1,2 @@
+## Install project dependencies from bower.json
+	bower install

@@ -1,0 +1,8 @@
+## Add dynamic attribute
+	testView = Backbone.View.extend({
+    tagName : 'div',
+    className : 'project-preview',
+    id : function(){
+      return 'project-preview-' + this.model.attributes.some-attribute;
+    },
+    ...

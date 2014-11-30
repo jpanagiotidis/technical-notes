@@ -7,3 +7,9 @@
 		sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
 		sudo apt-get update
 		sudo apt-get install sublime-text-installer
+
+## Install PAckage Control
+	Click the Preferences > Browse Packages… menu
+	Browse up a folder and then into the Installed Packages/ folder
+	Download Package Control.sublime-package (https://sublime.wbond.net/Package%20Control.sublime-package) and copy it into the Installed Packages/ directory
+	Restart Sublime Text

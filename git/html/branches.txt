@@ -1,0 +1,17 @@
+## View branches
+	git branch
+
+## Create branch
+	git branch branch_name
+
+## Checkout branch
+	git checkout branch_name
+
+## Create and checkout branch
+	git checkout -b branch_name
+
+## View remote branches
+	git branch -a
+
+## Checkout and work on remote branch (for more details see http://stackoverflow.com/questions/67699/clone-all-remote-branches-with-git or html folder)
+	git checkout -b branch_name origin/branch_name

@@ -8,3 +8,6 @@
     git submodule update
   ## Method B
     git clone --recursive https://main/repository/url
+
+## Update submodules
+	git submodule update --remote

@@ -1,0 +1,8 @@
+## Install sdk
+	install java jdk
+	download adt-bundle from http://developer.android.com/sdk/index.html
+	extract it and place it in some path
+	launch the sdk manager from terminal
+		cd path/to/adt-bundle/sdk/tools
+		./android sdk
+		install necessary packages (http://developer.android.com/sdk/installing/adding-packages.html)

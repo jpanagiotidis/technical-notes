@@ -65,14 +65,21 @@
 ## Change user password
   drush upwd user_name --password="password"
 
+## Clear tables
+  drush sql-drop
+
 ## Backup files and database
   ## Backup
     drush arb --destination=/path/to/backup/file.tar
   ## Restore
     drush arr /path/to/backup/file.tar
+    drush arr /path/to/backup/file.tar --db-url=mysql://root:'pass'@localhost/db_name
 
 ## Maintenance mode
   ## On
     drush vset maintenance_mode 1
   ## Off
     drush vset maintenance_mode 0
+
+## Topics Manual 
+  drush topics

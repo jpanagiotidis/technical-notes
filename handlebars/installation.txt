@@ -1,0 +1,2 @@
+## Install (Ubuntu 14.04)
+	npm install handlebars -g

@@ -1,0 +1,54 @@
+## Start, Restart, Stop mongodb
+	sudo service mongod start
+	sudo service mongod stop
+	sudo service mongod restart
+
+## see version
+	mongo --version
+
+## Run mongo shell
+	mongo
+
+## Show databases
+	show databases
+
+## Show selected database
+	db
+
+## Set selected database
+	use db_name
+
+## Show db collections
+	show collections
+
+## Search collection
+	db.collection_name.find()
+
+## Pretty Print
+	db.collection_name.find().pretty()
+
+## Delete collection
+	db.collection_name.drop()
+
+## Update document
+	db.collection.update(
+	   <query>,
+	   <update>,
+	   {
+	     upsert: <boolean>,
+	     multi: <boolean>,
+	     writeConcern: <document>
+	   }
+	)
+
+## Change a value
+	db.collection_name.update(
+		{
+			"id" : "value"
+		},
+		{
+			$set : {
+				"field_name" : "new_value"
+			}
+		}
+	)

@@ -1,0 +1,16 @@
+## Install oracle jdk 8 (ubuntu 14.04)
+	download for linux (http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+	tar -xvf jdk-8-linux-i586.tar.gz
+	sudo mkdir -p /usr/lib/jvm
+	sudo mv ./jdk1.8.0 /usr/lib/jvm/ (jdk1.8.0 may be different, so beware!!!)
+	sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.8.0/bin/java" 1
+	sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.8.0/bin/javac" 1
+	sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.8.0/bin/javaws" 1
+	sudo chmod a+x /usr/bin/java
+	sudo chmod a+x /usr/bin/javac
+	sudo chmod a+x /usr/bin/javaws
+	sudo chown -R root:root /usr/lib/jvm/jdk1.8.0
+	## these are necessary if other jds are installed (check html for details)
+		sudo update-alternatives --config java
+		sudo update-alternatives --config javac
+		sudo update-alternatives --config javaws

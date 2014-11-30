@@ -1,0 +1,14 @@
+## list all drive partitions on your system
+	sudo fdisk -l
+## mount hard drive on boot
+	find drive name with 
+		sudo fdisk -l
+	make dir for mount into /media
+	gksudo gedit /etc/fstab
+		on the end of the file and fill the following line:
+			/driver/name /media/foldername format options dump pass
+				eg: 
+					/dev/sda2 /media/disk1 ntfs defaults 0 0
+					or
+					/dev/sdb3 /media/disk2 ext4 defaults 0 0
+	sudo mount -a

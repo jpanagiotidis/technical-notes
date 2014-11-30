@@ -1,4 +1,12 @@
-## Enable Developer Tools on 4.2 and higher
+## sdk tools
+	cd /path/to/sdk
+	./android sdk
+
+## Virtual Devices Manager
+	cd /path/to/sdk
+	./android avd
+
+## Enable Developer Tools on 4.2 and higher devices
   Go at "Settings"->"About" Phone and tap "Build Number" 7 times
 
 ## Add hardware device (UBUNTU)
@@ -8,3 +16,12 @@
     SUBSYSTEM=="usb", ATTR{idVendor}=="[vendor_code]", MODE="0666", GROUP="plugdev"
   make sure everyone can read the file
     chmod a+r /etc/udev/rules.d/51-android.rules
+
+## View devices (hardware also)
+  adb devices
+
+  ## if a device is unauthorized
+    disable and enable usb debuging until the device ask for rsa key permission
+
+## Error [INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES] On device deploy
+  uninstall the apk and re-install it

@@ -1,0 +1,3 @@
+## For ST3 turn off atomic_save to leave file permissions intact when save
+	go to Preferences -> Settings-User and add this line:
+		"atomic_save": false,
