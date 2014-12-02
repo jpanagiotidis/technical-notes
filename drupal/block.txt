@@ -1,0 +1,2 @@
+## Alter block content
+	hook_block_view_alter(&$data, $block)

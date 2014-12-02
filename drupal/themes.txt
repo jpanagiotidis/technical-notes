@@ -17,6 +17,7 @@
             'front_data' => NULL
           ),
           'template' => 'front-page',
+          'path' => drupal_get_path('module', 'my_module') . '/templates',
         ),
       );
     }
