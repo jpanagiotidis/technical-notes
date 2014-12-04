@@ -1,0 +1,4 @@
+## Prepare project for version control
+	Edit->Project Settings->Editor
+		Version Control, Mode: Visible Meta files
+		Asset Serialization, Mode: Force Text
