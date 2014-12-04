@@ -1,0 +1,11 @@
+## Rigid body velocity
+	this.rigidbody.velocity = new Vector3(3f, 5f, 0f);
+	
+	## Trick: Dont affect y axis in order to maintain gravity effect
+		
+	
+## Rigid body rotation (using Euler angles)
+	this.rigidbody.rotation = Quaternion.Euler(0f, 10f, 0f);
+	
+## Get current rotation in Euler angles
+	this.rigidbody.rotation.eulerAngles
