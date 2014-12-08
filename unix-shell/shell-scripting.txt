@@ -1,0 +1,5 @@
+## Iterate over the lines of a text file
+	while IFS= read -r opt
+	do 
+	    echo $opt
+	done < path/to/file

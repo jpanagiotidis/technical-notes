@@ -1,0 +1,26 @@
+## List cron jobs
+	crontab -l
+
+## Edit/Add cron jobs
+	crontab -e
+
+## Cron job arguments
+	# +---------------- minute (0 - 59)
+	# |  +------------- hour (0 - 23)
+	# |  |  +---------- day of month (1 - 31)
+	# |  |  |  +------- month (1 - 12)
+	# |  |  |  |  +---- day of week (0 - 6) (Sunday=0)
+	# |  |  |  |  |
+	  *  *  *  *  *  command to be executed
+
+## Define PATH environmental variable
+	copy output from:
+		echo $PATH
+	crontab -e
+	PATH=paste/output (at the beginning of the file)
+
+## Store crontab output
+	0 * * * * path/to/script >> path/to/log/output.log 2>&1
+
+## Trash the crontab output
+	0 * * * * path/to/script > /dev/null 2>&1
