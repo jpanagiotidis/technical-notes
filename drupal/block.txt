@@ -1,2 +1,8 @@
 ## Alter block content
 	hook_block_view_alter(&$data, $block)
+
+## Print a block
+	<?php
+		$block = module_invoke('module_name', 'block_view', 'block_delta');
+		print render($block['content']);
+	?>

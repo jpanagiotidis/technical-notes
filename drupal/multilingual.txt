@@ -1,0 +1,33 @@
+## Customize the language switcher
+	from: https://www.drupal.org/node/1369090#comment-7421510
+	<?php
+		function MYTHEME_links__locale_block(&$variables) {
+		   
+		  // an array of list items
+		  $items = array();
+		  foreach($variables['links'] as $language => $info) {
+
+		      $name     = $info['language']->native;
+		      $href     = isset($info['href']) ? $info['href'] : '';
+		      $li_classes   = array('list-item-class');
+		      $link_classes = array('link-class1', 'link-class2');
+		      $options = array('attributes' => array('class'    => $link_classes),
+		                                             'language' => $info['language'],
+		                                             'html'     => true
+		                                             );
+		      $link = l($name, $href, $options);
+		    
+		      // display only translated links
+		      if ($href) $items[] = array('data' => $link, 'class' => $li_classes);
+		    }
+
+		  // output
+		  $attributes = array('class' => array('my-list'));   
+		  $output = theme_item_list(array('items' => $items,
+		                                  'title' => '',
+		                                  'type'  => 'ul',
+		                                  'attributes' => $attributes
+		                                  ));
+		  return $output;
+		}
+	?>
