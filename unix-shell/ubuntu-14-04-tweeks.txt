@@ -1,0 +1,23 @@
+## Swap not working
+	find if problem exists:
+		run "system monitor"
+		see swap state
+	fix it: (http://askubuntu.com/questions/456194/swap-not-being-detected-on-14-04-lts)
+		find swap name
+			run "disks" application
+			find swap path
+		find swap uuid
+			sudo blkid
+		set swap uuid
+			sudo vim etc/fstab
+				under '# swap was on /dev/sda6 during installation' replace the UUID number under swap with the one you got from blkid command
+		restart computer
+
+## Install NVIDIA official drivers
+	download linux drivers from nvidia site
+	log out
+	ctrl + alt + F1
+	sudo service lightmd stop
+	sudo init 3
+	install drivers
+	restart

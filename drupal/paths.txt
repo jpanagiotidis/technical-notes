@@ -6,3 +6,9 @@
 
 ## Get base path
 	base_path()
+
+## Get path from uri
+	file_create_url('uri-goes-here')
+
+## Get path alias
+	drupal_get_path_alias($path = NULL, $path_language = NULL)
