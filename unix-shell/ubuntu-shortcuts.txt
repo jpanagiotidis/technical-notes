@@ -1,0 +1,4 @@
+## Exit GUI
+	ctrl + alt + f1
+## Return to GUI
+	ctrl + alt + f7
