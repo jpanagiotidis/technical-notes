@@ -12,3 +12,6 @@
 
 ## Get path alias
 	drupal_get_path_alias($path = NULL, $path_language = NULL)
+
+## Get current path
+	current_path()

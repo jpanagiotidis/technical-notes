@@ -1,0 +1,11 @@
+## Get Array First Element
+	## If modifying (in the sense of resetting array pointers) of $array is not a problem, you might use:
+		reset($array)
+
+	## This should be theoretically more efficient, if a array "copy" is needed:
+		array_shift(array_slice($array, 0, 1))
+		array_shift(array_values($array))
+		** A note from an anonymous user (unverified): If you only want to go through the array in totality, prefer the use of array_pop(), because array_shift has O(n) complexity, whereas array_pop has O(1).
+
+	## With PHP 5.4+:
+		array_values($array)[0];

@@ -1,3 +1,12 @@
+## Pass variables into tpl template
+  for example page.tpl.php
+  1) in template.php add:
+    function theme_name_preprocess_page(&$variables){
+      $variables['my_var'] = 'some_value';
+    }
+  2) inside page.tpl.php
+    print $my_var;
+
 ## Get node on HTML variables
   In hook_preprocess_html:
     $node = menu_get_object();
