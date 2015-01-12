@@ -1,0 +1,19 @@
+## View keys
+	ls -a ~/.ssh
+
+## Generate key pair
+	cd ~/.ssh
+	ssh-keygen 
+		(enter name, passphrase)
+
+## Load key to bitbucket
+	cat ~/.ssh/keyname_rsa.pub
+		(copy output)
+	bitbucket->manage account->ssh keys and add the key
+
+## Add identity (nedded for webfaction)
+	ssh-agent /bin/bash
+	ssh-add ~/.ssh/keyname_rsa
+
+## View the added identities
+	ssh-add -l

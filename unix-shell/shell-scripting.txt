@@ -1,5 +1,21 @@
+## Script header
+	#!/bin/bash
+
+## Pass arguments
+	call the script:
+		./my_script.sh my_arg
+	read the argument inside the script
+		$1
+
 ## Iterate over the lines of a text file
 	while IFS= read -r opt
 	do 
 	    echo $opt
 	done < path/to/file
+
+## Make SSH conection and run a local script
+	ssh user@host_address 'bash -s' < my_script.sh script_arg
+
+## Get current directory
+	DIR="$( cd "$( dirname "$0" )" && pwd )"
+	echo $DIR
