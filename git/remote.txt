@@ -1,0 +1,2 @@
+## change remote url
+	git remote set-url origin git://new.url.here
