@@ -16,6 +16,6 @@
 ## Make SSH conection and run a local script
 	ssh user@host_address 'bash -s' < my_script.sh script_arg
 
-## Get current directory
+## Get script directory
 	DIR="$( cd "$( dirname "$0" )" && pwd )"
 	echo $DIR

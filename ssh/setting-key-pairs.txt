@@ -17,3 +17,7 @@
 
 ## View the added identities
 	ssh-add -l
+
+## Forward the ssh-agent via ssh
+	ssh -A user@remotehost
+		(for more security use ssh-add -c (from: http://yakking.branchable.com/posts/ssh-A/))
