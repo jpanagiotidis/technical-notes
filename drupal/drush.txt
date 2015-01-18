@@ -83,3 +83,6 @@
 
 ## Topics Manual 
   drush topics
+
+## Htaccess module change .htaccess file
+  drush ht ht_name

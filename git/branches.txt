@@ -1,0 +1,12 @@
+## View branches
+	git branch
+
+## Create and checkout branch
+	git checkout -b branch_name
+
+## Change branch
+	git checkout branch_name
+
+## Get remote branch
+	git pull origin branch_name
+	git checkout branch_name
