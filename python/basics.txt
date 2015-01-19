@@ -1,0 +1,49 @@
+## Comments
+	# this is a python comment
+
+## Interactive mode
+	on interactive mode the _ is the last printed expression
+
+## Numbers
+	powers:
+		**
+		example:
+			2**8 #equals 256
+	floor division:
+		//
+		example:
+			5//4 #equals 1
+
+## Strings
+	## Get character at
+		word[index]
+			(negative numbers can be also used)
+	## Substring
+		word[startIndex:endIndex]
+			(startIndex is included, endIndex isnt included)
+			(if startIndex is ommited then the substring starts from the start of the original word)
+			(if endIndex is ommited then the substring ends to the end of the original word)
+	## Get length
+		len(word)
+
+## Lists
+	## Define a list
+		myList = [12, 34, 2, 4]
+	## Get list element at index
+		myList[index]
+			(negative indexes can be used)
+	## Get slice
+		myList[startIndex:endIndex]
+			(startIndex is included, endIndex isnt included)
+			(if startIndex is ommited then the slice starts from the start of the original list)
+			(if endIndex is ommited then the slice ends to the end of the original list)
+	## List concatenation
+		myList + myOtherList
+	## Add element at the end of the list
+		myList.append(3);
+	## Change list value
+		myList[3] = 45;
+	## Change list slice
+		myList[startIndex:endIndex] = myOtherList
+	## Get list length
+		len(myList)
