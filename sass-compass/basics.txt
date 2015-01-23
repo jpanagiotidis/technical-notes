@@ -9,3 +9,6 @@
 
 ## Auto compile Project
   compass watch
+
+## Variables
+  $variable-name: value;

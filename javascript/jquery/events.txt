@@ -1,0 +1,2 @@
+## Adding events for dynamically added elements
+  $('parent_selector').on('event', 'dynamic_element_selector', function(evt){});
