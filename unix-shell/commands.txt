@@ -7,10 +7,6 @@
   shopt -s dotglob
   mv [from_directory_path]* [to_directory_path]
 
-## make tar of whole directory 
-  shopt -s dotglob ##to include with hidden files
-  tar -cvf archive_name.tar *
-
 ## secure copy scp
   from local to remote
     scp path/to.file user@address:/remote/path
@@ -35,7 +31,3 @@
   --domains api.drupalcommerce.org \
   --no-parent \
      http://api.drupalcommerce.org/
-
-## RAM statistics
-  ## Free ram
-    free -m

@@ -1,0 +1,43 @@
+## Login mysql
+  mysql -u [username] -p;
+
+## Exit mysql
+  exit
+
+## Create database
+  CREATE DATABASE [db_name]
+  CREATE DATABASE IF NOT EXISTS [db_name]
+
+## Show databases
+  show databases;
+
+## Switch database
+  use [database_name];
+
+## Show tables
+  show tables;
+
+## Show all rows of a table
+  select * form [table_name];
+  select [column_name,column_name,...] form [table_name];
+  select * form [table_name] order by [column_name];
+  select * form [table_name] limit [number];
+
+## Delete all rows of a table
+  truncate [table_name];
+
+## Show users and host
+  select user,host from mysql.user;
+
+## Show user permissions
+  show grants for [user_name]@[host];
+
+## Export and import database
+  ## export
+    mysqldump -u [username] -p [database_name] > [dumpfilename.sql]
+  ## export with stored procedures and functions
+    mysqldump -u [username] -p [database_name] --routines > [dumpfilename.sql]
+  ## export only stored procedures and triggers
+    mysqldump --routines --no-create-info --no-data --no-create-db --skip-opt [database_name] > [dumpfilename.sql]
+  ## import
+    mysql -u [username] -p [database_name] < [dumpfilename.sql]

@@ -1,0 +1,12 @@
+## Execute a python script as shell script
+  on the first line write:
+    #!/usr/bin/env python
+
+## Check if a path is directory
+  import os
+  if os.path.isdir("/some/path"):
+    print("is directory")
+
+## Run a shell command
+  import subprocess
+  subprocess.call(["ls", "-la", "/home/username/Documents"])

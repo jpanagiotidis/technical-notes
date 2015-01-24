@@ -4,6 +4,10 @@
 ## Interactive mode
 	on interactive mode the _ is the last printed expression
 
+## Do something if the script isn't imported
+	if __name__=="__main__":
+		do_something()
+
 ## Numbers
 	powers:
 		**
@@ -47,3 +51,36 @@
 		myList[startIndex:endIndex] = myOtherList
 	## Get list length
 		len(myList)
+
+## Flow Control
+	## if example
+		if x < 0:
+			print('aaa');
+		elif x == 1:
+			print('bbb');
+		else:
+			print('ccc');
+
+## Loops
+	## For loop example
+		words = ['cat', 'window', 'defenestrate'];
+		for w in words:
+			print(w, ':', len(w));
+
+	## Loop with range
+		## Range function:
+			range(end);
+			range(start, end);
+			range(start, end, step);
+			** 	print(range(10)) outputs: range(0, 10)
+					in order to print list use: print(list(range(10)))
+		## Example for loop with range
+			for i in range(5):
+				print(i);
+
+## Functions
+	def func_name(argA, ...):
+		some_command;
+		...
+		return;
+
