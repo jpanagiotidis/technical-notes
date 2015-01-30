@@ -1,0 +1,24 @@
+## Loops
+  ## For loop example
+    words = ['cat', 'window', 'defenestrate'];
+    for w in words:
+      print(w, ':', len(w));
+
+  ## Loop with range
+    ## Range function:
+      range(end);
+      range(start, end);
+      range(start, end, step);
+      **  print(range(10)) outputs: range(0, 10)
+          in order to print list use: print(list(range(10)))
+    ## Example for loop with range
+      for i in range(5):
+        print(i);
+
+  ## Loop with enumerator
+    for i,n in enumerate(myList):
+      print i,":",n
+
+  ## Loop dictionary with key, value
+    for k,v in myDict.items():
+      print k,v

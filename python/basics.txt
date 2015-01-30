@@ -1,5 +1,11 @@
 ## Comments
 	# this is a python comment
+	'''
+		This
+		is a
+		multiline
+		comment
+	'''
 
 ## Interactive mode
 	on interactive mode the _ is the last printed expression
@@ -30,28 +36,6 @@
 	## Get length
 		len(word)
 
-## Lists
-	## Define a list
-		myList = [12, 34, 2, 4]
-	## Get list element at index
-		myList[index]
-			(negative indexes can be used)
-	## Get slice
-		myList[startIndex:endIndex]
-			(startIndex is included, endIndex isnt included)
-			(if startIndex is ommited then the slice starts from the start of the original list)
-			(if endIndex is ommited then the slice ends to the end of the original list)
-	## List concatenation
-		myList + myOtherList
-	## Add element at the end of the list
-		myList.append(3);
-	## Change list value
-		myList[3] = 45;
-	## Change list slice
-		myList[startIndex:endIndex] = myOtherList
-	## Get list length
-		len(myList)
-
 ## Flow Control
 	## if example
 		if x < 0:
@@ -61,24 +45,7 @@
 		else:
 			print('ccc');
 
-## Loops
-	## For loop example
-		words = ['cat', 'window', 'defenestrate'];
-		for w in words:
-			print(w, ':', len(w));
-
-	## Loop with range
-		## Range function:
-			range(end);
-			range(start, end);
-			range(start, end, step);
-			** 	print(range(10)) outputs: range(0, 10)
-					in order to print list use: print(list(range(10)))
-		## Example for loop with range
-			for i in range(5):
-				print(i);
-
-## Functions
+## Functionss
 	def func_name(argA, ...):
 		some_command;
 		...
