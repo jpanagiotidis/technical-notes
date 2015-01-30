@@ -1,3 +1,11 @@
+## Define array
+  $myArray = array(
+    'key_a' => 'some_value',
+    'key_b' => 'some_other_value',
+    'key_c' => 'and_yet_another_value',
+    ...
+  );
+
 ## Get Array First Element
 	## If modifying (in the sense of resetting array pointers) of $array is not a problem, you might use:
 		reset($array)

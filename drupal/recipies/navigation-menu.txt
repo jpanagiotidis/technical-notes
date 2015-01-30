@@ -1,0 +1,8 @@
+## Some recipies for the navigation menu
+
+  ## (A) Pass it as variable into the page.tpl.php
+
+  ## (B) Create a custom tpl
+    (1) create a custom tpl
+    (2) create a module function that prints this tpl
+    (3) call the function from step (2) into page.tpl.php

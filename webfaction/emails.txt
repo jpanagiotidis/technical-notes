@@ -1,0 +1,29 @@
+To add a WebFaction-hosted mailbox and email address to Gmail:
+1. Log in to Gmail.
+2. Click the settings gear button. A menu appears:
+70
+3. Click Settings.
+4. Click Accounts and Import.
+5. Click Add a mail account you own. A pop up window appears:
+6. In the Email address field, enter your email address.
+7. Click the Next Step button. Several mail configuration fields appear:
+8. In the Username field, enter your mailbox name.
+9. In the Password field, enter your password.
+10. In the POP Server field, enter mail.webfaction.com .
+11. In the Port menu, click to select 995.
+12. Click to select Leave a copy of retrieved message on the server.
+13. Click to select Always use a secure connection (SSL) when retrieving mail.
+14. Click the Add Account button.
+15. Click to select Yes, I want to be able to send mail as demo@demo.webfactional.com.
+16. Click the Next Step button.
+17. In the Name field, enter your name as it you want it to appear to message recipients.
+18. Click the Next Step button. Several mail configuration fields appear:
+19. In the SMTP Server field, enter smtp.webfaction.com .
+20. In the Port menu, click to select 587.
+21. In the Username field, enter your mailbox name.
+22. In the Password field, enter your mailbox password.
+23. Click to select Secured connection using TLS (recommended).
+24. Click the Add Account button. A Confirm verification and add your email address message appears.
+25. Wait for an email message, Gmail Confirmation, to arrive in your inbox.
+26. When the email message arrives, click the confirmation link in the body of the message.
+Your mailbox is added to Gmail and you can send mail from the address.

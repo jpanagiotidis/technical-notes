@@ -1,0 +1,31 @@
+## Create Node (the old way)
+  global $user;
+
+  $node = new stdClass();
+  $node->title = "YOUR TITLE";
+  $node->type = "YOUR_NODE_TYPE";
+  node_object_prepare($node); // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
+  $node->language = LANGUAGE_NONE; // Or e.g. 'en' if locale is enabled
+  $node->uid = $user->uid; 
+  $node->status = 1; //(1 or 0): published or not
+  $node->promote = 0; //(1 or 0): promoted to front page
+  $node->comment = 1; // 0 = comments disabled, 1 = read only, 2 = read/write
+
+  // Simple text field
+  $node->field_jpan_my_text_field['und'][0]['value'] = "Initial about us";
+
+  // Term reference (taxonomy) field
+  $node->field_product_tid[$node->language][]['tid'] = $form_state['values']['a taxonomy term id'];
+
+  // Entity reference field
+  $node->field_customer_nid[$node->language][] = array(
+    'target_id' => $form_state['values']['entity id'],
+    'target_type' => 'node',
+  );
+  // 'node' is default,
+  // Other possible values are "user" and  "taxonomy_term" 
+
+  $node = node_submit($node); // Prepare node for saving
+  node_save($node);
+  //drupal_set_message( "Node with nid " . $node->nid . " saved!\n");
+  $form_state['redirect']  = 'SOME WHERE';

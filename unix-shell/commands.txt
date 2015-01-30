@@ -31,3 +31,6 @@
   --domains api.drupalcommerce.org \
   --no-parent \
      http://api.drupalcommerce.org/
+
+## Empty trash (ubuntu 12.04)
+  rm -rf ~/.local/share/Trash/*

@@ -1,0 +1,10 @@
+## hook_menu example
+  function module_name_menu(){
+    $items['some-page'] = array(
+      'page callback' => 'some_callback',
+      'page arguments' => array(0),
+      'access callback' => TRUE,
+    );
+
+    return $items;
+  }
