@@ -1,0 +1,5 @@
+## View PHP errors
+  add the following lines at sites/default/settings.php
+    error_reporting(E_ALL);
+    ini_set('display_errors', TRUE);
+    ini_set('display_startup_errors', TRUE);
