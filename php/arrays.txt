@@ -17,3 +17,11 @@
 
 	## With PHP 5.4+:
 		array_values($array)[0];
+
+## isset() vs array_key_exists()
+  isset():
+    language construct
+    returns false if key doesn't exist or if it explicitly set to NULL
+  array_key_exists():
+    function
+    returns if key exists regardless of its value
