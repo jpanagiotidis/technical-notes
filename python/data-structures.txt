@@ -33,6 +33,8 @@
     }
   ## Get dictionary element
     myDict["some_key"]
+  ## Has key
+    "some_key" in myDict
   ## Add (or change) element
     myDict["some_other_key"] = "value"
   ## Delete element and key

@@ -22,3 +22,7 @@
   ## Loop dictionary with key, value
     for k,v in myDict.items():
       print k,v
+
+  ## While loops
+    while True:
+      print('loop')

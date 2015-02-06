@@ -1,0 +1,5 @@
+## Error handling
+  try:
+    x = int(val)
+  except ValueError:
+    print("this is not a NUMBER")
