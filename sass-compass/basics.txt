@@ -12,3 +12,17 @@
 
 ## Variables
   $variable-name: value;
+
+## Mixins
+  1) create a scss file starting with _
+    for example _tools.scss
+  2) inside file from 1 create a mixin
+    for example:
+      @mixin some-name($value){
+        background-color: $value;
+      }
+  3) into main scss file import file from 1
+    for example
+      @import "tools";
+  4) into appropriate selector include mixin
+    @include some-name(orange);
