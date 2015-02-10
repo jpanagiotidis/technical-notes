@@ -1,6 +1,12 @@
 ## Get active language code
 	$GLOBALS['language']->language
 
+## Add language switcher
+	<?php
+	  $block = module_invoke('locale', 'block_view', 'language');
+		print render($block['content']);
+	?>
+
 ## Customize the language switcher
 	from: https://www.drupal.org/node/1369090#comment-7421510
 	<?php

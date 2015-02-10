@@ -1,11 +1,15 @@
-## Get module/theme path
-	drupal_get_path('project_type', 'project_name')
-
 ## Get base url
-	global $base_url OR $GLOBALS['base_url'];
+  global $base_url OR $GLOBALS['base_url'];
 
 ## Get base path
-	base_path()
+  base_path()
+
+## Get module/theme path
+  drupal_get_path('project_type', 'project_name')
+
+## Get current theme path
+  $GLOBALS['base_url'].'/'.$GLOBALS['theme_path']
+
 
 ## Get path from uri
 	file_create_url('uri-goes-here')
