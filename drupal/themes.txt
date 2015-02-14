@@ -37,3 +37,7 @@
       '#front_data' => $content,
       '#theme' => 'front_page',
     );
+
+## Add tpl for node type
+  if the content type machine name is: some_name then
+    node--some-name.tpl.php

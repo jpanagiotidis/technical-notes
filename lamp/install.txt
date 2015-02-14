@@ -47,3 +47,69 @@
 		sudo php5enmod mcrypt
 		sudo service apache2 restart
 		sudo ln -s /usr/share/phpmyadmin /var/www/html (for 12.04 /var/www)
+
+## Install mysqlnd and phpmyadmin
+	(from: http://blog.ahughes.org/?p=602)
+	$sudo apt-get install php5-mysqlnd
+
+	** now phpmyadmin is broken, to install it without breaking mysqlnd do the following
+		$sudo apt-get download phpmyadmin #instead of installing directly
+		$touch videbcontrol #to edit the installation script instructions
+		$vim videbcontrol
+		copy the following lines, save and exit:
+
+		## Start of script for copy
+
+#!/bin/bash
+
+EDITOR=vim #REPLACE WITH YOUR FAVOURITE EDITOR
+
+if [[ -z "$1" ]]; then
+  echo "Syntax: $0 debfile"
+  exit 1
+fi
+
+DEBFILE="$1"
+TMPDIR=`mktemp -d /tmp/deb.XXXXXXXXXX` || exit 1
+OUTPUT=`basename "$DEBFILE" .deb`.modified.deb
+
+if [[ -e "$OUTPUT" ]]; then
+  echo "$OUTPUT exists."
+  rm -r "$TMPDIR"
+  exit 1
+fi
+
+dpkg-deb -x "$DEBFILE" "$TMPDIR"
+dpkg-deb --control "$DEBFILE" "$TMPDIR"/DEBIAN
+
+if [[ ! -e "$TMPDIR"/DEBIAN/control ]]; then
+  echo DEBIAN/control not found.
+
+  rm -r "$TMPDIR"
+  exit 1
+fi
+
+CONTROL="$TMPDIR"/DEBIAN/control
+
+MOD=`stat -c "%y" "$CONTROL"`
+$EDITOR "$CONTROL"
+
+if [[ "$MOD" == `stat -c "%y" "$CONTROL"` ]]; then
+  echo Not modified.
+else
+  echo Building new deb...
+  dpkg -b "$TMPDIR" "$OUTPUT"
+fi
+
+rm -r "$TMPDIR"
+
+		## End of script for copy
+
+		$ chmod +x videbcontrol
+		$ ./videbcontrol phpmyadmin_3.4.10.1-1_all.deb
+		Replace the following line:
+				php5-mysql | php5-mysqli
+			with this:
+				php5-mysql | php5-mysqli | php5-mysqlnd
+		$ sudo dpkg -i phpmyadmin_3.4.10.1-1_all.modified.deb
+		$ sudo service apache2 restart

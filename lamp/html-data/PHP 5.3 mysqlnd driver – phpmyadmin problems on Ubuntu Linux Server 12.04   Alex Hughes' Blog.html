@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)http://blog.ahughes.org/?p=602 -->
+<html lang="en-US" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" class="js"><script id="tinyhippos-injected">if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/shares.json"></script><script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/counter020.js"></script><script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/menu173.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://blog.ahughes.org/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="http://blog.ahughes.org/wp-content/themes/twentyfifteen/js/html5.js"></script>
+	<![endif]-->
+	<script>(function(){document.documentElement.className='js'})();</script>
+	<title>PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04 | Alex Hughes' Blog</title>
+<link rel="alternate" type="application/rss+xml" title="Alex Hughes&#39; Blog » Feed" href="http://blog.ahughes.org/?feed=rss2">
+<link rel="alternate" type="application/rss+xml" title="Alex Hughes&#39; Blog » Comments Feed" href="http://blog.ahughes.org/?feed=comments-rss2">
+<link rel="alternate" type="application/rss+xml" title="Alex Hughes&#39; Blog » PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04 Comments Feed" href="http://blog.ahughes.org/?feed=rss2&p=602">
+<link rel="stylesheet" id="wp-quicklatex-format-css" href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/quicklatex-format.css" type="text/css" media="all">
+<link rel="stylesheet" id="twentyfifteen-jetpack-css" href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/twentyfifteen.css" type="text/css" media="all">
+<link rel="stylesheet" id="output-css" href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/output.css" type="text/css" media="all">
+<link rel="stylesheet" id="twentyfifteen-fonts-css" href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="genericons-css" href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/genericons.css" type="text/css" media="all">
+<link rel="stylesheet" id="twentyfifteen-style-css" href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/style.css" type="text/css" media="all">
+<style id="twentyfifteen-style-inline-css" type="text/css">
+	/* Color Scheme */
+
+	/* Background Color */
+	body {
+		background-color: #674970;
+	}
+
+	/* Sidebar Background Color */
+	body:before,
+	.site-header {
+		background-color: #2e2256;
+	}
+
+	/* Box Background Color */
+	.post-navigation,
+	.pagination,
+	.secondary,
+	.site-footer,
+	.hentry,
+	.page-header,
+	.page-content,
+	.comments-area {
+		background-color: #ffffff;
+	}
+
+	/* Box Background Color */
+	button,
+	input[type="button"],
+	input[type="reset"],
+	input[type="submit"],
+	.pagination .prev,
+	.pagination .next,
+	.widget_calendar tbody a,
+	.widget_calendar tbody a:hover,
+	.widget_calendar tbody a:focus,
+	.page-links a,
+	.page-links a:hover,
+	.page-links a:focus,
+	.sticky-post {
+		color: #ffffff;
+	}
+
+	/* Main Text Color */
+	button,
+	input[type="button"],
+	input[type="reset"],
+	input[type="submit"],
+	.pagination .prev,
+	.pagination .next,
+	.widget_calendar tbody a,
+	.page-links a,
+	.sticky-post {
+		background-color: #2e2256;
+	}
+
+	/* Main Text Color */
+	body,
+	blockquote cite,
+	blockquote small,
+	a,
+	.dropdown-toggle:after,
+	.image-navigation a:hover,
+	.image-navigation a:focus,
+	.comment-navigation a:hover,
+	.comment-navigation a:focus,
+	.widget-title,
+	.entry-footer a:hover,
+	.entry-footer a:focus,
+	.comment-metadata a:hover,
+	.comment-metadata a:focus,
+	.pingback .edit-link a:hover,
+	.pingback .edit-link a:focus,
+	.comment-list .reply a:hover,
+	.comment-list .reply a:focus,
+	.site-info a:hover,
+	.site-info a:focus {
+		color: #2e2256;
+	}
+
+	/* Main Text Color */
+	.entry-content a,
+	.entry-summary a,
+	.page-content a,
+	.comment-content a,
+	.pingback .comment-body > a,
+	.author-description a,
+	.taxonomy-description a,
+	.textwidget a,
+	.entry-footer a:hover,
+	.comment-metadata a:hover,
+	.pingback .edit-link a:hover,
+	.comment-list .reply a:hover,
+	.site-info a:hover {
+		border-color: #2e2256;
+	}
+
+	/* Secondary Text Color */
+	button:hover,
+	button:focus,
+	input[type="button"]:hover,
+	input[type="button"]:focus,
+	input[type="reset"]:hover,
+	input[type="reset"]:focus,
+	input[type="submit"]:hover,
+	input[type="submit"]:focus,
+	.pagination .prev:hover,
+	.pagination .prev:focus,
+	.pagination .next:hover,
+	.pagination .next:focus,
+	.widget_calendar tbody a:hover,
+	.widget_calendar tbody a:focus,
+	.page-links a:hover,
+	.page-links a:focus {
+		background-color: #2e2256; /* Fallback for IE7 and IE8 */
+		background-color: rgba( 46, 34, 86, 0.7);
+	}
+
+	/* Secondary Text Color */
+	blockquote,
+	a:hover,
+	a:focus,
+	.main-navigation .menu-item-description,
+	.post-navigation .meta-nav,
+	.post-navigation a:hover .post-title,
+	.post-navigation a:focus .post-title,
+	.image-navigation,
+	.image-navigation a,
+	.comment-navigation,
+	.comment-navigation a,
+	.widget,
+	.author-heading,
+	.entry-footer,
+	.entry-footer a,
+	.taxonomy-description,
+	.page-links > .page-links-title,
+	.entry-caption,
+	.comment-author,
+	.comment-metadata,
+	.comment-metadata a,
+	.pingback .edit-link,
+	.pingback .edit-link a,
+	.post-password-form label,
+	.comment-form label,
+	.comment-notes,
+	.comment-awaiting-moderation,
+	.logged-in-as,
+	.form-allowed-tags,
+	.no-comments,
+	.site-info,
+	.site-info a,
+	.wp-caption-text,
+	.gallery-caption,
+	.comment-list .reply a {
+		color: #2e2256; /* Fallback for IE7 and IE8 */
+		color: rgba( 46, 34, 86, 0.7);
+	}
+
+	/* Secondary Text Color */
+	blockquote,
+	.logged-in-as a:hover,
+	.comment-author a:hover {
+		border-color: #2e2256; /* Fallback for IE7 and IE8 */
+		border-color: rgba( 46, 34, 86, 0.7);
+	}
+
+	/* Border Color */
+	hr,
+	.dropdown-toggle:hover,
+	.dropdown-toggle:focus {
+		background-color: #2e2256; /* Fallback for IE7 and IE8 */
+		background-color: rgba( 46, 34, 86, 0.1);
+	}
+
+	/* Border Color */
+	pre,
+	abbr[title],
+	table,
+	th,
+	td,
+	input,
+	textarea,
+	.main-navigation ul,
+	.main-navigation li,
+	.post-navigation,
+	.post-navigation div + div,
+	.pagination,
+	.comment-navigation,
+	.widget li,
+	.widget_categories .children,
+	.widget_nav_menu .sub-menu,
+	.widget_pages .children,
+	.site-header,
+	.site-footer,
+	.hentry + .hentry,
+	.author-info,
+	.entry-content .page-links a,
+	.page-links > span,
+	.page-header,
+	.comments-area,
+	.comment-list + .comment-respond,
+	.comment-list article,
+	.comment-list .pingback,
+	.comment-list .trackback,
+	.comment-list .reply a,
+	.no-comments {
+		border-color: #2e2256; /* Fallback for IE7 and IE8 */
+		border-color: rgba( 46, 34, 86, 0.1);
+	}
+
+	/* Border Focus Color */
+	a:focus,
+	button:focus,
+	input:focus {
+		outline-color: #2e2256; /* Fallback for IE7 and IE8 */
+		outline-color: rgba( 46, 34, 86, 0.3);
+	}
+
+	input:focus,
+	textarea:focus {
+		border-color: #2e2256; /* Fallback for IE7 and IE8 */
+		border-color: rgba( 46, 34, 86, 0.3);
+	}
+
+	/* Sidebar Link Color */
+	.secondary-toggle:before {
+		color: #ffffff;
+	}
+
+	.site-title a,
+	.site-description {
+		color: #ffffff;
+	}
+
+	/* Sidebar Text Color */
+	.site-title a:hover,
+	.site-title a:focus {
+		color: rgba( 255, 255, 255, 0.7);
+	}
+
+	/* Sidebar Border Color */
+	.secondary-toggle {
+		border-color: #ffffff; /* Fallback for IE7 and IE8 */
+		border-color: rgba( 255, 255, 255, 0.1);
+	}
+
+	/* Sidebar Border Focus Color */
+	.secondary-toggle:hover,
+	.secondary-toggle:focus {
+		border-color: #ffffff; /* Fallback for IE7 and IE8 */
+		border-color: rgba( 255, 255, 255, 0.3);
+	}
+
+	.site-title a {
+		outline-color: #ffffff; /* Fallback for IE7 and IE8 */
+		outline-color: rgba( 255, 255, 255, 0.3);
+	}
+
+	/* Meta Background Color */
+	.entry-footer {
+		background-color: #f1f1f1;
+	}
+
+	@media screen and (min-width: 38.75em) {
+		/* Main Text Color */
+		.page-header {
+			border-color: #2e2256;
+		}
+	}
+
+	@media screen and (min-width: 59.6875em) {
+		/* Make sure its transparent on desktop */
+		.site-header,
+		.secondary {
+			background-color: transparent;
+		}
+
+		/* Sidebar Background Color */
+		.widget button,
+		.widget input[type="button"],
+		.widget input[type="reset"],
+		.widget input[type="submit"],
+		.widget_calendar tbody a,
+		.widget_calendar tbody a:hover,
+		.widget_calendar tbody a:focus {
+			color: #2e2256;
+		}
+
+		/* Sidebar Link Color */
+		.secondary a,
+		.dropdown-toggle:after,
+		.widget-title,
+		.widget blockquote cite,
+		.widget blockquote small {
+			color: #ffffff;
+		}
+
+		.widget button,
+		.widget input[type="button"],
+		.widget input[type="reset"],
+		.widget input[type="submit"],
+		.widget_calendar tbody a {
+			background-color: #ffffff;
+		}
+
+		.textwidget a {
+			border-color: #ffffff;
+		}
+
+		/* Sidebar Text Color */
+		.secondary a:hover,
+		.secondary a:focus,
+		.main-navigation .menu-item-description,
+		.widget,
+		.widget blockquote,
+		.widget .wp-caption-text,
+		.widget .gallery-caption {
+			color: rgba( 255, 255, 255, 0.7);
+		}
+
+		.widget button:hover,
+		.widget button:focus,
+		.widget input[type="button"]:hover,
+		.widget input[type="button"]:focus,
+		.widget input[type="reset"]:hover,
+		.widget input[type="reset"]:focus,
+		.widget input[type="submit"]:hover,
+		.widget input[type="submit"]:focus,
+		.widget_calendar tbody a:hover,
+		.widget_calendar tbody a:focus {
+			background-color: rgba( 255, 255, 255, 0.7);
+		}
+
+		.widget blockquote {
+			border-color: rgba( 255, 255, 255, 0.7);
+		}
+
+		/* Sidebar Border Color */
+		.main-navigation ul,
+		.main-navigation li,
+		.widget input,
+		.widget textarea,
+		.widget table,
+		.widget th,
+		.widget td,
+		.widget pre,
+		.widget li,
+		.widget_categories .children,
+		.widget_nav_menu .sub-menu,
+		.widget_pages .children,
+		.widget abbr[title] {
+			border-color: rgba( 255, 255, 255, 0.1);
+		}
+
+		.dropdown-toggle:hover,
+		.dropdown-toggle:focus,
+		.widget hr {
+			background-color: rgba( 255, 255, 255, 0.1);
+		}
+
+		.widget input:focus,
+		.widget textarea:focus {
+			border-color: rgba( 255, 255, 255, 0.3);
+		}
+
+		.sidebar a:focus,
+		.dropdown-toggle:focus {
+			outline-color: rgba( 255, 255, 255, 0.3);
+		}
+	}
+
+		/* Custom Header Background Color */
+		body:before,
+		.site-header {
+			background-color: #3e0068;
+		}
+
+		@media screen and (min-width: 59.6875em) {
+			.site-header,
+			.secondary {
+				background-color: transparent;
+			}
+
+			.widget button,
+			.widget input[type="button"],
+			.widget input[type="reset"],
+			.widget input[type="submit"],
+			.widget_calendar tbody a,
+			.widget_calendar tbody a:hover,
+			.widget_calendar tbody a:focus {
+				color: #3e0068;
+			}
+		}
+	
+
+		/* Custom Sidebar Text Color */
+		.site-title a,
+		.site-description,
+		.secondary-toggle:before {
+			color: #eeeeee;
+		}
+
+		.site-title a:hover,
+		.site-title a:focus {
+			color: #eeeeee; /* Fallback for IE7 and IE8 */
+			color: rgba( 238, 238, 238, 0.7);
+		}
+
+		.secondary-toggle {
+			border-color: #eeeeee; /* Fallback for IE7 and IE8 */
+			border-color: rgba( 238, 238, 238, 0.1);
+		}
+
+		.secondary-toggle:hover,
+		.secondary-toggle:focus {
+			border-color: #eeeeee; /* Fallback for IE7 and IE8 */
+			border-color: rgba( 238, 238, 238, 0.3);
+		}
+
+		.site-title a {
+			outline-color: #eeeeee; /* Fallback for IE7 and IE8 */
+			outline-color: rgba( 238, 238, 238, 0.3);
+		}
+
+		@media screen and (min-width: 59.6875em) {
+			.secondary a,
+			.dropdown-toggle:after,
+			.widget-title,
+			.widget blockquote cite,
+			.widget blockquote small {
+				color: #eeeeee;
+			}
+
+			.widget button,
+			.widget input[type="button"],
+			.widget input[type="reset"],
+			.widget input[type="submit"],
+			.widget_calendar tbody a {
+				background-color: #eeeeee;
+			}
+
+			.textwidget a {
+				border-color: #eeeeee;
+			}
+
+			.secondary a:hover,
+			.secondary a:focus,
+			.main-navigation .menu-item-description,
+			.widget,
+			.widget blockquote,
+			.widget .wp-caption-text,
+			.widget .gallery-caption {
+				color: rgba( 238, 238, 238, 0.7);
+			}
+
+			.widget button:hover,
+			.widget button:focus,
+			.widget input[type="button"]:hover,
+			.widget input[type="button"]:focus,
+			.widget input[type="reset"]:hover,
+			.widget input[type="reset"]:focus,
+			.widget input[type="submit"]:hover,
+			.widget input[type="submit"]:focus,
+			.widget_calendar tbody a:hover,
+			.widget_calendar tbody a:focus {
+				background-color: rgba( 238, 238, 238, 0.7);
+			}
+
+			.widget blockquote {
+				border-color: rgba( 238, 238, 238, 0.7);
+			}
+
+			.main-navigation ul,
+			.main-navigation li,
+			.secondary-toggle,
+			.widget input,
+			.widget textarea,
+			.widget table,
+			.widget th,
+			.widget td,
+			.widget pre,
+			.widget li,
+			.widget_categories .children,
+			.widget_nav_menu .sub-menu,
+			.widget_pages .children,
+			.widget abbr[title] {
+				border-color: rgba( 238, 238, 238, 0.1);
+			}
+
+			.dropdown-toggle:hover,
+			.dropdown-toggle:focus,
+			.widget hr {
+				background-color: rgba( 238, 238, 238, 0.1);
+			}
+
+			.widget input:focus,
+			.widget textarea:focus {
+				border-color: rgba( 238, 238, 238, 0.3);
+			}
+
+			.sidebar a:focus,
+			.dropdown-toggle:focus {
+				outline-color: rgba( 238, 238, 238, 0.3);
+			}
+		}
+	
+</style>
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentyfifteen-ie-css'  href='http://blog.ahughes.org/wp-content/themes/twentyfifteen/css/ie.css?ver=20141010' type='text/css' media='all' />
+<![endif]-->
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='twentyfifteen-ie7-css'  href='http://blog.ahughes.org/wp-content/themes/twentyfifteen/css/ie7.css?ver=20141010' type='text/css' media='all' />
+<![endif]-->
+<link rel="stylesheet" id="jetpack_css-css" href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/jetpack.css" type="text/css" media="all">
+<script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/jquery.js"></script>
+<script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/wp-quicklatex-frontend.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.ahughes.org/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.ahughes.org/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Bugzilla 4 Installation on Ubuntu Linux Server 12.04" href="http://blog.ahughes.org/?p=588">
+<link rel="next" title="Microfeed" href="http://blog.ahughes.org/?p=543">
+<meta name="generator" content="WordPress 4.1">
+<link rel="canonical" href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog.html">
+<link rel="shortlink" href="http://wp.me/p2ZrQB-9I">
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #300051; }
+</style>
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP 5.3 mysqlnd driver - phpmyadmin problems on Ubuntu Linux Server 12.04">
+<meta property="og:url" content="http://blog.ahughes.org/?p=602">
+<meta property="og:description" content="Yesterday, I wanted to install the php-mysqlnd driver on an Ubuntu Linux Server running PHP 5.3. I needed to do that in order to be able to run code like that (it fails miserably otherwise and for ...">
+<meta property="article:published_time" content="2013-04-03T16:17:22+00:00">
+<meta property="article:modified_time" content="2013-11-10T14:30:32+00:00">
+<meta property="article:author" content="http://blog.ahughes.org/?author=1">
+<meta property="og:site_name" content="Alex Hughes&#39; Blog">
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg">
+<meta name="twitter:site" content="@jetpack">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/services.css"><link rel="stylesheet" type="text/css" href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/widget014.top.svg.css" media="all"><link rel="stylesheet" type="text/css" href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/widget014.svg.css" media="all"><link rel="stylesheet" type="text/css" href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/counter015.css" media="all"></head>
+
+<body class="single single-post postid-602 single-format-standard custom-background">
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="http://blog.ahughes.org/?p=602#content">Skip to content</a>
+
+	<div id="sidebar" class="sidebar" style="top: 1815.15625px;">
+		<header id="masthead" class="site-header" role="banner">
+			<div class="site-branding">
+										<p class="site-title"><a href="http://blog.ahughes.org/" rel="home">Alex Hughes' Blog</a></p>
+											<p class="site-description">When the child like view of the world went, nothing replaced it</p>
+									<button class="secondary-toggle">Menu and widgets</button>
+			</div><!-- .site-branding -->
+		</header><!-- .site-header -->
+
+			<div id="secondary" class="secondary">
+
+		
+		
+					<div id="widget-area" class="widget-area" role="complementary">
+				<aside id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="http://blog.ahughes.org/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:">
+				</label>
+				<input type="submit" class="search-submit screen-reader-text" value="Search">
+			</form></aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title">Recent Posts</h2>		<ul>
+					<li>
+				<a href="http://blog.ahughes.org/?p=797">Fish &amp; Chips in Isleworth</a>
+						</li>
+					<li>
+				<a href="http://blog.ahughes.org/?p=776">Media Discovery Black Hat SEO scam</a>
+						</li>
+					<li>
+				<a href="http://blog.ahughes.org/?p=769">Zero Carbohydrates and Salt Detox Diet Overview</a>
+						</li>
+					<li>
+				<a href="http://blog.ahughes.org/?p=734">London Estate Agents Ranting</a>
+						</li>
+					<li>
+				<a href="http://blog.ahughes.org/?p=751">Install sendEmail (simple SMTP client for Linux) on CentOS</a>
+						</li>
+				</ul>
+		</aside><aside id="archives-2" class="widget widget_archive"><h2 class="widget-title">Archives</h2>		<ul>
+	<li><a href="http://blog.ahughes.org/?m=201403">March 2014</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201402">February 2014</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201401">January 2014</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201312">December 2013</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201310">October 2013</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201309">September 2013</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201305">May 2013</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201304">April 2013</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201303">March 2013</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201302">February 2013</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201301">January 2013</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201212">December 2012</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201211">November 2012</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201210">October 2012</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201209">September 2012</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201208">August 2012</a></li>
+	<li><a href="http://blog.ahughes.org/?m=201207">July 2012</a></li>
+		</ul>
+</aside><aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categories</h2>		<ul>
+	<li class="cat-item cat-item-148"><a href="http://blog.ahughes.org/?cat=148">bash scripting</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://blog.ahughes.org/?cat=5" title="Go to casual page for more info...">casual</a>
+</li>
+	<li class="cat-item cat-item-83"><a href="http://blog.ahughes.org/?cat=83">databases</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://blog.ahughes.org/?cat=6" title="Go to drums page for more info...">drums</a>
+</li>
+	<li class="cat-item cat-item-56"><a href="http://blog.ahughes.org/?cat=56" title="Go to England Page for more info...">england</a>
+</li>
+	<li class="cat-item cat-item-38"><a href="http://blog.ahughes.org/?cat=38">generic</a>
+</li>
+	<li class="cat-item cat-item-36"><a href="http://blog.ahughes.org/?cat=36">Java</a>
+</li>
+	<li class="cat-item cat-item-204"><a href="http://blog.ahughes.org/?cat=204">perl</a>
+</li>
+	<li class="cat-item cat-item-37"><a href="http://blog.ahughes.org/?cat=37">PHP</a>
+</li>
+	<li class="cat-item cat-item-39"><a href="http://blog.ahughes.org/?cat=39">public diary</a>
+</li>
+	<li class="cat-item cat-item-196"><a href="http://blog.ahughes.org/?cat=196" title="Go to radio page for more info...">radio</a>
+</li>
+	<li class="cat-item cat-item-35"><a href="http://blog.ahughes.org/?cat=35">science humiliated</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://blog.ahughes.org/?cat=4" title="Go to software page for more info...">software</a>
+</li>
+	<li class="cat-item cat-item-338"><a href="http://blog.ahughes.org/?cat=338">trips</a>
+</li>
+		</ul>
+</aside>			</div><!-- .widget-area -->
+		
+	</div><!-- .secondary -->
+
+	</div><!-- .sidebar -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<article id="post-602" class="post-602 post type-post status-publish format-standard hentry category-bash-software category-php tag-emacs tag-linux tag-mysqnd tag-nano tag-php5 tag-phpmyadmin tag-ubuntu-12-04 tag-vim">
+	
+	<header class="entry-header">
+		<h1 class="entry-title">PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04</h1>	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>Yesterday, I wanted to install the <strong>php-mysqlnd driver</strong> on an <strong>Ubuntu Linux Server</strong> running <strong>PHP 5.3</strong>. I needed to do that in order to be able to run code like that (<em>it fails miserably otherwise and for me that function is like a <strong>swiss knife</strong></em>):</p>
+<pre>$result = $stmt-&gt;get_results();</pre>
+<p>The procedure was quite straightforward, but it kind of <strong>“sacked”</strong> <strong>phpmyadmin. </strong>And when I tried to reinstall it, it was <strong>uninstalling</strong> the <strong>mysqlnd driver.</strong></p>
+<p><span id="more-602"></span></p>
+<p>Personally, I find that phpmyadmin is a bit for the <em>blonde girls that want to upgrade from graphic design, to CMS sites’ facelift</em>. It needs too many mouse clicks to do a simple operation and makes my wrist pain grow exponentially.</p>
+<p><em>It’s so much easier to load a mysql DB like that:</em></p>
+<pre>$ mysql -u root -p --database aDB &lt; db_dump.sql</pre>
+<blockquote><p>But some people like it, it is a kind of standard and it is nice to have some times.</p></blockquote>
+<p>So, what I did was to “<em>hold two watermelons with the same hand</em>” as the Greeks say, was the following:</p>
+<p>At first, <strong>install php5-mysqlnd driver:</strong></p>
+<pre>$ sudo apt-get install php5-mysqlnd</pre>
+<p>This will eventually <strong>sack</strong> <strong>phpmyadmin</strong> and you will have to <strong>reinstall</strong> it, but also you have to configure the installation script <strong>not to sack mysqlnd driver</strong> otherwise you will enter this <strong>“vicious circle”</strong>.</p>
+<pre>$ sudo apt-get download phpmyadmin #instead of installing directly
+$ touch videbcontrol #to edit the installation script instructions</pre>
+<p>Then, open <strong>videbcontrol using your favourite editor</strong> and paste in the following code.</p>
+<p>Note that the <strong>EDITOR variable defines the editor that you prefer to use to do the changes.</strong></p>
+<p><em>(nano is the easiest one, but learn to use a more powerful one like <a href="http://en.wikipedia.org/wiki/Vim_%28text_editor%29" target="_blank"><strong>vim</strong> </a>or <a href="http://en.wikipedia.org/wiki/Emacs" target="_blank"><strong>emacs</strong></a>)</em></p>
+<pre>#!/bin/bash
+
+EDITOR=vim #REPLACE WITH YOUR FAVOURITE EDITOR
+
+if [[ -z "$1" ]]; then
+  echo "Syntax: $0 debfile"
+  exit 1
+fi
+
+DEBFILE="$1"
+TMPDIR=`mktemp -d /tmp/deb.XXXXXXXXXX` || exit 1
+OUTPUT=`basename "$DEBFILE" .deb`.modified.deb
+
+if [[ -e "$OUTPUT" ]]; then
+  echo "$OUTPUT exists."
+  rm -r "$TMPDIR"
+  exit 1
+fi
+
+dpkg-deb -x "$DEBFILE" "$TMPDIR"
+dpkg-deb --control "$DEBFILE" "$TMPDIR"/DEBIAN
+
+if [[ ! -e "$TMPDIR"/DEBIAN/control ]]; then
+  echo DEBIAN/control not found.
+
+  rm -r "$TMPDIR"
+  exit 1
+fi
+
+CONTROL="$TMPDIR"/DEBIAN/control
+
+MOD=`stat -c "%y" "$CONTROL"`
+$EDITOR "$CONTROL"
+
+if [[ "$MOD" == `stat -c "%y" "$CONTROL"` ]]; then
+  echo Not modified.
+else
+  echo Building new deb...
+  dpkg -b "$TMPDIR" "$OUTPUT"
+fi
+
+rm -r "$TMPDIR"</pre>
+<p>Save the file, and make sure it is <strong>executable</strong> by running this command:</p>
+<pre>$ chmod +x videbcontrol</pre>
+<p>Then, execute the script with the <strong>desired deb package as the parameter</strong>:</p>
+<pre>$ ./videbcontrol phpmyadmin_3.4.10.1-1_all.deb</pre>
+<p><strong>Replace</strong> the following line:</p>
+<pre>php5-mysql | php5-mysqli</pre>
+<p>with <strong>this</strong>:</p>
+<pre>php5-mysql | php5-mysqli | php5-mysqlnd</pre>
+<p>Save changes and exit the editor. Then, finally install the modified package and <strong>keep your fingers crossed.</strong> <em>(make sure you put the correct name of the file)</em></p>
+<pre>$ sudo dpkg -i phpmyadmin_3.4.10.1-1_all.modified.deb</pre>
+<p>Follow the installation steps and <strong>restart apache</strong> just in case:</p>
+<pre>$ sudo service apache2 restart</pre>
+<p><strong>I hope all this helped.</strong></p>
+<p><em><strong>Cheers!</strong></em></p>
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="http://blog.ahughes.org/?p=602" addthis:title="PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04 "><a class="addthis_button_facebook at300b" title="Facebook" href="http://blog.ahughes.org/?p=602#"><span class="at4-icon aticon-facebook" style="background-color: rgb(48, 88, 145);"><span class="at_a11y">Share on facebook</span></span></a><a class="addthis_button_twitter at300b" title="Tweet" href="http://blog.ahughes.org/?p=602#"><span class="at4-icon aticon-twitter" style="background-color: rgb(44, 168, 210);"><span class="at_a11y">Share on twitter</span></span></a><a class="addthis_button_email at300b" target="_blank" title="Email" href="http://blog.ahughes.org/?p=602#"><span class="at4-icon aticon-email" style="background-color: rgb(115, 138, 141);"><span class="at_a11y">Share on email</span></span></a><a class="addthis_button_pinterest_share at300b" target="_blank" title="Pinterest" href="http://blog.ahughes.org/?p=602#"><span class="at4-icon aticon-pinterest_share" style="background-color: rgb(200, 40, 40);"><span class="at_a11y">Share on pinterest_share</span></span></a><a class="addthis_button_compact at300m" href="http://blog.ahughes.org/?p=602#"><span class="at4-icon aticon-compact" style="background-color: rgb(252, 109, 76);"><span class="at_a11y">More Sharing Services</span></span></a><a class="addthis_counter addthis_bubble_style" href="http://blog.ahughes.org/?p=602#" style="display: inline-block;"><a class="addthis_button_expanded" target="_blank" title="View more services" href="http://blog.ahughes.org/?p=602#">1</a><a class="atc_s addthis_button_compact"><span></span></a></a><div class="atclear"></div></div>	</div><!-- .entry-content -->
+
+	
+	<footer class="entry-footer">
+		<span class="posted-on"><span class="screen-reader-text">Posted on </span><a href="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog.html" rel="bookmark"><time class="entry-date published" datetime="2013-04-03T19:17:22+00:00">April 3, 2013</time><time class="updated" datetime="2013-11-10T17:30:32+00:00">November 10, 2013</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">Author </span><a class="url fn n" href="http://blog.ahughes.org/?author=1">Alex Hughes</a></span></span><span class="cat-links"><span class="screen-reader-text">Categories </span><a href="http://blog.ahughes.org/?cat=148" rel="category">bash scripting</a>, <a href="http://blog.ahughes.org/?cat=37" rel="category">PHP</a></span><span class="tags-links"><span class="screen-reader-text">Tags </span><a href="http://blog.ahughes.org/?tag=emacs" rel="tag">emacs</a>, <a href="http://blog.ahughes.org/?tag=linux" rel="tag">linux</a>, <a href="http://blog.ahughes.org/?tag=mysqnd" rel="tag">mysqnd</a>, <a href="http://blog.ahughes.org/?tag=nano" rel="tag">nano</a>, <a href="http://blog.ahughes.org/?tag=php5" rel="tag">php5</a>, <a href="http://blog.ahughes.org/?tag=phpmyadmin" rel="tag">phpmyadmin</a>, <a href="http://blog.ahughes.org/?tag=ubuntu-12-04" rel="tag">ubuntu 12.04</a>, <a href="http://blog.ahughes.org/?tag=vim" rel="tag">vim</a></span>			</footer><!-- .entry-footer -->
+
+</article><!-- #post-## -->
+
+<div id="comments" class="comments-area">
+
+			<h2 class="comments-title">
+			2 thoughts on “PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04”		</h2>
+
+		
+		<ol class="comment-list">
+					<li id="comment-641" class="comment even thread-even depth-1 parent">
+			<article id="div-comment-641" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/b7d4800b96b2be5d5d771ad26a083efa" class="avatar avatar-56 photo grav-hashed grav-hijack" height="56" width="56" id="grav-b7d4800b96b2be5d5d771ad26a083efa-0">						<b class="fn">Jumba</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://blog.ahughes.org/?p=602#comment-641">
+							<time datetime="2013-05-10T15:34:41+00:00">
+								May 10, 2013 at 15:34							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Exactly what I was looking for, thanks!</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a class="comment-reply-link" href="http://blog.ahughes.org/?p=602&replytocom=641#respond" onclick="return addComment.moveForm( &quot;div-comment-641&quot;, &quot;641&quot;, &quot;respond&quot;, &quot;602&quot; )" aria-label="Reply to Jumba">Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-642" class="comment byuser comment-author-ahughes bypostauthor odd alt depth-2">
+			<article id="div-comment-642" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/85762da765525115f9aa150fa9759c13" class="avatar avatar-56 photo grav-hashed grav-hijack" height="56" width="56" id="grav-85762da765525115f9aa150fa9759c13-0">						<b class="fn"><a href="http://www.alexhughes117.com/" rel="external nofollow" class="url">Alex Hughes</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://blog.ahughes.org/?p=602#comment-642">
+							<time datetime="2013-05-10T15:39:11+00:00">
+								May 10, 2013 at 15:39							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Cheers mate!</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a class="comment-reply-link" href="http://blog.ahughes.org/?p=602&replytocom=642#respond" onclick="return addComment.moveForm( &quot;div-comment-642&quot;, &quot;642&quot;, &quot;respond&quot;, &quot;602&quot; )" aria-label="Reply to Alex Hughes">Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+		
+	
+	
+						
+		<div id="respond" class="comment-respond">
+			<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://blog.ahughes.org/?p=602#respond" style="display:none;">Cancel reply</a></small></h3>
+			<div id="commentform" class="comment-form">
+				<iframe src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/saved_resource.html" allowtransparency="false" style="width: 100%; height: 58px; border: 0px;" frameborder="0" scrolling="no" name="jetpack_remote_comment" id="jetpack_remote_comment"></iframe>
+			<input id="ak_js" name="ak_js" type="hidden" value="1423921823611"></div>
+		</div>
+
+		
+		<input type="hidden" name="comment_parent" id="comment_parent" value="">
+
+		
+</div><!-- .comments-area -->
+
+	<nav class="navigation post-navigation" role="navigation">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="http://blog.ahughes.org/?p=588" rel="prev"><span class="meta-nav" aria-hidden="true">Previous</span> <span class="screen-reader-text">Previous post:</span> <span class="post-title">Bugzilla 4 Installation on Ubuntu Linux Server 12.04</span></a></div><div class="nav-next"><a href="http://blog.ahughes.org/?p=543" rel="next"><span class="meta-nav" aria-hidden="true">Next</span> <span class="screen-reader-text">Next post:</span> <span class="post-title">Microfeed</span></a></div></div>
+	</nav>
+		</main><!-- .site-main -->
+	</div><!-- .content-area -->
+
+
+	</div><!-- .site-content -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="site-info">
+						<a href="https://wordpress.org/">Proudly powered by WordPress</a>
+		</div><!-- .site-info -->
+	</footer><!-- .site-footer -->
+
+</div><!-- .site -->
+
+	<div style="display:none">
+	<div class="grofile-hash-map-b7d4800b96b2be5d5d771ad26a083efa">
+	</div>
+	<div class="grofile-hash-map-85762da765525115f9aa150fa9759c13">
+	</div>
+	</div>
+<script type="text/javascript">
+
+var addthis_config = {"data_track_clickback":false,"data_track_addressbar":false,"data_track_textcopy":false,"ui_atversion":"300"};
+var addthis_product = 'wpp-4.0.3';
+</script><script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/addthis_widget.js"></script><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; top: -9999px; z-index: 100000;"><iframe id="_atssh228" title="AddThis utility frame" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/sh200.html" style="height: 1px; width: 1px; position: absolute; top: 0px; z-index: 100000; border: 0px; left: 0px;"></iframe></div><script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/core200.js"></script><script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/form.js"></script>
+<script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/devicepx-jetpack.js"></script>
+<script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/wpgroho.js"></script>
+<script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/skip-link-focus-fix.js"></script>
+<script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/comment-reply.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var screenReaderText = {"expand":"<span class=\"screen-reader-text\">expand child menu<\/span>","collapse":"<span class=\"screen-reader-text\">collapse child menu<\/span>"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/functions.js"></script>
+
+		<!--[if IE]>
+		<script type="text/javascript">
+		if ( 0 === window.location.hash.indexOf( '#comment-' ) ) {
+			// window.location.reload() doesn't respect the Hash in IE
+			window.location.hash = window.location.hash;
+		}
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+			var comm_par_el = document.getElementById( 'comment_parent' ),
+			    comm_par = (comm_par_el && comm_par_el.value) ? comm_par_el.value : '',
+			    frame = document.getElementById( 'jetpack_remote_comment' ),
+			    tellFrameNewParent;
+
+			tellFrameNewParent = function() {
+				if ( comm_par ) {
+					frame.src = "http://jetpack.wordpress.com/jetpack-comment/?blogid=44197729&postid=602&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=mystery&greeting=Leave+a+Reply&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en-US&jetpack_version=3.3&sig=700496f138e84817e38392fe6496edfd69a620f9#parent=http%3A%2F%2Fblog.ahughes.org%2F%3Fp%3D602" + '&replytocom=' + parseInt( comm_par, 10 ).toString();
+				} else {
+					frame.src = "http://jetpack.wordpress.com/jetpack-comment/?blogid=44197729&postid=602&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=mystery&greeting=Leave+a+Reply&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en-US&jetpack_version=3.3&sig=700496f138e84817e38392fe6496edfd69a620f9#parent=http%3A%2F%2Fblog.ahughes.org%2F%3Fp%3D602";
+				}
+			};
+
+	
+			if ( 'undefined' !== typeof addComment ) {
+				addComment._Jetpack_moveForm = addComment.moveForm;
+
+				addComment.moveForm = function( commId, parentId, respondId, postId ) {
+					var returnValue = addComment._Jetpack_moveForm( commId, parentId, respondId, postId ), cancelClick, cancel;
+
+					if ( false === returnValue ) {
+						cancel = document.getElementById( 'cancel-comment-reply-link' );
+						cancelClick = cancel.onclick;
+						cancel.onclick = function() {
+							var cancelReturn = cancelClick.call( this );
+							if ( false !== cancelReturn ) {
+								return cancelReturn;
+							}
+
+							if ( !comm_par ) {
+								return cancelReturn;
+							}
+
+							comm_par = 0;
+
+							tellFrameNewParent();
+
+							return cancelReturn;
+						};
+					}
+
+					if ( comm_par == parentId ) {
+						return returnValue;
+					}
+
+					comm_par = parentId;
+
+					tellFrameNewParent();
+
+					return returnValue;
+				};
+			}
+
+	
+			if ( window.postMessage ) {
+				if ( document.addEventListener ) {
+					window.addEventListener( 'message', function( event ) {
+						if ( "http:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				} else if ( document.attachEvent ) {
+					window.attachEvent( 'message', function( event ) {
+						if ( "http:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				}
+			}
+		</script>
+
+	
+	<script src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/e-201507.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:3.3',blog:'44197729',post:'602',tz:'3'});
+	var load_cmc = function(){linktracker_init(44197729,602,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script><img src="./PHP 5.3 mysqlnd driver – phpmyadmin problems on Ubuntu Linux Server 12.04   Alex Hughes' Blog_files/g.gif" id="wpstats"><!--wp_footer-->
+
+
+</body></html>
