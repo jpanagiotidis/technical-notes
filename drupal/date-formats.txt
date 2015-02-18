@@ -1,0 +1,26 @@
+## Add cusdtom date formats via code
+
+/**
+* Implements hook_date_format_types().
+*/
+function hook_date_format_types() {
+  return array(
+    'my_format'  => t('My format'),
+  );
+}
+
+/**
+* Implements hook_date_formats().
+*/
+function hook_date_formats() {
+  $formats = array();
+  $formats[] = array(
+    'type'    => 'my_format',
+    'format'  => 'M j',
+    'locales' => array(),
+  );
+  foreach ($formats as $format) {
+    variable_set('date_format_' . $format['type'], $format['format']);
+  }
+  return $formats;
+}

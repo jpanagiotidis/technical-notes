@@ -8,3 +8,37 @@
 
     return $items;
   }
+
+## Return json example
+  function mymodule_menu() {
+      $items['fancystuff/json'] = array(
+          'access callback'   => true, // available to all
+          'page callback'     => 'mymodule_fancystuff_object', // defined below
+          'delivery callback' => 'drupal_json_output' 
+      );
+      return $items;
+  }
+
+
+
+  function mymodule_fancystuff_object() {
+      return array('test'=>true,'dummy'=>array(0,1));
+  }
+
+## Pass Arguments
+  function jpan_custom_configuration_menu(){
+    $items['get-reports-by-category'] = array(
+        'access callback'   => true,
+        'page callback'     => 'entelli_get_reports_by_category_json_callback',
+        'page arguments' => array(1, 2),
+        'delivery callback' => 'drupal_json_output' 
+    );
+    return $items;
+  }
+
+  function entelli_get_reports_by_category_json_callback($category, $page){
+    return array(
+      'cat' => $category,
+      'page' => $page,
+    );
+  }

@@ -1,0 +1,11 @@
+## View IP
+  ifconfig
+
+## View the ARP cache
+  arp -a
+
+## Current routing table
+  netstat -r
+
+## Hosts file
+  /etc/hosts

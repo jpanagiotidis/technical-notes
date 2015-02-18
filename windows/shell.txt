@@ -1,0 +1,11 @@
+## View IP
+  ipconfig/all
+
+## View the ARP cache
+  arp -a
+
+## Current routing table
+  route print
+
+## Hosts file
+  c:\windows\system32\drivers\etc\hosts

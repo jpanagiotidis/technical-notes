@@ -34,3 +34,6 @@
 
 ## Empty trash (ubuntu 12.04)
   rm -rf ~/.local/share/Trash/*
+
+## History of commands
+  history

@@ -1,0 +1,6 @@
+$.ajax({
+  url : 'some/path',
+  success : function(data){
+    console.log(data);
+  }
+});
