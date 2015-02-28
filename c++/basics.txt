@@ -1,0 +1,82 @@
+# Comments
+  // Single line comment
+  /* */ Multiple line comments
+
+# Variables
+  int nameOfVar = 12;
+
+# Pointers
+  nameOfVar //returns the value (but connot be changed)
+  &nameOfVar //return the memory address of nameOfVar
+  *nameOfVar //points to the value in memory
+
+# Arrays
+  # Fixed length array
+    int myArray[5];
+
+  # Dynamic array
+    int *myArray;
+    myArray = new int[78];
+
+  # 2Dimensional Array
+    int **myArray;
+    myArray = new (*int)[34]
+
+    for(int i = 0; i < 34; i++){
+      myArray[i] = new int[45]
+    }
+
+# Functions
+  int myFunction(int x){
+    x = 3; //changes the local x
+    return x*2;
+  }
+
+  int myFunction(int &x){
+    x = 3; //changes the global x
+    return x*2;
+  }
+
+  myFunction(4);
+
+# Struct
+  struct myPoint{
+    float x;
+    float y;
+    float z;
+  }
+
+  myPoint p1;
+  p1.x=5;
+  p1.y=4;
+  p1.z=7;
+
+# Classes
+  class Shape {
+    private:
+      string name;
+
+      void setColor(){
+        this->color = 4;
+      }
+
+    public:
+      int color;
+
+      Shape(name){
+        this->name = _name;
+      }
+
+      string getName(){
+        return this->name;
+      }
+  }
+
+  Shape *s1 = new Shape('moufa');
+  Shape s1 = Shape('moufa');
+
+  class Rect: public Shape{
+    private:
+      int length;
+      int height;
+  }

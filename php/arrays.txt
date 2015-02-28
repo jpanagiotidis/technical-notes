@@ -25,3 +25,6 @@
   array_key_exists():
     function
     returns if key exists regardless of its value
+
+## In array
+  bool in_array ( mixed $needle , array $haystack [, bool $strict = FALSE ] )

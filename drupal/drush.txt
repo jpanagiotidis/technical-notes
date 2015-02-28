@@ -74,6 +74,7 @@
   ## Restore
     drush arr /path/to/backup/file.tar
     drush arr /path/to/backup/file.tar --db-url=mysql://root:'pass'@localhost/db_name
+    drush arr /path/to/backup/file.tar --db-url=mysql://root:'pass'@localhost/db_name --destination=/path/to/restore
 
 ## Maintenance mode
   ## On

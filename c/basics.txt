@@ -1,0 +1,15 @@
+## Basics
+  # Define a main function
+    int main() {
+      return 0;
+    }
+
+## Functions
+  # Define function prototype at top of file
+    void funcName(void);
+  # Define function
+    void funcName(){
+      //code goes here
+    }
+
+## Loops

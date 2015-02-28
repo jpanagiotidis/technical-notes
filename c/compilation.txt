@@ -1,0 +1,3 @@
+# Using gcc
+  # Install gcc
+    sudo apt-get install gcc

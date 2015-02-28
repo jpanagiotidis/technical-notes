@@ -40,3 +40,21 @@
 		  return $output;
 		}
 	?>
+
+## Add language filter into taxonomy term views
+	function my_module_name_views_query_alter(&$view, &$query) {
+	  global $language;
+	  if ($view->name == 'my_view_name') {
+	    $query->where[] = array(
+	      'conditions' => array(
+	        array(
+	          'field' => 'taxonomy_term_data.language',
+	          'value' => array($language->language, 'und'),
+	          'operator' => 'in',
+	        )
+	      ),
+	      'args' => array(),
+	      'type' => 'AND',
+	    );
+	  }
+	}

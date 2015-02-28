@@ -1,0 +1,12 @@
+# Load io library
+  #include <stdio.h>
+
+# Print text
+  printf("Say something\n");
+
+# User input
+  int age;
+  scanf( "%d", &age );
+
+# Print variable
+  printf("Your age is %d\n", age);

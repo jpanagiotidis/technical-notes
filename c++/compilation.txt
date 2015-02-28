@@ -1,0 +1,17 @@
+# Using g++
+  # Install g++
+    sudo apt-get install gcc g++
+
+  # Compile
+    gcc nameOfFile.c
+    gcc -o nameOfOutput nameOfFile.c
+
+  # Options
+    -o
+      define output executable
+    -v
+      verbose
+    -Wall
+      prints "all" warning messages.
+    -g
+      generates additional symbolic debuggging information for use with gdb debugger.
