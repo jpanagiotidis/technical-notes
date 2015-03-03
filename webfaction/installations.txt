@@ -8,15 +8,32 @@
   source ~/.bash_profile
   hash -r
 
+## Add drush to bash.rc
+  vim ~/.bashrc
+  copy the following lines at the end of the file:
+PATH=$PATH:$HOME/bin
+
+## Add Drush into crontab
+  crontab -e
+  copy the following lines at the beginning of the file:
+PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/jpan/bin
+DRUSH_PHP=php54
+
+alias php=php55
+
+export PATH
+export DRUSH_PHP=php54
+
+
 ## Add SSH key
-	on local computer
-		cd ~/.ssh (create if doesnt exist)
-		ssh-keygen -t dsa
-			(example name: mykey_dsa)
-		scp ~/.ssh/mykey_dsa.pub username@server.webfaction.com:temp_key.pub
-	on webfaction server via ssh
-		cat ~/temp_key.pub >> ~/.ssh/authorized_keys
-		rm ~/temp_key.pub
-		chmod 600 ~/.ssh/authorized_keys
-		chmod 700 ~/.ssh
-		chmod go-w $HOME
+  on local computer
+    cd ~/.ssh (create if doesnt exist)
+    ssh-keygen -t dsa
+      (example name: mykey_dsa)
+    scp ~/.ssh/mykey_dsa.pub username@server.webfaction.com:temp_key.pub
+  on webfaction server via ssh
+    cat ~/temp_key.pub >> ~/.ssh/authorized_keys
+    rm ~/temp_key.pub
+    chmod 600 ~/.ssh/authorized_keys
+    chmod 700 ~/.ssh
+    chmod go-w $HOME

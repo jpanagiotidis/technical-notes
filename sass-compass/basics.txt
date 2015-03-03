@@ -26,3 +26,6 @@
       @import "tools";
   4) into appropriate selector include mixin
     @include some-name(orange);
+
+## Parent selector
+  &
