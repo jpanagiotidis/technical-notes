@@ -1,0 +1,11 @@
+## View installed gems
+  gem list
+
+## Install gem
+  gem install gem_name
+
+  ## specific version
+    gem install gem_name -v 3.4.7
+
+## Uninstall gem
+  gem uninstall gem_name

@@ -1,0 +1,11 @@
+## Add custom jquery code
+  (function($) {
+    //code goes here
+  })(jQuery);
+
+## Add data into Drupal.settings
+  $custom_settings = array(
+    'some-setting' => 12,
+    'another-setting' => 'fasdf',
+  );
+  drupal_add_js(array('customKey' => $custom_settings), 'setting');
