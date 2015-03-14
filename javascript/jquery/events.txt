@@ -1,2 +1,10 @@
 ## Adding events for dynamically added elements
   $('parent_selector').on('event', 'dynamic_element_selector', function(evt){});
+
+## Custom events
+  1) Attach event trigger
+    $(someSelector).trigger('some:event-name');
+  2) Add event listener
+    $(someSelector).on('some:event-name', function(evt){
+      //do something
+    });

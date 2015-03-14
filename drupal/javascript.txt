@@ -3,6 +3,9 @@
     //code goes here
   })(jQuery);
 
+## Add javascript file
+  drupal_add_js('path/to/js/file', 'file');
+
 ## Add data into Drupal.settings
   $custom_settings = array(
     'some-setting' => 12,

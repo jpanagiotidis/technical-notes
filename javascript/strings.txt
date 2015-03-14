@@ -1,2 +1,8 @@
+## Get Substring
+  myString.substring(startIndex, endIndex);
+
+## Get character
+  myString.charAt(index);
+
 ## Remove prefix from string
   myString.replace('somePrefix', '');
