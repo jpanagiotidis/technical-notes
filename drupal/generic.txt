@@ -1,0 +1,2 @@
+## Get page title
+  drupal_get_title();

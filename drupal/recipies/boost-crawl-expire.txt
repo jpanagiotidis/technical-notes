@@ -1,0 +1,43 @@
+## Boost Installation
+	1) install boost module
+	2) go to admin/config/system/boost and set:
+		html maximum lifetime > 1 week
+		html minimum lifetime = 0
+	3) go to /admin/config/development/performance
+		and disable page caching for anonymous users
+	4) the default settings on /admin/config/system/boost/htaccess should be ok, but if boost isn't working try %{SERVER_NAME} instead of %{HTTP_HOST}
+	5) go to /admin/config/system/boost/htaccess/generator and copy-paste the generated rules into .htaccess file (as described on the bottom of the page). Alternatively use the htacces module (see below)
+	6) go to /admin/reports/status and check if the boost cache directory is writable by the server, if not change the directory permissions
+		cd path/to/drupal/root
+		chmod 0775 cache -R
+	7) check if boost is working
+
+## Boost crawler integration
+	1) install boost_crawler and httprl modules
+	2) go to admin/config/system/boost/crawler
+	3) enable "Enable the cron crawler"
+
+## Cache expiration integration
+	1) install expire module
+	2) go to admin/config/system/boost/expiration
+	3) enable "Ignore a cache flush command if cron issued the request." and "Remove old cache files on cron."
+	4) go to admin/config/system/expire
+	5) select "External Expiration"
+	6) on the other tabs (nodes, users, comments etc) uncheck everything
+	7) for each entity (nodes, taxonomy, users etc) go to "Cache Expiration" tab and select the appropriate settings
+		for example 
+			1) go to admin/structure/types/manage/article
+			2) go to "Cache Expiration" tab
+			3) on "NODE ACTIONS" check "Node Insert", "Node update", "Node delete"
+			4) on "WHAT PAGES SHOULD BE EXPIRED WHEN NODE ACTION IS TRIGGERED?" check:
+				"Front Page" if you want the front page to be cleared
+				"Node Page" to clear the node page
+				"Cusom Pages" if you want to clear any custom page
+	8) For finer control use Rules
+		for example
+			1) go to admin/config/workflow/rules
+			2) add a new rule
+			3) on Events add "After saving new content", "After deleting content", "After updating existing content"
+			4) On conditions add "Content is published"
+			5) On actions add "Clear URL(s) from the page cache." (and on the value field add the urls)
+
