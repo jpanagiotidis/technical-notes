@@ -12,6 +12,16 @@
 		chmod 0775 cache -R
 	7) check if boost is working
 
+## Add htaccess
+	1) Install htaccess
+	2) go to admin/config/system/htaccess
+	3) paste boost settings from admin/config/system/boost/htaccess/generator into "BOOST" field
+	4) go to admin/config/system/htaccess/generate and create a new profile
+	5) deploy the file by using one of the following methods:
+			a) drush ht ht_profile_name
+			b) go to admin/config/system/htaccess/deployment and deploy the profile
+			c) go to admin/config/system/htaccess/deployment and download the file and deploy it manually
+
 ## Boost crawler integration
 	1) install boost_crawler and httprl modules
 	2) go to admin/config/system/boost/crawler

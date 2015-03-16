@@ -1,2 +1,18 @@
 ## Get page title
   drupal_get_title();
+
+## Enable modules
+  module_enable(
+    array(
+      'module_a', 
+      'module_b',
+    )
+  );
+
+## Disable modules
+  module_disable(
+    array(
+      'module_a', 
+      'module_b',
+    )
+  );
