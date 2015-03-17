@@ -28,3 +28,35 @@
 
 ## In array
   bool in_array ( mixed $needle , array $haystack [, bool $strict = FALSE ] )
+
+## Get array keys
+  array array_keys ( array $array [, mixed $search_value [, bool $strict = false ]] )
+
+  array_keys() returns the keys, numeric and string, from the array.
+  If the optional search_value is specified, then only the keys for that value are returned. Otherwise, all the keys from the array are returned.
+  Parameters ¶
+  array
+  An array containing keys to return.
+  search_value
+  If specified, then only keys containing these values are returned.
+  strict
+  Determines if strict comparison (===) should be used during the search.
+  Return Values
+  Returns an array of all the keys in array.
+
+## Filter array with callback
+  array array_filter ( array $array [, callable $callback [, int $flag = 0 ]] )
+
+  Iterates over each value in the array passing them to the callback function. If the callback function returns true, the current value from array is returned into the result array. Array keys are preserved.
+  Parameters
+  array
+  The array to iterate over
+  callback
+  The callback function to use
+  If no callback is supplied, all entries of array equal to FALSE (see converting to boolean) will be removed.
+  flag
+  Flag determining what arguments are sent to callback:
+  ARRAY_FILTER_USE_KEY - pass key as the only argument to callback instead of the value
+  ARRAY_FILTER_USE_BOTH - pass both value and key as arguments to callback instead of the value
+  Return Values
+  Returns the filtered array.

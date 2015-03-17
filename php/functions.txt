@@ -1,0 +1,4 @@
+## Function exists
+  bool function_exists ( string $function_name )
+
+  Checks the list of defined functions, both built-in (internal) and user-defined, for function_name.

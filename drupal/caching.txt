@@ -1,0 +1,17 @@
+## Common static and db caching pattern
+  function my_expensive_function(){
+    $data = &drupal_static(__FUNCTION__);
+
+    if (!isset($data)) {
+      if ($cache = cache_get('my_cache_id')) {
+        $data = $cache->data;
+      }
+      else {
+        $data = array();
+        drupal_alter('custom_pages_data', $data);
+        cache_set('my_cache_id', $data, 'cache');
+      }
+    }
+
+    return $data;
+  }
