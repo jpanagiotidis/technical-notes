@@ -54,3 +54,18 @@
 		some_command;
 		...
 		return;
+
+## String to int
+	int('12')
+
+## int to string
+	str(12)
+
+## Add python script to crontab
+	choose python version
+	get python path using which
+		eg: 
+			which python3.2
+			results into '/usr/bin/python32'
+
+	* * * * * /usr/bin/python32 /path/to/script.py

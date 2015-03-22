@@ -2,3 +2,22 @@
   bool function_exists ( string $function_name )
 
   Checks the list of defined functions, both built-in (internal) and user-defined, for function_name.
+
+## Call function from string
+  mixed call_user_func ( callable $callback [, mixed $parameter [, mixed $... ]] )
+
+  Calls the callback given by the first parameter and passes the remaining parameters as arguments.
+
+## Call function from string with array of arguments
+  mixed call_user_func_array ( callable $callback , array $param_arr )
+
+  Calls the callback given by the first parameter with the parameters in param_arr.
+
+## Get current function args
+  array func_get_args ( void )
+
+## Get num of arguments
+  int func_num_args ( void )
+
+## Get argument
+  mixed func_get_arg ( int $arg_num )

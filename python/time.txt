@@ -1,0 +1,12 @@
+## Basic date data
+  import datetime
+  datetime.date.today().year
+  datetime.date.today().month
+  datetime.date.today().day
+
+## Create custom date
+  datetime.date(1992, 5, 23)
+
+## Get next day
+  d = datetime.date(1992, 5, 23)
+  d = d + datetime.timedelta(1)

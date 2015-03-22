@@ -1,0 +1,3 @@
+## Call object property from string
+  $propertyName = 'id';
+  $phpObject->{$propertyName};

@@ -7,6 +7,18 @@
   if os.path.isdir("/some/path"):
     print("is directory")
 
+## Check if directory exists
+  os.path.exists("/some/path")
+
+## Create directory
+  os.makedirs("/some/path")
+
+## Get script path
+  os.path.dirname(os.path.realpath(__file__))
+
+## Change directory
+  os.chdir("some/path")
+
 ## Run a shell command
   import subprocess
   subprocess.call(["ls", "-la", "/home/username/Documents"])

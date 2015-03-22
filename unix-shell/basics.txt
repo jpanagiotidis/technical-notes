@@ -25,3 +25,9 @@
 
 ## History of commands
   history
+
+## Get date
+  date
+
+## Get path of command
+  which somecommand

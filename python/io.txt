@@ -1,0 +1,30 @@
+## Read a file
+  f = open('some-file-name', 'r')
+    'r' : read
+    'w' : write
+    'a' : append
+    'r+' : read+write
+
+## Get file contents
+  f.read()
+  f.readline()
+
+## Write file
+  f.write('something')
+
+## Go to file byte
+  f.seek(offset, from_what)
+
+## Close stream
+  f.close()
+
+## Read a json file
+  import json
+  f = open('file.json', 'r')
+  j = json.load(f)
+
+## Convert an object into json
+  json.dumps(['fd', 1])
+
+## Convert an object into json and put it into a file (opened for writing)
+  json.dump(['fd', 1], f)

@@ -24,3 +24,12 @@
 
 ## Trash the crontab output
 	0 * * * * path/to/script > /dev/null 2>&1
+
+## Add python script
+	choose python version
+	get python path using which
+		eg: 
+			which python3.2
+			results into '/usr/bin/python32'
+
+	* * * * * /usr/bin/python32 /path/to/script.py
