@@ -58,3 +58,9 @@
 	    );
 	  }
 	}
+
+## Permissions for taxonomy translation permissions
+	String translation
+		Translate user-defined strings
+	Locale
+		Translate interface texts

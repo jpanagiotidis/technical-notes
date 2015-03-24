@@ -1,4 +1,16 @@
 ## Exit GUI
 	ctrl + alt + f1
+
 ## Return to GUI
 	ctrl + alt + f7
+
+## Change Workspace
+  ctrl + alt + arrow
+
+## Move active application into different workspace
+  ctrl + alt + shift + arrow
+
+## Swich workspace active application
+  alt + shift + up
+  left or right to select
+  enter to activate

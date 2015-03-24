@@ -1,0 +1,136 @@
+## Set background color
+  background-color: #432312
+
+## Set background image
+  background-image: url("some/path.png")
+
+
+## Background size (CSS3)
+  ## Description
+    The background-size CSS property specifies the size of the background images. The size of the image can be fully constrained or only partially in order to preserve its intrinsic ratio.
+
+  ## Example
+    background-size: auto 100%;
+
+  ## Possible values
+    <length>
+      A <length> value that scales the background image to the specified length in the corresponding dimension. Negative lengths are not allowed.
+    <percentage>
+      A <percentage> value that scales the background image in the corresponding dimension to the specified percentage of the background positioning area, which is determined by the value of background-origin. The background positioning area is, by default, the area containing the content of the box and its padding; the area may also be changed to just the content or to the area containing borders, padding, and content. If the background's attachment is fixed, the background positioning area is instead the entire area of the browser window, not including the area covered by scrollbars if they are present. Negative percentages are not allowed.
+    auto
+      The auto keyword that scales the background image in the corresponding direction such that its intrinsic proportion is maintained.
+    cover
+      This keyword specifies that the background image should be scaled to be as small as possible while ensuring both its dimensions are greater than or equal to the corresponding dimensions of the background positioning area.
+    contain
+      This keyword specifies that the background image should be scaled to be as large as possible while ensuring both its dimensions are less than or equal to the corresponding dimensions of the background positioning area.
+
+  ## SASS/Compass usage
+    @import "compass/css3/background-size";
+    @include background-size(auto 200%);
+
+
+## Background image attachment (CSS3)
+  ## Description
+    If a background-image is specified, the background-attachment CSS property determines whether that image's position is fixed within the viewport, or scrolls along with its containing block.
+
+  ## Syntax
+    background-attachment: scroll;
+
+  ## Values
+    fixed
+      This keyword means that the background is fixed with regard to the viewport. Even if an element has a scrolling mechanism, a ‘fixed’ background doesn't move with the element.
+    local
+      This keyword means that the background is fixed with regard to the element's contents: if the element has a scrolling mechanism, the background scrolls with the element's contents, and the background painting area and background positioning area are relative to the scrollable area of the element rather than to the border framing them.
+    scroll
+      This keyword means that the background is fixed with regard to the element itself and does not scroll with its contents. (It is effectively attached to the element's border.)
+
+## Background Repeat
+  ## Description
+    The background-repeat CSS property defines how background images are repeated. A background image can be repeated along the horizontal axis, the vertical axis, both axes, or not repeated at all. 
+
+  ## Examples
+    background-repeat: repeat;
+    background-repeat: repeat no-repeat;
+
+  ## Values
+    <repeat-style>
+      The one-value syntax is a shorthand for the full two-value syntax:
+        Single value  Two-value equivalent
+        repeat-x      repeat no-repeat
+        repeat-y      no-repeat repeat
+        repeat        repeat repeat
+        space         space space
+        round         round round
+        no-repeat     no-repeat no-repeat 
+
+    In the two-value syntax, the first value represents the horizontal repetition behavior and the second value represents the vertical behavior. Here is an explanation of how each option works for either direction:
+
+    repeat  
+      The image is repeated as much as needed to cover the whole background image painting area. The last image will be clipped if it doesn't fit.
+    space 
+      The image is repeated as much as possible without clipping. The first and last images are pinned to either side of the element, and whitespace is distributed evenly between the images. The background-position property is ignored unless only one image can be displayed without clipping. The only case where clipping happens using space is when there isn't enough room to display one image.
+    round 
+      As the allowed space increases in size, the repeated images will stretch (leaving no gaps) until there is room for another one to be added. When the next image is added, all of the current ones compress to allow room. Example: An image with an original width of 260px, repeated three times, might stretch until each repetition is 300px wide, and then another image will be added. They will then compress to 225px.
+    no-repeat 
+      The image is not repeated (and hence the background image painting area will not necessarily be entirely covered). The position of the non-repeated background image is defined by the background-position CSS property.
+
+## Background Clip
+  ## Description
+    The background-clip CSS property specifies whether an element's background, either the color or image, extends underneath its border.
+
+    If no background image or color is set, this property will only have a visual effect when the border has transparent regions or partially opaque regions (due to border-style or border-image); otherwise the border covers up the difference.
+
+  ## Example
+    background-clip: border-box;
+
+  ## Values
+    border-box
+      The background extends to the outside edge of the border (but underneath the border in z-ordering).
+    padding-box
+      No background is drawn below the border (background extends to the outside edge of the padding).
+    content-box
+      The background is painted within (clipped to) the content box.
+
+  ## SASS/Compass usage
+    @import "compass/css3/background-clip";
+    @include background-clip(padding-box);
+
+## Background Origin
+  ## Description
+    The background-origin CSS property determines the background positioning area, that is the position of the origin of an image specified using the background-image CSS property.
+
+    Note that background-origin is ignored when background-attachment is fixed.
+
+  ## Example
+    background-origin: content-box;
+
+  ## Values
+    border-box
+      The background extends to the outside edge of the border (but underneath the border in z-ordering).
+    padding-box
+      No background is drawn below the border (background extends to the outside edge of the padding).
+    content-box
+      The background is painted within (clipped to) the content box.
+
+  ## SASS/Compass usage
+    @import "compass/css3/background-origin";
+    @include background-origin(padding-box);
+
+## Background Position
+  ## Description
+    The background-position CSS property sets the initial position, relative to the background position layer defined by background-origin for each defined background image.
+
+  ## Examples
+    background-position: center;
+    background-position: 25% 75%;
+
+  ## Values
+    center
+    top
+    bottom
+    left
+    right
+    absoloute position
+    relative position
+    <position>
+      Is a <position>, that is one to four values representing a 2D position regarding the edges of the element's box. Relative or absolute offsets can be given. Note that the position can be set outside of the element's box.
