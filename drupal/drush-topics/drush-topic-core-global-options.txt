@@ -1,0 +1,60 @@
+These options are applicable to most drush commands.
+
+ Label                            Description                                                                                       
+ --alias-path=</path/alias1:/pat  Specifies the list of paths where drush will search for alias files.                              
+ h/alias2>                                                                                                                          
+ -b, --backend                    Hide all output and return structured data.                                                       
+ --backup-location=</path/to/dir  Specifies the directory where drush will store backups.                                           
+ >                                                                                                                                  
+ --cache-class-<bin>=<className>  A cache backend class that implements DrushCacheInterface to use for a specific cache bin.        
+ --cache-default-class=<DrushJSO  A cache backend class that implements DrushCacheInterface. Defaults to DrushJSONCache.            
+ NCache>                                                                                                                            
+ --choice=<number>                Provide an answer to a multiple-choice prompt.                                                    
+ -c </path/file>,                 Specify an additional config file to load. See example.drushrc.php.                               
+ --config=</path/file>                                                                                                              
+ --confirm-rollback               Wait for confirmation before doing a rollback when something goes wrong.                          
+ -d, --debug                      Display even more information, including internal messages.                                       
+ --druplicon                      Shows the druplicon as glorious ASCII art.                                                        
+ --early                          Include a file (with relative or full path) and call the drush_early_hook() function (where       
+                                  'hook' is the filename). The function is called pre-bootstrap and offers an opportunity to alter  
+                                  the drush bootstrap environment or process (returning FALSE from the function will continue the   
+                                  bootstrap), or return output very rapidly (e.g. from caches). See includes/complete.inc for an    
+                                  example.                                                                                          
+ --editor=<vi>                    A string of bash which launches user's preferred text editor. Defaults to ${VISUAL-${EDITOR-vi}}. 
+ -h, --help                       This help system.                                                                                 
+ --ignored-modules=<token,views>  Exclude some modules from consideration when searching for drush command files.                   
+ -i </path/dir>,                  A list of additional directory paths to search for drush commands.                                
+ --include=</path/dir>                                                                                                              
+ -ia, --interactive               Force interactive mode for commands run on multiple targets (e.g. `drush @site1,@site2 cc --ia`). 
+ --label-separator                Specify the separator to use in multi-site command output (e.g. `drush @sites pm-list             
+                                  --label-separator=',' --format=csv`).                                                             
+ -n, --no                         Assume 'no' as answer to all prompts.                                                             
+ --no-label                       Remove the site label that drush includes in multi-site command output (e.g. `drush @site1,@site2 
+                                  status`).                                                                                         
+ --nocolor                        Suppress color highlighting on log messages.                                                      
+ --notify=<60>                    Use system notifications to signal command completion. If set to a number, commands that finish   
+                                  in fewer seconds will not trigger a notification.                                                 
+ --notify-audio=<60>              Trigger an audio alert to signal command completion. If set to a number, commands that finish in  
+                                  fewer seconds will not trigger a notification.                                                    
+ --php=</path/to/file>            The absolute path to your PHP intepreter, if not 'php' in the path.                               
+ --php-options=<-d                Options to pass to `php` when running drush.  Only effective when using the `drush` script.       
+ error_reporting="E_ALL">                                                                                                           
+ -q, --quiet                      Suppress non-error messages.                                                                      
+ -r <path>, --root=<path>         Drupal root directory to use (default: current directory).                                        
+ --search-depth=<number>          Control the depth that drush will search for alias files.                                         
+ --show-invoke                    Show all function names which could have been called for the current command. See drush_invoke(). 
+ --show-passwords                 Show database passwords in commands that display connection information.                          
+ -s, --simulate                   Simulate all relevant actions (don't actually change the system).                                 
+ --ssh-options=<-p 100>           A string of extra options that will be passed to the ssh command                                  
+ -l <http://example.com:8888>,    URI of the drupal site to use (only needed in multisite environments or when running on an        
+ --uri=<http://example.com:8888>  alternate port).                                                                                  
+ -u <name_or_number>,             Specify a Drupal user to login with. May be a name or a number.                                   
+ --user=<name_or_number>                                                                                                            
+ --variables=<foo=bar,baz=yaz>    Comma delimited list of name=value pairs. These values take precedence even over settings.php     
+                                  variable overrides.                                                                               
+ -v, --verbose                    Display extra information about the command.                                                      
+ --version                        Show drush version.                                                                               
+ --watchdog=<print>               Control logging of Drupal's watchdog() to drush log. Recognized values are 'log', 'print',        
+                                  'disabled'. Defaults to log. 'print' shows calls to admin but does not add them to the log.       
+ -y, --yes                        Assume 'yes' as answer to all prompts.                                                            
+

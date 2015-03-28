@@ -60,3 +60,6 @@
   ARRAY_FILTER_USE_BOTH - pass both value and key as arguments to callback instead of the value
   Return Values
   Returns the filtered array.
+
+## Get random array element
+  mixed array_rand ( array $array [, int $num = 1 ] )

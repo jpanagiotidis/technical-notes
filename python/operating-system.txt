@@ -22,3 +22,8 @@
 ## Run a shell command
   import subprocess
   subprocess.call(["ls", "-la", "/home/username/Documents"])
+
+  ## Redirect command output
+    f = open('myFile.txt', 'w')
+    command = ["ls", "-la", "/home/username/Documents"]
+    subprocess.call(command, stdout=f)

@@ -1,0 +1,343 @@
+===== Drush Output Formats =====
+ 
+Many Drush commands produce output that may be rendered in a variety
+of different ways using a pluggable formatting system.  Drush commands
+that support output formats will show a --format option in their
+help text.  The available formats are also listed in the help text,
+along with the default value for the format option.  The list of formats
+shown is abbreviated; to see the complete list of available formats, run
+the help command with the --verbose option.
+ 
+The --pipe option is a quick, consistent way to get machine readable
+output from a command, in whatever way the command author thought was
+helpful. The --pipe option is equivalent to using --format=<pipe-format>
+The pipe format will be shown in the options section of the command help,
+under the --pipe option. For historic reasons, --pipe also hides all log
+messages.
+ 
+To best understand how the various Drush output formatters work,
+it is best to first look at the output of the command using the
+'var_export' format.  This will show the result of the command using
+the exact structure that was built by the command, without any
+reformatting.  This is the "standard format" for the Drush command.
+Different formatters will take this information and present it in
+different ways.
+
+---- Global Options ----
+ 
+      * --list-separator: Specify how elements in a list should be separated. In lists of lists, this applies to the elements in the inner lists. 
+      * --line-separator: In nested lists of lists, specify how the outer lists ("lines") should be separated. 
+ 
+---- Output Formats ----
+ 
+A list of available formats, and their affect on the output of
+certain Drush commands, is shown below.
+
+
+::: --format=config :::
+A configuration file in executable php format. The variable name is "config", and the variable keys are taken from the output data array's keys.
+
+::: --format=csv :::
+A list of values, one per row, each of which is a comma-separated list of values.
+
+Code:
+
+return array (
+  0 => 
+  array (
+    0 => 'a',
+    1 => 12,
+    2 => 'a@one.com',
+  ),
+  1 => 
+  array (
+    0 => 'b',
+    1 => 17,
+    2 => 'b@two.com',
+  ),
+);
+
+Output with --format=csv:
+
+a,12,a@one.com
+b,17,b@two.com
+
+::: --format=json :::
+Javascript Object Notation.
+
+Code:
+
+return array (
+  'a' => 
+  array (
+    'b' => 2,
+    'c' => 3,
+  ),
+  'd' => 
+  array (
+    'e' => 5,
+    'f' => 6,
+  ),
+);
+
+Output with --format=json:
+
+{"a":{"b":2,"c":3},"d":{"e":5,"f":6}}
+
+::: --format=key-value :::
+A formatted list of key-value pairs.
+
+::: --format=key-value-list :::
+A list of formatted lists of key-value pairs.
+
+::: --format=labeled-export :::
+A list of php exports, labeled with a name.
+
+Code:
+
+return array (
+  'a' => 
+  array (
+    'b' => 2,
+    'c' => 3,
+  ),
+  'd' => 
+  array (
+    'e' => 5,
+    'f' => 6,
+  ),
+);
+
+Output with --format=labeled-export:
+
+a: array (
+  'b' => 2,
+  'c' => 3,
+)
+d: array (
+  'e' => 5,
+  'f' => 6,
+)
+
+::: --format=list :::
+A simple list of values.
+
+Code:
+
+return array (
+  0 => 'a',
+  1 => 'b',
+  2 => 'c',
+);
+
+Output with --format=list:
+
+a
+b
+c
+
+::: --format=php :::
+A serialized php string.
+
+Code:
+
+return array (
+  'a' => 
+  array (
+    'b' => 2,
+    'c' => 3,
+  ),
+  'd' => 
+  array (
+    'e' => 5,
+    'f' => 6,
+  ),
+);
+
+Output with --format=php:
+
+a:2:{s:1:"a";a:2:{s:1:"b";i:2;s:1:"c";i:3;}s:1:"d";a:2:{s:1:"e";i:5;s:1:"f";i:6;}}
+
+::: --format=print-r :::
+Output via php print_r function.
+
+Code:
+
+return array (
+  'a' => 
+  array (
+    'b' => 2,
+    'c' => 3,
+  ),
+  'd' => 
+  array (
+    'e' => 5,
+    'f' => 6,
+  ),
+);
+
+Output with --format=print-r:
+
+Array
+(
+    [a] => Array
+        (
+            [b] => 2
+            [c] => 3
+        )
+
+    [d] => Array
+        (
+            [e] => 5
+            [f] => 6
+        )
+
+)
+
+
+::: --format=string :::
+A simple string.
+
+::: --format=table :::
+A formatted, word-wrapped table.
+The 'table' formatter will convert an associative array into a formatted,
+word-wrapped table.  Each item in the associative array represents one row
+in the table.  Each row is similarly composed of associative arrays, with
+the key of each item indicating the column, and the value indicating the
+contents of the cell.  See below for an example source array.
+ 
+The command core-requirements is an example of a command that produces output
+in a tabular format.
+ 
+ $ drush core-requirements 
+ 
+ Title                 Severity  Description
+ Cron maintenance      Error     Last run 2 weeks ago
+ tasks                           Cron has not run recently. For more
+                                 information, see the online handbook entry for
+                                 configuring cron jobs. You can run cron
+                                 manually.
+ Drupal                Info      7.19
+ 
+(Note: the output above has been shortened for clarity; the actual output
+of core-requirements contains additional rows not shown here.)
+ 
+It is possible to determine the available fields by consulting drush
+help core requirements :
+ 
+ --fields=<title, severity, description>   Fields to output. All
+                                           available fields are:
+                                           title, severity, sid,
+                                           description, value,
+                                           reason, weight.
+ 
+It is possible to control the fields that appear in the table, and their
+order, by naming the desired fields in the --fields option.  The space
+between items is optional, so `--fields=title,sid` is valid.
+ 
+Code:
+ 
+return array (
+  'cron' =>
+  array (
+    'title' => 'Cron maintenance tasks',
+    'severity' => 2,
+    'value' => 'Last run 2 weeks ago',
+    'description' => 'Cron has not run recently. For more information, see the online handbook entry for configuring cron jobs . You can run cron manually .',
+    'severity-label' => 'Error',
+  ),
+  'drupal' =>
+  array (
+    'title' => 'Drupal',
+    'value' => '7.19',
+    'severity' => -1,
+    'weight' => -10,
+    'severity-label' => 'Info',
+  ),
+)
+ 
+
+
+::: --format=var_export :::
+An array in executable php format.
+
+Code:
+
+return array (
+  'a' => 
+  array (
+    'b' => 2,
+    'c' => 3,
+  ),
+  'd' => 
+  array (
+    'e' => 5,
+    'f' => 6,
+  ),
+);
+
+Output with --format=var_export:
+
+array(
+  'a' => array(
+    'b' => 2,
+    'c' => 3,
+  ),
+  'd' => array(
+    'e' => 5,
+    'f' => 6,
+  ),
+)
+
+::: --format=variables :::
+A list of php variable assignments.
+
+Code:
+
+return array (
+  'a' => 
+  array (
+    'b' => 2,
+    'c' => 3,
+  ),
+  'd' => 
+  array (
+    'e' => 5,
+    'f' => 6,
+  ),
+);
+
+Output with --format=variables:
+
+$a["b"] = 2;
+$a["c"] = 3;
+$d["e"] = 5;
+$d["f"] = 6;
+
+
+::: --format=yaml :::
+Yaml output format.
+
+Code:
+
+return array (
+  'a' => 
+  array (
+    'b' => 2,
+    'c' => 3,
+  ),
+  'd' => 
+  array (
+    'e' => 5,
+    'f' => 6,
+  ),
+);
+
+Output with --format=yaml:
+
+a:
+  b: 2
+  c: 3
+d:
+  e: 5
+  f: 6

@@ -1,3 +1,6 @@
 ## Boost
   on "Server's URL or Name" use:
     %{SERVER_NAME}
+
+  on "Document Root" use:
+    absolute path (second choice)

@@ -1,0 +1,14 @@
+## Add a file as input to a command
+  mycommand < myfile
+
+## Write the standard output to a file
+  mycommand > outputfile
+
+## Append the standard output to a file
+  mycommand >> outputfile
+
+## Write error output to a file
+  mycommand > outputfile 2> errorfile  
+
+## Redirect the standard output of a command as standard input of another command
+  command_a | command_b

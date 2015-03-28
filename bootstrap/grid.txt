@@ -1,0 +1,4 @@
+## Hide elements Responsively
+  .hidden-xs
+  .hidden-sm
+  etc...

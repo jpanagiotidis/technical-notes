@@ -19,3 +19,6 @@
 
 ## Get current path
 	current_path()
+
+## Get image style path
+  image_style_url($style_name, $path)
