@@ -1,0 +1,5 @@
+control panel->devices and printers->add a printer
+create a new port
+standard tcp/ip port
+enter the printer ip
+choose model (or windows update)

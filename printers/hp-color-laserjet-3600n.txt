@@ -1,0 +1,13 @@
+networksetup
+menu->configure device->i/o->embedded jetdirect menu
+->tcp/ip
+config method
+  select manual
+manual settings
+  fill:
+    ip address
+    mask
+    gateway
+
+use ping or browser to check network 
+use instructions from windows->network-printers for continue

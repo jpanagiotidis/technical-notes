@@ -1,6 +1,15 @@
 ## Get active language code
 	$GLOBALS['language']->language
 
+## Get languages
+	$langs = language_list();
+
+## Get default language
+	language_default($property = NULL)
+
+## Hook on language update, add, delete
+	hook_multilingual_settings_changed()
+
 ## Add language switcher
 	<?php
 	  $block = module_invoke('locale', 'block_view', 'language');

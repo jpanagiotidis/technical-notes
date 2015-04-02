@@ -1,2 +1,5 @@
 ## Find and replace
   mixed str_replace ( mixed $search , mixed $replace , mixed $subject [, int &$count ] )
+
+## Convert to lowercase
+  string strtolower ( string $string )
