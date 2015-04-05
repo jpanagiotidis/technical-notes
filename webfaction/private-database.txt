@@ -1,0 +1,69 @@
+## MySQL
+  ## Description
+    MySQL instance
+
+    This creates a private MySQL instance, running as your user on a random port, that you 
+    can use to serve and manage your MySQL databases, instead of using the
+    WebFaction control panel and shared MySQL database service.
+
+    On Centos-5 servers the instance runs MySql-5.0 and on Centos-6 servers the instance runs MySql-5.5.
+
+    A private MySQL instance uses between a few tens of megabytes of memory and hundreds of megabytes of memory depending on how much data it's managing.
+
+    This app also sets up a cronjob to make a dump of all databases every 24h. The dumps are in the directory:
+    ~/webapps/<app_name>/dumps/
+    The app creates a third cronjob that deletes all dumps older than 7 days.
+    Note that if you change the MySql root password you will need to update the password in ~/webapps/<app_name>/.my.cnf otherwise the dumps will stop working.
+
+  ## Install a Private MySQL Instance
+    1) Log in to the control panel.
+    2) Click Domains / websites ‣ Applications. The list of applications appears.
+    3) Click the Add new application button. The Create a new application form appears.
+      In the Name field, enter a name for the application.
+      In the App Category menu, click to select MySQL.
+      In the App Type menu, click to select MySQL private instance.
+      If applicable, in the Machine menu, click to select a web server.
+    4) Click the Save button.
+
+  ## Find instance port and password
+    1) enter the webfaction control panel
+    2) go to Domains/websites->Applications and choose mysql instance application
+    3) port is on port section
+    4) password is on the other section
+  
+  ## Start the instance
+    ~/webapps/<app_name>/bin/start
+
+  ## Stop the instance
+    ~/webapps/<app_name>/bin/stop
+
+  ## Restart the instance
+    ~/webapps/<app_name>/bin/stop && ~/webapps/<app_name>/bin/start
+
+  ## Connect to instance
+    mysql -S ~/webapps/<app_name>/var/mysql.sock -u root -p
+    or
+    mysql -P <app_port> -u root -p --protocol=tcp
+
+  ## Config file location
+    ~/webapps/<app_name>/etc/my.cnf
+
+  ## Error log location
+    ~/logs/user/error_<app_name>.log
+
+  ## Automatic dumps location
+    ~/webapps/<app_name>/dumps/
+
+  ## Creating Private MySQL Databases and Users
+    1) connect via ssh to the server
+    2) connect to the instance (see "Connect to instance" above)
+    3) CREATE DATABASE <database_name>;
+    4) CREATE USER '<username>' IDENTIFIED BY '<pass>';
+    5) USE <database_name>;
+    6) GRANT ALL ON <database_name>.* TO '<username>';
+
+  ## Import database
+    mysql -P <port> --protocol=tcp -u root -p -D <database_name> < <dump_file>
+
+  ## Connect with application
+    use url: 127.0.0.1:<port>

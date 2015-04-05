@@ -8,3 +8,5 @@
   :q!
 ## Save and quit
   :wq
+## Goto line
+  :256

@@ -18,10 +18,11 @@
   show tables;
 
 ## Show all rows of a table
-  select * form [table_name];
-  select [column_name,column_name,...] form [table_name];
-  select * form [table_name] order by [column_name];
-  select * form [table_name] limit [number];
+  SELECT * FROM [table_name];
+  SELECT [column_name,column_name,...] FROM [table_name];
+  SELECT * FROM [table_name] ORDER BY [column_name];
+  SELECT * FROM [table_name] ORDER BY [column_name] DESC;
+  SELECT * FROM [table_name] LIMIT [number];
 
 ## Delete all rows of a table
   truncate [table_name];

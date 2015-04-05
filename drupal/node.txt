@@ -29,3 +29,25 @@
   node_save($node);
   //drupal_set_message( "Node with nid " . $node->nid . " saved!\n");
   $form_state['redirect']  = 'SOME WHERE';
+
+## Add image
+  ## method a
+    $filepath = drupal_realpath('misc/druplicon.png');
+    // Create managed File object and associate with Image field.
+    $file = (object) array(
+      'uid' => 1,
+      'uri' => $filepath,
+      'filemime' => file_get_mimetype($filepath),
+      'status' => 1,
+    );
+
+    // We save the file to the root of the files directory.
+    $file = file_copy($file, 'public://');
+
+    $node->field_image[LANGUAGE_NONE][0] = (array)$file;
+
+  ## method b
+    $filename = 'image.txt';
+    $image = file_get_contents('http://www.ibiblio.org/wm/paint/auth/gogh/gogh.white-house.jpg');
+    $file = file_save_data($image, 'public://' . $filename, FILE_EXISTS_RENAME);
+    $node->field_image = array(LANGUAGE_NONE => array('0' => (array)$file));

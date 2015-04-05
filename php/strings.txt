@@ -1,5 +1,11 @@
+## Get substring
+  string substr ( string $string , int $start [, int $length ] )
+
 ## Find and replace
   mixed str_replace ( mixed $search , mixed $replace , mixed $subject [, int &$count ] )
 
 ## Convert to lowercase
   string strtolower ( string $string )
+
+## Convert to uppercase
+  string strtoupper ( string $string )

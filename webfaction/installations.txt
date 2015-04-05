@@ -37,3 +37,13 @@ export DRUSH_PHP=php54
     chmod 600 ~/.ssh/authorized_keys
     chmod 700 ~/.ssh
     chmod go-w $HOME
+
+## Add latest java runtime environment (jre)
+  1) Grab the JRE7 tarball from Oracle
+  2) Upload it to your home directory on your WebFaction server
+  3) Unpack it
+  4) Run bin/java from within the extracted JRE directory.
+
+  * instead of 1 + 2 you can also do (http://stackoverflow.com/questions/10268583/how-to-automate-download-and-installation-of-java-jdk-on-linux/10959815#10959815):
+     wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u40-b26/jre-8u40-linux-x64.tar.gz
+
