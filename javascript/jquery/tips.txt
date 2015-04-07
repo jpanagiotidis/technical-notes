@@ -1,0 +1,2 @@
+## Inner HTML selector
+  $("div:contains(Some text)")

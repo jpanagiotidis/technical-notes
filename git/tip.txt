@@ -1,0 +1,5 @@
+## Add empty folder
+  create the empty folder
+  add inside a .gitignore file with the following contents:
+    *
+    !.gitignore

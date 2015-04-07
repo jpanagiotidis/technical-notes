@@ -1,0 +1,9 @@
+## Read variables from external file
+  1) create an ini file (eg: settings.ini)
+  2) put plain key = value pairs. 
+    eg:
+      my_var = some-val
+      another = value
+      blah = blllaah
+  3) parse the file
+    $ini_array = parse_ini_file("path/to/settings.ini");

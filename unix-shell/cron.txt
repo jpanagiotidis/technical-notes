@@ -13,6 +13,9 @@
 	# |  |  |  |  |
 	  *  *  *  *  *  command to be executed
 
+## Task per 10 minutes
+	*/10 * * * * path/to/script
+
 ## Define PATH environmental variable
 	copy output from:
 		echo $PATH
