@@ -1,0 +1,20 @@
+## Define the dictionary
+	private Dictionary<int, string> activeFingerIDs;
+
+## Initilize the dictionary
+	activeFingerIDs = new Dictionary<int, string>();
+
+## Add element
+	activeFingerIDs.Add(fingerID, keyword);
+
+## Remove element
+	activeFingerIDs.Remove(fingerID);
+
+## Contains element
+	activeFingerIDs.ContainsKey(fingerID);
+
+## Iterate
+	foreach(KeyValuePair<String, Vector3> entry in dict){
+		Debug.Log(entry.Key);
+		Debug.Log(entry.Value);
+	}
