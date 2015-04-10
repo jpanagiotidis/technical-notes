@@ -1,0 +1,1 @@
+ps -u jpan -o rss,etime,pid,command
