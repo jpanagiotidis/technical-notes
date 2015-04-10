@@ -1,0 +1,20 @@
+## Simple class
+	public class MyClass{
+		//class properties
+		private int myVal;
+
+		//constructor
+		public MyClass(int _someVal){
+			this.myVal = _someVal;
+		}
+
+		//methods
+		public void setValue(int _someVal){
+			this.myVal = _someVal;
+		}
+
+		public int getValue(){
+			return this.myVal;
+		}
+	}
+
