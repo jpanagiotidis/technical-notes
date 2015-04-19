@@ -1,0 +1,28 @@
+## Setting Path on Windows
+	## Windows 8
+		Drag the Mouse pointer to the Right bottom corner of the screen
+		Click on the Search icon and type: Control Panel
+		Click on -> Control Panel -> System -> Advanced
+		Click on Environment Variables, under System Variables, find PATH, and click on it.
+		In the Edit windows, modify PATH by adding the location of the executable to the value for PATH. If you do not have the item PATH, you may select to add a new variable and add PATH as the name and the location of the executable as the value.
+		Close the window.
+		Reopen Command prompt window.
+	## Windows 7
+		Select Computer from the Start menu
+		Choose System Properties from the context menu
+		Click Advanced system settings > Advanced tab
+		Click on Environment Variables, under System Variables, find PATH, and click on it.
+		In the Edit windows, modify PATH by adding the location of the executable to the value for PATH. If you do not have the item PATH, you may select to add a new variable and add PATH as the name and the location of the executable as the value.
+		Reopen Command prompt window.
+	## Windows XP
+		Start -> Control Panel -> System -> Advanced
+		Click on Environment Variables, under System Variables, find PATH, and click on it.
+		In the Edit windows, modify PATH by adding the location of the executable to the value for PATH. If you do not have the item PATH, you may select to add a new variable and add PATH as the name and the location of the executable as the value.
+		Close the window.
+		Reopen Command prompt window.
+	## Windows Vista
+		Right click My Computer icon
+		Choose Properties from the context menu
+		Click Advanced tab (Advanced system settings link in Vista)
+		In the Edit windows, modify PATH by adding the location of the executable to the value for PATH. If you do not have the item PATH, you may select to add a new variable and add PATH as the name and the location of the executable as the value.
+		Reopen Command prompt window.

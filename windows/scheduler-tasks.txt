@@ -1,0 +1,21 @@
+## Show help
+	SCHTASKS /?
+	SCHTASKS /CREATE /?
+
+## Create a task that runs every day at 03:30 at the morning
+	SCHTASKS /CREATE /SC DAILY /ST 03:30 /TN SomeName /TR notepad
+
+## Create python task
+	SCHTASKS /CREATE /SC MINUTE /TN PythonTest /TR "C:\Python34\python.exe G:\Projects\Programming\Python\tests\test.py"
+
+## Run task on demand
+	SCHTASKS /RUN /TN SomeName
+
+## Delete task
+	SCHTASKS /DELETE /TN SomeName
+
+## List tasks
+	SCHTASKS /Query /FO LIST
+
+## Query a task
+	SCHTASKS /QUERY /TN SomeName
