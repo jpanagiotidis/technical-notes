@@ -1,0 +1,4 @@
+## MySQLi
+  $mysqli = mysqli_connect($data_db_info['host'], $data_db_info['user'], $data_db_info['pass'], $data_db_info['db_name'], $data_db_info['port']);
+  $res = mysqli_query($mysqli, "SELECT * FROM some_table");
+  $row = mysqli_fetch_assoc($res);

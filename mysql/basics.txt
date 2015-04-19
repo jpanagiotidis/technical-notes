@@ -23,6 +23,8 @@
   SELECT * FROM [table_name] ORDER BY [column_name];
   SELECT * FROM [table_name] ORDER BY [column_name] DESC;
   SELECT * FROM [table_name] LIMIT [number];
+  SELECT * FROM [table_name] WHERE [column_name] = "value";
+  SELECT * FROM [table_name] WHERE [column_name] = "value" AND [other_column_name] = "other_value";
 
 ## Delete all rows of a table
   truncate [table_name];
