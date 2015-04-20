@@ -1,0 +1,63 @@
+## Singleton patterns
+	## Simple singleton
+    ## Use this when modifications must be done in the editor before the game starts (for example enter some settings into the rigidbody component)
+      public class MusicManager : MonoBehaviour {
+        private static MusicManager instance;
+
+        public static MusicManager getInstance() {
+            if(instance == null){
+              instance = GameObject.FindObjectOfType<MusicManager>();
+
+              //Tell unity not to destroy this object when loading a new scene!
+              DontDestroyOnLoad(instance.gameObject);
+            }
+
+            return instance;
+        }
+
+        void Awake(){
+          if(instance == null){
+            //If I am the first instance, make me the Singleton
+            instance = this;
+            DontDestroyOnLoad(this);
+          }
+          else{
+            //If a Singleton already exists and you find
+            //another reference in scene, destroy it!
+            if(this != instance)
+              Destroy(this.gameObject);
+          }
+        }
+
+        public void Play(){
+          //Play some audio!
+        }
+      }
+
+  ## Dynamic instantiation singleton
+    ## Use this in order to create an instance dynamically when needed. When not in game play the instance will not be available in the editor
+      public class BoardController : MonoBehaviour {
+        private static BoardController instance;
+        
+        public static BoardController getInstance() {
+          if(instance == null){
+            instance = GameObject.FindObjectOfType<BoardController>();
+            if (instance == null) {
+              GameObject obj = new GameObject ();
+              obj.name = "BoardController";
+              //obj.hideFlags = HideFlags.HideAndDontSave; ## use this to hide created game object from the inspector
+              instance = obj.AddComponent<BoardController> ();
+            }
+            
+            //Tell unity not to destroy this object when loading a new scene!
+            DontDestroyOnLoad(instance.gameObject);
+          }
+          
+          return instance;
+        }
+        
+        public void setLevel(){
+          Debug.Log("set level");
+          //Play some audio!
+        }
+      }

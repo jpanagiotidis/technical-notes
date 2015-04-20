@@ -1,0 +1,3 @@
+## Get field value by string
+	touch.position.GetType().GetField("y").GetValue(touch.position);
+	elem.startPos.GetType().GetField("y").GetValue(elem.startPos);

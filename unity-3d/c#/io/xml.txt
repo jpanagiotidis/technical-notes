@@ -1,0 +1,110 @@
+## Read and write xml files
+	(http://wiki.unity3d.com/index.php/Saving_and_Loading_Data:_XmlSerializer)
+
+	## XML example structure
+		<MonsterCollection>
+		 	<Monsters>
+		 		<Monster name="mark">
+		 			<Health>5</Health>
+		 		</Monster>
+		 		<Monster name="dennis">
+		 			<Health>3</Health>
+		 		</Monster>
+		 	</Monsters>
+		</MonsterCollection>
+
+	## XML c# class
+		using UnityEngine;
+		using System.Collections;
+
+		using System.Xml;
+		using System.Xml.Serialization;
+		using System.IO;
+
+		using System.Collections.Generic;
+
+		public class XMLHandler : MonoBehaviour {
+			private static XMLHandler instance;
+			
+			public static XMLHandler getInstance() {
+				if(instance == null){
+					instance = GameObject.FindObjectOfType<XMLHandler>();
+					if (instance == null) {
+						GameObject obj = new GameObject ();
+						obj.name = "XMLHandler";
+						//obj.hideFlags = HideFlags.HideAndDontSave; ## use this to hide created game object from the inspector
+						instance = obj.AddComponent<XMLHandler> ();
+					}
+					
+					//Tell unity not to destroy this object when loading a new scene!
+					DontDestroyOnLoad(instance.gameObject);
+				}
+				
+				return instance;
+			}
+
+			public MonsterContainer loadMonsters(){
+				XmlSerializer serializer = new XmlSerializer(typeof(MonsterContainer));
+				FileStream stream = new FileStream(Application.dataPath + "/GameData/monsters.xml", FileMode.Open);
+				MonsterContainer container = serializer.Deserialize(stream) as MonsterContainer;
+				stream.Close();
+
+				container.print();
+
+				return container;
+			}
+
+			public void saveMonsters(MonsterContainer monsters){
+				XmlSerializer serializer = new XmlSerializer(typeof(MonsterContainer));
+				FileStream stream = new FileStream(Application.persistentDataPath + "/monsters_copy.xml", FileMode.Create);
+				serializer.Serialize(stream, monsters);
+				stream.Close();
+			}
+		}
+
+		public class Monster{ 
+			[XmlAttribute("name")]
+			public string Name;
+			
+			public int Health;
+		}
+
+		[XmlRoot("MonsterCollection")]
+		public class MonsterContainer{
+			[XmlArray("Monsters")]
+			[XmlArrayItem("Monster")]
+			public List<Monster> Monsters = new List<Monster>();
+
+			public void print(){
+				foreach(Monster m in Monsters){
+					Debug.Log(m.Name);
+				}
+			}
+		}
+
+	## Deployment
+
+		For this code to work after being deployed you need to take additional care.
+
+		## Standalone Player
+			After you deployed your application your Application.dataPath will point to "(PathToExecutable)/executable_Data". So you need to take care to store your monsters.xml there for the application to find it.
+
+		## Webplayer
+			The webplayer can't access files on any computer directly so using the methods described before to read/write data won't work here. To load any data you need to use the WWW class.
+			Example that loads the monsters.xml file directly from where your webplayer html is located.
+			C#	Javascript/Unityscript
+			 IEnumerator Start()
+			 {
+			    var www = new WWW(Path.Combine(Application.dataPath, "monsters.xml"));
+			    yield return www;
+			    var monsterCollection = MonsterContainer.LoadFromText(www.text);
+			 }
+			 function Start()
+			 {    
+			    var www : WWW = new WWW(Path.Combine(Application.dataPath, "monsters.xml"));
+			    yield return www;
+			    var monsterCollection : MonsterCollection = MonsterContainer.LoadFromText(www.text);
+			 }
+			 
+		## iOS Devices
+			A NullReferenceException will be raised if you're using List<T> in your MonsterContainer class, use an array instead. Similarly the same exception is raised if you're using get and set to implement properties in the class you're trying to serialize.

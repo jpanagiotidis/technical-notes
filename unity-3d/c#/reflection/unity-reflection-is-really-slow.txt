@@ -1,0 +1,229 @@
+Unity Reflection is Really Slow
+FEB 232015
+by jackson in C#, Unity
+Tags: field, method, performance, property, reflection
+
+Reflection allows you to introspect your code at runtime. You can do very dynamic things like call functions by their name as a string. As such, it’s a really powerful tool when you code needs to be more flexible. Unfortunately, it’s slow. Really slow. Today’s article puts it up against regular, non-reflection code to show the difference in speed. It’ll also walk you through reflection in C# in case you’ve never used it before. Read on to learn more about reflection in Unity!
+
+
+C# reflection is mostly made available via the System.Reflection namespace, but it starts with the System.Type class. Every variable has a Type in C# that you can access in two ways:
+
+// When you want the Type of a class
+Type myClassType = typeof(MyClass);
+ 
+// When you want the Type of a variable
+Type myClassType = myClassInstance.GetType();
+Once you have the Type you can get its fields, properties, methods, and so forth. These are all defined by classes in System.Reflection that end in “Info”: FieldInfo, PropertyInfo, MethodInfo, etc. Here’s how you get them:
+
+// Get the field named "MyField"
+FieldInfo myFieldInfo = myClassType.GetField("MyField");
+ 
+// Get the field named "MyProperty"
+PropertyInfo myPropertyInfo = myClassType.GetProperty("MyProperty");
+ 
+// Get the method/function named "MyMethod"
+MethodInfo myMethodInfo = myClassType.GetMethod("MyMethod");
+Once you have these you can call methods on them to use them as though you had written code to do so directly. You can read from and write to fields and properties and call methods. Here’s how:
+
+// Read or write a field from an instance of MyClass
+myFieldInfo.GetValue(myClassInstance);
+myFieldInfo.SetValue(myClassInstance, 123);
+ 
+// Read or write a property from an instance of MyClass
+// The last parameter is null for non-indexed properties
+myPropertyInfo.GetValue(myClassInstance, null);
+myPropertyInfo.SetValue(myClassInstance, 123, null);
+ 
+// Call a method on an instance of MyClass
+object[] parameters = new object[]{ 1, 2, 3 };
+myMethodInfo.Invoke(myClassInstance, parameters);
+With that in mind, have a look at this simple test comparing reflection to direct access. It measures the performance of all of the above functions.
+
+using System;
+using System.Diagnostics;
+using System.Reflection;
+ 
+using UnityEngine;
+using UnityEngine.UI;
+ 
+public static class StopwatchExtensions
+{
+	public delegate void TestFunction();
+	public static long RunTest(this Stopwatch stopwatch, TestFunction testFunction)
+	{
+		stopwatch.Reset();
+		stopwatch.Start();
+ 
+		testFunction();
+ 
+		return stopwatch.ElapsedMilliseconds;
+	}
+}
+ 
+public class TestClass
+{
+	public int IntField;
+	public int IntProperty { get; set; }
+	public void VoidMethod() { }
+}
+ 
+public class TestScript : MonoBehaviour
+{
+	private const int NumIterations = 10000000;
+ 
+	private string report;
+ 
+	void Start()
+	{
+		var stopwatch = new Stopwatch();
+ 
+		Type testClassType = null;
+		FieldInfo intFieldInfo = null;
+		PropertyInfo intPropertyInfo = null;
+		MethodInfo voidMethodInfo = null;
+		int intValue = 0;
+		var testClassInstance = new TestClass();
+ 
+		var getTypeTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				testClassType = typeof(TestClass);
+			}
+		});
+ 
+		var getFieldTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				intFieldInfo = testClassType.GetField("IntField");
+			}
+		});
+ 
+		var getPropertyTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				intPropertyInfo = testClassType.GetProperty("IntProperty");
+			}
+		});
+ 
+		var getMethodTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				voidMethodInfo = testClassType.GetMethod("VoidMethod");
+			}
+		});
+ 
+		var readFieldReflectionTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				intValue = (int)intFieldInfo.GetValue(testClassInstance);
+			}
+		});
+ 
+		var readPropertyReflectionTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				intValue = (int)intPropertyInfo.GetValue(testClassInstance, null);
+			}
+		});
+ 
+		var readFieldDirectTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				intValue = testClassInstance.IntField;
+			}
+		});
+ 
+		var readPropertyDirectTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				intValue = testClassInstance.IntProperty;
+			}
+		});
+ 
+		var writeFieldReflectionTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				intFieldInfo.SetValue(testClassInstance, 5);
+			}
+		});
+ 
+		var writePropertyReflectionTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				intPropertyInfo.SetValue(testClassInstance, 5, null);
+			}
+		});
+ 
+		var writeFieldDirectTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				testClassInstance.IntField = intValue;
+			}
+		});
+ 
+		var writePropertyDirectTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				testClassInstance.IntProperty = intValue;
+			}
+		});
+ 
+		var callMethodReflectionTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				voidMethodInfo.Invoke(testClassInstance, null);
+			}
+		});
+ 
+		var callMethodDirectTime = stopwatch.RunTest(() => {
+			for (long i = 0; i < NumIterations; ++i)
+			{
+				testClassInstance.VoidMethod();
+			}
+		});
+ 
+		report = "Test,Reflection Time,Direct Time\n"
+			+ "Get Type," + getTypeTime + ",0\n"
+			+ "Get Field," + getFieldTime + ",0\n"
+			+ "Get Property," + getPropertyTime + ",0\n"
+			+ "Get Method," + getMethodTime + ",0\n"
+			+ "Read Field," + readFieldReflectionTime + "," + readFieldDirectTime + "\n"
+			+ "Read Property," + readPropertyReflectionTime + "," + readPropertyDirectTime + "\n"
+			+ "Write Field," + writeFieldReflectionTime + "," + writeFieldDirectTime + "\n"
+			+ "Write Property," + writePropertyReflectionTime + "," + writePropertyDirectTime + "\n"
+			+ "Call Method," + callMethodReflectionTime + "," + callMethodDirectTime + "\n";
+	}
+ 
+	void OnGUI()
+	{
+		var drawRect = new Rect(0, 0, Screen.width, Screen.height);
+		GUI.TextArea(drawRect, report);
+	}
+}
+If you want to try out the test yourself, simply paste the above code into a TestScript.cs file in your Unity project’s Assets directory and attach it to the main camera game object in a new, empty project. Then build in non-development mode for 64-bit processors and run it windowed at 640×480 with fastest graphics. I ran it that way on this machine:
+
+2.3 Ghz Intel Core i7-3615QM
+Mac OS X 10.10.2
+Unity 4.6.3, Mac OS X Standalone, x86_64, non-development
+640×480, Fastest, Windowed
+And got these results:
+
+TEST	REFLECTION TIME	DIRECT TIME
+Get Type	4	0
+Get Field	2778	0
+Get Property	6215	0
+Get Method	5570	0
+Read Field	2358	6
+Read Property	5326	7
+Write Field	2261	8
+Write Property	6670	7
+Call Method	4452	4
+Reflection Test Performance Graph
+
+As the title of this article says, the reflection versions of all of these functions are really slow. The first four—GetType, GetField, GetProperty, and GetMethod—are completely free in the direct versions because there’s literally nothing to do: you just use the class like normal. GetType is quite fast, but the other methods are extremely slow.
+
+In the remaining tests—read, write, and call—the reflection versions are still extremely slow compared to their direct alternatives. Even with a huge number of iterations it was difficult to even get the direct versions to register. Their test numbers are so low that it’s tough to draw exact conclusions. All of the reflection operations are roughly 1000x slower than the direct code that doesn’t use reflection.
+
+In short, use reflection very sparingly. A few times per frame isn’t going to be a big deal, but thousands of times will. If you have to use it, make sure to cache the results of functions like GetMethod. They’re very expensive and won’t be changing during runtime anyhow. It’s easy to get a 2x speedup by simply changing obj.GetMethod("Foo").Invoke(obj, params) to cachedFooMethod.Invoke(obj, params);.
+
+That’s all for today. If you’ve got any thoughts about reflection in C#, feel free to leave a comment below!

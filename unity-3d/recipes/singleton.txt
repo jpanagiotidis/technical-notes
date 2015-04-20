@@ -1,0 +1,580 @@
+## Singletons
+    Posted by David Laskey on March 8th, 2014
+
+    As you develop in Unity, you’ll often find that it’s handy to have just single instances of certain objects. For example, let’s say we have a single GameObject, “MusicManager”, that’s in charge of our music. It might look like this:
+
+    using UnityEngine;
+     
+    public class MusicManager : MonoBehaviour 
+    {
+        public void Play()
+        {
+            //Play some audio!
+        }
+    }
+    So now, let’s say some other GameObject wants to start playing the music. It could call a function on MusicManager like so:
+
+    //Let's play some music...
+    Object.FindObjectOfType<MusicManager>().Play();
+    While this method works just find, it’s pretty ugly looking code. Also, if there is no MusicManager object in our scene, this will cause an error! So to make the code safe, it should probably do a null check, like so:
+
+    var musicManager = Object.FindObjectOfType<MusicManager>();
+    if(musicManager != null)
+            musicManager.Play();
+    That’s better! But now, every time we want to call this function, we have to write all this, which can get pretty tedious.
+
+    To remedy this problem, we have a handy tool called the Singleton pattern. In Unity there are a few different ways to implement Singletons, based on your needs, so we’ll look at a few different methods.
+
+    ## The Lazy Singleton
+        This type of singleton is the quick and dirty method. It’s no less valid than the rest, it just gets its name from avoiding a check to see if it’s been initialized yet.
+
+        public class MusicManager : MonoBehaviour 
+        {
+            //We make a static variable to our MusicManager instance
+            public static MusicManager instance { get; private set; }
+         
+            //When the object awakens, we assign the static variable
+            void Awake() 
+            {
+                instance = this;
+            }
+         
+            public void Play()
+            {
+                //Play some audio!
+            }
+        }
+         
+        //...
+        //Now in another class, we can call Play() by using the static variable!
+        public class LevelController : MonoBehaviour
+        {
+            void PlayMusic()
+            {
+                MusicManager.instance.Play();
+            }
+        }
+        Here we still aren’t doing a null check, this is because we always assume that the instance will be accessed after the Awake() call to set it. This is why this is called the Lazy Singleton.
+
+        When using Lazy Singletons, never try to access the instance in another Awake() call, always put it in a function that is guaranteed to be called later, such as Start().
+
+        ## The Standard Singleton
+            This version is an improved version of the Lazy Singleton which ensures that the instance reference is never null.
+
+            public class MusicManager : MonoBehaviour 
+            {
+                //Here is a private reference only this class can access
+                private static MusicManager _instance;
+             
+                //This is the public reference that other classes will use
+                public static MusicManager instance
+                {
+                    get
+                    {
+                        //If _instance hasn't been set yet, we grab it from the scene!
+                        //This will only happen the first time this reference is used.
+                        if(_instance == null)
+                            _instance = GameObject.FindObjectOfType<MusicManager>();
+                        return _instance;
+                    }
+                }
+             
+                public void Play()
+                {
+                    //Play some audio!
+                }
+            }
+            This singleton will only ever give you a null error if you forgot to put it in the scene. But what happens if you want your Singleton to exist in every single scene, so you don’t have to remember to put it in every time?
+
+        ## The Persistent Singleton
+            Sometimes you need your singletons to last between scenes (for example, in this case you might want to play music during a scene transition). One way to do this is to call DontDestroyOnLoad() on your singleton.
+
+            public class MusicManager : MonoBehaviour {
+                private static MusicManager _instance;
+             
+                public static MusicManager instance {
+                    get
+                    {
+                        if(_instance == null)
+                        {
+                            _instance = GameObject.FindObjectOfType<MusicManager>();
+             
+                            //Tell unity not to destroy this object when loading a new scene!
+                            DontDestroyOnLoad(_instance.gameObject);
+                        }
+             
+                        return _instance;
+                    }
+                }
+             
+                void Awake() 
+                {
+                    if(_instance == null)
+                    {
+                        //If I am the first instance, make me the Singleton
+                        _instance = this;
+                        DontDestroyOnLoad(this);
+                    }
+                    else
+                    {
+                        //If a Singleton already exists and you find
+                        //another reference in scene, destroy it!
+                        if(this != _instance)
+                            Destroy(this.gameObject);
+                    }
+                }
+             
+                public void Play()
+                {
+                    //Play some audio!
+                }
+            }
+        DontDestroyOnLoad() will maintain all scripts that are placed on the same GameObject as your singleton. For this reason it’s usually a good idea to put a singleton on it’s own GameObject alone.
+        Other Notes:
+        DontDestroyOnLoad() only needs to be used on objects inheriting MonoBehaviour. A static reference in a normal class will maintain its data across scenes.
+        In Unity, if you have a reference to a GameObject or MonoBehaviour that has been destroyed, it will equal null. The singleton examples above use this to their advantage.
+
+
+
+Unity3D Tips #2 – The Singleton Pattern
+Today we are going to talk about something truly unique… The singleton pattern!
+The singleton pattern lets you write a class, which can only be instantiated once. A singleton object sure is ‘one of a kind’.
+
+The singleton pattern is a very useful, yet very simple design pattern.
+A design pattern is a general solution that you can apply to a problem in software design. In this case our problem is that we want a class, that there should only be one instance of, and we want easy access to that instance.
+If you are a relatively new programmer, you might be thinking “What use is this? Why on earth would I write a class that can only be instantiated once?”
+Now think of objects like an input manager responsible for reading input from the keyboard and mouse, or an audio handler like the one we described in our last post, responsible for playing audio in your game.
+Having more than one instance of these, might cause some very incorrect behavior.
+Okay, so there’s that. But what about writing a static class? Using a static class you can have a class with global access, and it can’t be instantiated so you will definitely not have multiple instances.
+It seems that a static class could do the job, but it has some downsides:
+•   You can’t extend MonoBehaviour with a static class, and thereby not apply your class as a component on a GameObject in Unity.
+•   You can’t pass around a static class as a parameter
+•   You can’t implement an interface with a static class
+Let’s try and look at a very simple implementation of the Singleton Pattern in Unity.
+
+using UnityEngine;
+ 
+public class AudioHandler : MonoBehaviour
+{
+    // Public field, set in the inspector we can access
+    // the audio clip through the singleton instance
+    public AudioClip explosionClip;
+     
+    // Static singleton property
+    public static AudioHandler Instance { get; private set; }
+     
+    void Awake()
+    {
+        // Save a reference to the AudioHandler component as our singleton instance
+        Instance = this;
+    }
+ 
+    // Instance method, this method can be accesed through the singleton instance
+    public void PlayAudio(AudioClip clip)
+    {
+        audio.clip = clip;
+        audio.Play();
+    }
+}
+Now if you want to call the PlaySound() method from another class, you simply do it like this.
+
+// Play sound
+AudioHandler.Instance.PlayAudio(AudioHandler.Instance.explosionClip);
+A great thing, as you see in the above example, is that you have easy access to the public variables set in the inspector. We can access the sound clips from the inspector through our singleton instance.
+Let’s try and look at another more complex implementation of the Singleton Pattern
+
+using UnityEngine;
+ 
+public class AudioHandler : MonoBehaviour
+{
+    // Public field, set in the inspector we can access
+    // the audio clip through the singleton instance
+    public AudioClip explosionClip;
+     
+    // Static singleton property
+    public static AudioHandler Instance { get; private set; }
+     
+    void Awake()
+    {
+        // First we check if there are any other instances conflicting
+        if(Instance != null && Instance != this)
+        {
+            // If that is the case, we destroy other instances
+            Destroy(gameObject);
+        }
+ 
+        // Here we save our singleton instance
+        Instance = this;
+ 
+        // Furthermore we make sure that we don't destroy between scenes (this is optional)
+        DontDestroyOnLoad(gameObject);
+    }
+ 
+    // Instance method, this method can be accesed through the singleton instance
+    public void PlayAudio(AudioClip clip)
+    {
+        audio.clip = clip;
+        audio.Play();
+    }
+}
+This implementation ensures that there can only be a single instance of the class, even if you accidently have more than one applied as a component in Unity. It also has the advantage/disadvantage depending on the context, of not getting destroyed between different scenes. Another feature that you might find good or bad is that the static instance variable doesn’t get reset between play sessions.
+In a true singleton implementation, we have something called lazy instantiation. What this means is that the singleton instance itself, will not be created before you try to access it the first time around. This will generally spare you some resources, and is another great advantage of the singleton pattern. Now the reason we didn’t have any lazy instantiation in the above example, is because we want to be able to assign our audio clips in the inspector. This means that even before your game starts, the instance already exists, because you applied as a component by dragging and dropping.
+I’m going to round up this post with a general implementation of the singleton pattern with lazy instantiation, which you can use if you are not going to assign any inspector fields.
+
+using UnityEngine;
+ 
+public class Singleton : MonoBehaviour
+{
+    // This field can be accesed through our singleton instance,
+    // but it can't be set in the inspector, because we use lazy instantiation
+    public int number;
+     
+    // Static singleton instance
+    private static Singleton instance;
+     
+    // Static singleton property
+    public static Singleton Instance
+    {
+        // Here we use the ?? operator, to return 'instance' if 'instance' does not equal null
+        // otherwise we assign instance to a new component and return that
+        get { return instance ?? (instance = new GameObject("Singleton").AddComponent<Singleton>()); }
+    }
+ 
+    // Instance method, this method can be accesed through the singleton instance
+    public void DoSomeAwesomeStuff()
+    {
+        Debug.Log("I'm doing awesome stuff");
+    }
+}
+The use is exactly the same; you call methods through the singleton instance.
+
+// Do awesome stuff through our singleton instance
+Singleton.Instance.DoSomeAwesomeStuff();
+Now because of lazy instantiation, the first time you use the singleton instance, it is initialized and a new GameObject appears in the hierarchy.
+
+And we can see that our awesome method actually got called in the console.
+
+I hope you will find the singleton pattern useful, and if you have any trouble, improvements or feedback please leave a comment below :-)
+
+
+
+
+Global Managers With Generic Singletons
+Posted on December 21, 2012 by Michael Stevenson — 20 Comments ↓
+Global state and behavior can be a bit tricky to handle in Unity. RedFrame includes a few low-level systems that must always be accessible, so a robust solution is required. While there is no single solution to the problem, there is one particular approach that I’ve found most elegant. There are many reasons one might need global state: controlling menu logic, building additional engine code on top of Unity, executing coroutines that control simulations across level loads, and so on. By design, all code executed in Unity at runtime must be attached to GameObjects as script components, and GameObjects must exist in the hierarchy of a scene. There is no concept of low-level application code outside of the core Unity engine – there are only objects and their individual behaviors. The most common approach to implementing global managers in Unity is to create a prefab that has all manager scripts attached to it. You may have a music manager, an input manager, and dozens of other manager-like scripts stapled onto a single monolithic “GameManager” object. This prefab object would be included in the scene hierarchy in one of two ways:
+
+Include the prefab in all scene files.
+Include the prefab in the first scene, and call its DontDestroyOnLoad method during Awake, forcing it to survive future level loads.
+Other scripts would then find references to these manager scripts during Start through one of a variety of built-in Unity methods, most notably FindWithTag and FindObjectOfType. You’d either find the game manager object in the scene and then drill down into its components to find individual manager scripts, or you’d scrape the entire scene to find manager scripts directly. A slightly more automated and potentially more performant option is to use singletons.
+
+Singleton Pattern
+
+The singleton design pattern facilitates global access to an object while ensuring that only one instance of the object ever exists at any one time. If an instance of the singleton doesn’t exist when it is referenced, it will be instantiated on demand. For most C# applications, this is fairly straightforward to implement. In the following code, the static Instance property may be used to access the global instance of the Singleton class:
+
+C# Singleton
+
+public class Singleton
+{
+    static Singleton instance;
+ 
+    public static Singleton Instance {
+        get {
+            if (instance == null) {
+                instance = new Singleton ();
+            }
+            return instance;
+        }
+    }
+}
+Unity unfortunately adds some complication to this approach. All executable code must be attached to GameObjects, so not only must an instance of a singleton object always exist, but it must also exist someplace in the scene. The following Unity singleton implementation will ensure that the script is instantiated in the scene:
+
+Unity Singleton
+
+public class UnitySingleton : MonoBehaviour
+{
+    static UnitySingleton instance;
+ 
+    public static UnitySingleton Instance {
+        get {
+            if (instance == null) {
+                instance = FindObjectOfType<UnitySingleton> ();
+                if (instance == null) {
+                    GameObject obj = new GameObject ();
+                    obj.hideFlags = HideFlags.HideAndDontSave;
+                    instance = obj.AddComponent<UnitySingleton> ();
+                }
+            }
+            return instance;
+        }
+    }
+}
+The above implementation first searches for an instance of the UnitySingleton component in the scene if a reference doesn’t already exist. If it doesn’t find a UnitySingleton component, a hidden GameObject is created and a UnitySingleton component is attached to it. In the event that the UnitySingleton component or its parent GameObject is destroyed, the next call to UnitySingleton.Instance will instantiate a new GameObject and UnitySingleton component. For games that include many manager scripts, it can be a pain to copy and paste this boilerplate code into each new class. By leveraging C#’s support for generic classes, we can create a generic base class for all GameObject-based singletons to inherit from:
+
+Generic Unity Singleton
+
+public class UnitySingleton : MonoBehaviour
+    where T : Component
+{
+    private static T instance;
+    public static T Instance {
+        get {
+            if (instance == null) {
+                instance = FindObjectOfType<T> ();
+                if (instance == null) {
+                    GameObject obj = new GameObject ();
+                    obj.hideFlags = HideFlags.HideAndDontSave;
+                    instance = obj.AddComponent<T> ();
+                }
+            }
+            return instance;
+        }
+    }
+}
+A base class is generally unable to know about any of its sub-classes. This is very problematic when inheriting from a singleton base class – for the sake of example lets call one such sub-class “Manager“. The value of Manager.Instance would be a UnitySingleton object instead of its own sub-type, effectively hiding all of Manager‘s public members. By converting UnitySingleton to a generic class as seen above, we are able to change an inheriting class’s Instance from the base type to the inheriting type. When we declare our Manager class, we must pass its own type to UnityManager<T> as a generic parameter: public class Manager : UnitySingleton<Manager>. That’s it! Simply by inheriting from this special singleton class, we’ve turned Manager into a singleton. There is one remaining issue: persistence. As soon as a new scene is loaded, all singleton objects are destroyed. If these objects are responsible for maintaining state, that state will be lost. While a non-persistent Unity singleton works just fine in many cases, we need to have one additional singleton class in our toolbox:
+
+Persistent Generic Unity Singleton
+
+public class UnitySingletonPersistent : MonoBehaviour
+    where T : Component
+{
+    private static T instance;
+    public static T Instance {
+        get {
+            if (instance == null) {
+                instance = FindObjectOfType<T> ();
+                if (instance == null) {
+                    GameObject obj = new GameObject ();
+                    obj.hideFlags = HideFlags.HideAndDontSave;
+                    instance = obj.AddComponent<T> ();
+                }
+            }
+            return instance;
+        }
+    }
+ 
+    public virtual void Awake ()
+    {
+        DontDestroyOnLoad (this.gameObject);
+        if (instance == null) {
+            instance = this as T;
+        } else {
+            Destroy (gameObject);
+        }
+    }
+}
+The preceding code will create an object that persists between levels. Duplicate copies may be instantiated if the singleton had been embedded in multiple scenes, so this code will also destroy any additional copies it finds.
+
+Caveats
+
+There are a few important issues to be aware of with this approach to creating singletons in Unity:
+
+Leaking Singleton Objects
+
+If a MonoBehaviour references a singleton during its OnDestroy or OnDisable while running in the editor, the singleton object that was instantiated at runtime will leak into the scene when playback is stopped. OnDestroy and OnDisable are called by Unity when cleaning up the scene in an attempt to return the scene to its pre-playmode state. If a singleton object is destroyed before another scripts references it through its Instance property, the singleton object will be re-instantiated after Unity expected it to have been permanently destroyed. Unity will warn you of this in very clear language, so keep an eye out for it. One possible solution is to set a boolean flag during OnApplicationQuit that is used to conditionally bypass all singleton references included in OnDestroy and OnDisable.
+
+Execution Order
+
+The order in which objects have their Awake and Start methods called is not predictable by default. Persistent singletons are especially susceptible to execution ordering issues. If multiple copies of a singleton exist in the scene, one may destroy the other copies after those copies have had their Awake methods called. If game state is changed during Awake, this may cause unexpected behavior. As a general rule, Awake should only ever be used to set up the internal state of an object. Any external object communication should occur during Start. Persistent singletons require strict use of this convention.
+
+Conclusion
+
+While singletons are inherently awkward to implement in Unity, they’re often a necessary component of a complex game. Some games may require many dozens of manager scripts, so it makes sense to reduce the amount of duplicated code and standardize on a method for setting up, referencing, and tearing down these managers. A generic singleton base class is one such solution that has served us well, but it is by no means perfect. It is a design pattern that we will continue to iterate on, hopefully discovering solutions that more cleanly integrate with Unity.
+
+
+
+Singleton
+Contents [hide] 
+1 Warning
+2 Introduction
+3 Usage Example
+4 Implementation
+5 Requirement
+Warning
+
+While Singletons are great, they're also highly controversial thanks to their abused use along the years. Consider using the Toolbox instead!
+Introduction
+
+"Why Singleton?", you may ask. First, then, what's a singleton? It is a design pattern that restricts the Instantiation of a class to one object. And, if you're here, you probably want to use that basically for implementing Global Variables. For any other usage, just take this as a starting place.
+The advantage of using singletons, in Unity, rather than static parameters and methods, are basically:
+(1) Static classes are lazy-loaded when they are first referenced, but must have an empty static constructor (or one is generated for you). This means it's easier to mess up and break code if you're not careful and know what you're doing. As for using the Singleton Pattern, you automatically already do lots of neat stuff, such as creating them with a static initialization method and making them immutable.
+(2) Singleton can implement an interface (Static cannot). This allows you to build contracts that you can use for other Singleton objects or just any other class you want to throw around. In other words, you can have a game object with other components on it for better organization!
+(3) You can also inherit from base classes, which you can't do with Static classes.
+P.S.: Unfortunately there is no good way to remove the need of a "Instance keyword" right there, calling the singleton.
+P.S.(2): This is made as MonoBehaviour because we need Coroutines. A lot of times it makes sense to leave one in a singleton, so it will persist between scenes.
+Usage Example
+
+MyClass.cs
+public class MyClass : MonoBehaviour {
+    void Awake () {
+        Debug.Log(Manager.Instance.myGlobalVar);
+    }
+}
+Manager.cs
+public class Manager : Singleton<Manager> {
+    protected Manager () {} // guarantee this will be always a singleton only - can't use the constructor!
+ 
+    public string myGlobalVar = "whatever";
+}
+Implementation
+
+Singleton.cs
+using UnityEngine;
+ 
+/// <summary>
+/// Be aware this will not prevent a non singleton constructor
+///   such as `T myT = new T();`
+/// To prevent that, add `protected T () {}` to your singleton class.
+/// 
+/// As a note, this is made as MonoBehaviour because we need Coroutines.
+/// </summary>
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+{
+    private static T _instance;
+ 
+    private static object _lock = new object();
+ 
+    public static T Instance
+    {
+        get
+        {
+            if (applicationIsQuitting) {
+                Debug.LogWarning("[Singleton] Instance '"+ typeof(T) +
+                    "' already destroyed on application quit." +
+                    " Won't create again - returning null.");
+                return null;
+            }
+ 
+            lock(_lock)
+            {
+                if (_instance == null)
+                {
+                    _instance = (T) FindObjectOfType(typeof(T));
+ 
+                    if ( FindObjectsOfType(typeof(T)).Length > 1 )
+                    {
+                        Debug.LogError("[Singleton] Something went really wrong " +
+                            " - there should never be more than 1 singleton!" +
+                            " Reopening the scene might fix it.");
+                        return _instance;
+                    }
+ 
+                    if (_instance == null)
+                    {
+                        GameObject singleton = new GameObject();
+                        _instance = singleton.AddComponent<T>();
+                        singleton.name = "(singleton) "+ typeof(T).ToString();
+ 
+                        DontDestroyOnLoad(singleton);
+ 
+                        Debug.Log("[Singleton] An instance of " + typeof(T) + 
+                            " is needed in the scene, so '" + singleton +
+                            "' was created with DontDestroyOnLoad.");
+                    } else {
+                        Debug.Log("[Singleton] Using instance already created: " +
+                            _instance.gameObject.name);
+                    }
+                }
+ 
+                return _instance;
+            }
+        }
+    }
+ 
+    private static bool applicationIsQuitting = false;
+    /// <summary>
+    /// When Unity quits, it destroys objects in a random order.
+    /// In principle, a Singleton is only destroyed when application quits.
+    /// If any script calls Instance after it have been destroyed, 
+    ///   it will create a buggy ghost object that will stay on the Editor scene
+    ///   even after stopping playing the Application. Really bad!
+    /// So, this was made to be sure we're not creating that buggy ghost object.
+    /// </summary>
+    public void OnDestroy () {
+        applicationIsQuitting = true;
+    }
+}
+Requirement
+
+MonoBehaviourExtended.cs (from GetOrAddComponent)
+static public class MethodExtensionForMonoBehaviourTransform {
+    /// <summary>
+    /// Gets or add a component. Usage example:
+    /// BoxCollider boxCollider = transform.GetOrAddComponent<BoxCollider>();
+    /// </summary>
+    static public T GetOrAddComponent<T> (this Component child) where T: Component {
+        T result = child.GetComponent<T>();
+        if (result == null) {
+            result = child.gameObject.AddComponent<T>();
+        }
+        return result;
+    }
+}
+
+
+
+
+Here is another simple example of how you  game manager could be implemented with use of DontDestroyOnLoad()  and additional isActive()  method if it derives from MonoBehaviour.
+
+
+I previous post we it was  explained how we can implement singleton pattern and persist its instance after reloading the scene. Now lets have a look at how we could take advantage of extending MonoBehaviour class and using DontDestroyOnLoad()  method.
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+public class GameManager : MonoBehaviour {
+ 
+    static GameManager _instance;
+ 
+    static public bool isActive { 
+        get { 
+            return _instance != null; 
+        } 
+    }
+ 
+    static public GameManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = Object.FindObjectOfType(typeof(GameManager)) as GameManager;
+ 
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject("_gamemanager");
+                    DontDestroyOnLoad(go);
+                    _instance = go.AddComponent<GameManager>();
+                }
+            }
+            return _instance;
+        }
+    }
+}
+Example shown in previous post provides easy access to all public properties and methods of GameManager singleton retrieved via GameManager.instance  property. This example however takes it to the next level, as you can now add public properties which you can modify directly from within Unity3d Editor.

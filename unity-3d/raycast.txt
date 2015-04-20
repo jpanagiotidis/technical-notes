@@ -1,0 +1,155 @@
+## Physics.Raycast
+  public static bool Raycast(Vector3 origin, Vector3 direction, float maxDistance = Mathf.Infinity, int layerMask = DefaultRaycastLayers);
+    ## Parameters
+
+    origin	The starting point of the ray in world coordinates.
+    direction	The direction of the ray.
+    distance	The length of the ray.
+    layerMask	A Layer mask that is used to selectively ignore colliders when casting a ray.
+    Returns
+
+    bool True when the ray intersects any collider, otherwise false.
+
+    ## Description
+
+      Casts a ray against all colliders in the scene.
+
+      using UnityEngine;
+      using System.Collections;
+
+      public class ExampleClass : MonoBehaviour {
+          void Update() {
+              Vector3 fwd = transform.TransformDirection(Vector3.forward);
+              if (Physics.Raycast(transform.position, fwd, 10))
+                  print("There is something in front of the object!");
+              
+          }
+      }
+    ## Notes: 
+      Raycasts will not detect colliders for which the raycast origin is inside the collider. If you move colliders from scripting or by animation, there needs to be at least one FixedUpdate executed so that the physics library can update it's data structures, before a Raycast will hit the collider at it's new position.
+
+  public static bool Raycast(Vector3 origin, Vector3 direction, out RaycastHit hitInfo, float maxDistance = Mathf.Infinity, int layerMask = DefaultRaycastLayers);
+    ## Parameters
+
+      origin	The starting point of the ray in world coordinates.
+      direction	The direction of the ray.
+      hitInfo	If true is returned, hitInfo will contain more information about where the collider was hit (See Also: RaycastHit).
+      distance	The length of the ray.
+      layerMask	A Layer mask that is used to selectively ignore colliders when casting a ray.
+      Returns
+
+      bool True when the ray intersects any collider, otherwise false.
+
+    ## Description
+
+      Casts a ray against all colliders in the scene and returns detailed information on what was hit.
+
+      using UnityEngine;
+      using System.Collections;
+
+      public class ExampleClass : MonoBehaviour {
+          void Update() {
+              RaycastHit hit;
+              if (Physics.Raycast(transform.position, -Vector3.up, out hit))
+                  float distanceToGround = hit.distance;
+              
+          }
+      }
+      
+      Another example:
+
+      using UnityEngine;
+      using System.Collections;
+
+      public class ExampleClass : MonoBehaviour {
+          void Update() {
+              RaycastHit hit;
+              if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100.0F))
+                  float distanceToGround = hit.distance;
+              
+          }
+      }
+  
+  public static bool Raycast(Ray ray, float maxDistance = Mathf.Infinity, int layerMask = DefaultRaycastLayers);
+    ## Parameters
+
+      ray	The starting point and direction of the ray.
+      distance	The length of the ray.
+      layerMask	A Layer mask that is used to selectively ignore colliders when casting a ray.
+      Returns
+
+      bool True when the ray intersects any collider, otherwise false.
+
+    ## Description
+
+      Same as above using /ray.origin/ and /ray.direction/ instead of origin and direction.
+
+      using UnityEngine;
+      using System.Collections;
+
+      public class ExampleClass : MonoBehaviour {
+          void Update() {
+              Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+              if (Physics.Raycast(ray, 100))
+                  print("Hit something");
+              
+          }
+      }
+
+  public static bool Raycast(Ray ray, out RaycastHit hitInfo, float maxDistance = Mathf.Infinity, int layerMask = DefaultRaycastLayers);
+    ## Parameters
+
+      ray	The starting point and direction of the ray.
+      hitInfo	If true is returned, hitInfo will contain more information about where the collider was hit (See Also: RaycastHit).
+      distance	The length of the ray.
+      layerMask	A Layer mask that is used to selectively ignore colliders when casting a ray.
+      Returns
+
+      bool True when the ray intersects any collider, otherwise false.
+
+    ## Description
+
+      Same as above using /ray.origin/ and /ray.direction/ instead of origin and direction.
+
+      using UnityEngine;
+      using System.Collections;
+
+      public class ExampleClass : MonoBehaviour {
+          void Update() {
+              Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+              RaycastHit hit;
+              if (Physics.Raycast(ray, out hit, 100))
+                  Debug.DrawLine(ray.origin, hit.point);
+              
+          }
+      }
+
+## Physics.RaycastAll
+  public static RaycastHit[] RaycastAll(Ray ray, float maxDistance = Mathf.Infinity, int layerMask = DefaultRaycastLayers);
+    public static RaycastHit[] RaycastAll(Vector3 origin, Vector3 direction, float maxDistance = Mathf.Infinity, int layermask = DefaultRaycastLayers);
+    ## Parameters
+
+    ## Description
+
+      Casts a ray through the scene and returns all hits. Note that order is not guaranteed.
+
+      using UnityEngine;
+      using System.Collections;
+
+      public class ExampleClass : MonoBehaviour {
+          void Update() {
+              RaycastHit[] hits;
+              hits = Physics.RaycastAll(transform.position, transform.forward, 100.0F);
+              int i = 0;
+              while (i < hits.Length) {
+                  RaycastHit hit = hits[i];
+                  Renderer rend = hit.transform.GetComponent<Renderer>();
+                  if (rend) {
+                      rend.material.shader = Shader.Find("Transparent/Diffuse");
+                      rend.material.color.a = 0.3F;
+                  }
+                  i++;
+              }
+          }
+      }
+      Notes: Raycasts will not detect colliders for which the raycast origin is inside the collider. If you move colliders from scripting or by animation, there needs to be at least one FixedUpdate executed so that the physics library can update it's data structures, before a Raycast will hit the collider at it's new position.
