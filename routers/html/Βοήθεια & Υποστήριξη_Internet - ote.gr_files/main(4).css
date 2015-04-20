@@ -1,0 +1,44 @@
+.contact_form_msg_bold {
+	text-align: left;
+	font-weight: bold;
+}
+
+.contact_form_msg_left {
+	text-align: left;
+}
+
+/*
+override to align file upload style from the complaints form
+*/
+.jcf-input-wrapper {
+	margin-left: 0px !important;
+	height: 27px !important;
+}
+
+.jcf-fake-input {
+	width: 97px !important;
+}
+
+.custom-captcha-refresh {
+	background: url(/ote-corporate-theme/images/captcha.png) top left no-repeat;
+	width: 40px;
+	height: 16px;
+	display: block;
+	font-size: 0;
+	position: relative; 
+}
+
+.custom-captcha-help {
+	background: url(/ote-corporate-theme/images/captcha.png) left -33px  no-repeat;
+	width: 40px;
+	height: 16px;
+	display: block;
+	font-size: 0;
+	position: relative;
+}
+
+.custom-captcha-button-wrapper {
+	position: absolute;
+	top: 40px;
+	left:	0px;
+}

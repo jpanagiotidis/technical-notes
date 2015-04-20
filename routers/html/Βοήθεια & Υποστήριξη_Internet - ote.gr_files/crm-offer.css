@@ -1,0 +1,182 @@
+
+.crm-offer-portlet{
+	width:222px;
+	height:434px;
+	background: url("../images/crm-offer-portlet-bg.png") no-repeat;
+	margin:0 0 15px 0;
+	position:relative;
+}
+.crm-offer-portlet .inner{
+	width:222px;
+	height:434px;
+	background-repeat:no-repeat;
+	background-position: top right;
+}
+
+
+
+.crm-offer-portlet .text{ 
+	position:absolute;
+	color:#fff;
+	font-size:12px;
+	line-height:18px;
+	font-weight:bold;
+	top:60px;
+	left:15px;
+	width:180px;
+}
+
+.crm-offer-portlet .text span{ 
+	font-size:16px;
+	display:block;
+	padding:0 0 7px 0;
+}
+
+.crm-offer-portlet .more{
+	width:158px !important;
+	height:42px !important;
+	line-height:40px; 
+	background: url("../images/banners/crm-offer-title-more.png") no-repeat left top !important;
+	display:block; 
+	color:#fff;
+	font-size:16px;
+	font-weight:bold;
+	text-align:center;
+	position:absolute;
+	bottom:20px;
+	left:50%;
+	margin:0 0 0 -79px !important;
+	
+	text-shadow:1px -1px #3c9721;
+}
+
+.crm-offer-portlet .more:hover{
+	text-decoration:none;
+}
+
+
+
+.crm-offers{
+	width:100%;
+}
+
+.crm-offer.main-place{
+	background:none;
+	border:0px;
+}
+
+.crm-offer .main-block{
+	background:#fff;
+	border:1px solid #e1e1e1;
+	padding:0px;
+	margin-bottom:50px;
+}
+
+.crm-offers .offer-title{ 
+	display:block;
+	padding:28px 0 28px 17px;
+	color:#007ac9;
+	font-size:16px;
+	font-weight:bold;
+	border-top:1px solid #e1e1e1;
+}
+
+
+.crm-offers .offer-title span{ 
+	color:#e37222;
+}
+
+
+.crm-offers .active .offer-title,
+.crm-offers .offer-title:hover{ 
+	text-decoration:none;
+	color:#000;
+}
+
+.crm-offers .item{
+	position:relative;
+}
+
+.crm-offers .item .packages{  
+	display:none;
+}
+
+
+.crm-offers .item:first-child .offer-title{
+	border:0px;
+}
+
+.crm-offer .item-list{
+	
+}
+
+.crm-offer .btn-area{
+	position:absolute;
+	right:15px;
+	top:30px;
+}
+
+
+
+.crm-offer .item:hover .btn-area{
+	display:block;
+}
+
+.crm-offer .item .button-orange-small{
+	display:none;
+}
+
+.crm-offer .item.active  .button-orange-small {
+	display:block;
+}
+
+.crm-offer .item.active  .btn-area{
+	display:block;
+}
+
+.crm-offer .item.active .packages{
+	display:block;
+}
+
+
+.crm-offer  h3 {
+    color: #000000;
+    font: 2em/1.2em 'InterstateGRRegular',Arial,Helvetica,Verdana,sans-serif;
+    margin: 0;
+    width:942px;
+    margin:0 auto 0 auto;
+    padding:0 0 20px 0;
+}
+
+.crm-offer-num{
+	display:block;
+	background:#e37222;
+	height:19px;
+	line-height:19px;
+	padding:0 6px 0 6px ;
+	float:right;
+	text-align:center;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	color:#fff;
+	margin:0 0 0 5px ;
+	font-size:11px;
+	background: transparent url("../images/top-menu/orange-badge.png") no-repeat left top;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
