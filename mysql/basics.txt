@@ -38,6 +38,7 @@
 ## Export and import database
   ## export
     mysqldump -u [username] -p [database_name] > [dumpfilename.sql]
+    mysqldump -P [port] -h [ip] -u [username] -p [database_name] > [dumpfilename.sql]
   ## export with stored procedures and functions
     mysqldump -u [username] -p [database_name] --routines > [dumpfilename.sql]
   ## export only stored procedures and triggers

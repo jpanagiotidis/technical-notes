@@ -8,3 +8,6 @@
 
 ## Set the timestamp
   $dateObj->setTimestamp($node->created);
+
+## Subtract 1 day
+  $dateObj->sub(new DateInterval('P1D'));
