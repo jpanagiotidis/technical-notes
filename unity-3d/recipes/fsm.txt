@@ -1,0 +1,60 @@
+## Simple FSM using coroutines
+	using UnityEngine;
+	using System.Collections;
+
+	public class FSMManager : MonoBehaviour {
+
+		public enum State {
+			StateA,
+			StateB
+		}
+
+		public State state;
+
+		void Awake () {
+			state = State.StateA;
+
+			StartCoroutine(FSM());
+		}
+
+		IEnumerator FSM() {
+			// Execute the current coroutine (state)
+			while (true)
+				yield return StartCoroutine(state.ToString());
+		}
+
+		IEnumerator StateA(){
+			print ("aaaa");
+			yield return null;
+
+			bool dig = true;
+			int digged = 0;
+			while (dig) {
+				print("Digging... " + (digged++) + " " + Time.time);
+				if (digged == 5) dig = false;
+				yield return new WaitForSeconds(1);
+			}
+
+			print ("Exiting the mine...");
+			state = State.StateB;
+		}
+
+		IEnumerator StateB() {
+			//Enter
+			print ("Entering the bank...");
+			yield return null;
+			
+			//Execute
+			bool queing = true;
+			float t = Time.time;
+			while (queing) {
+				print ("waiting...");
+				if (Time.time - t > 5) queing = false;
+				yield return new WaitForSeconds(1);
+			}
+			
+			//Exit
+			print ("Leaving the bank a little bit richer...");
+			state = State.StateA;
+		}
+	}

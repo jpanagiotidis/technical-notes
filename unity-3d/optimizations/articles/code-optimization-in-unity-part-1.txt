@@ -1,0 +1,143 @@
+https://robotduck.wordpress.com/2011/07/26/code-optimization-in-unity-part-1/
+
+Code Optimization in Unity : Part 1
+“Code Optimization” : the pursuit of modifying code to work more efficiently.
+
+Optimizing code in general can be a controversial subject, and upon wading into the topic even ankle-deep, you are bound to encounter the well-known quote, “Premature optimization is the root of all evil”.
+
+It’s from a 1974 paper by Donald Knuth, in which he warns programmers against wasting “…enormous amounts of time thinking about, or worrying about, the speed of noncritical parts of their programs”. *
+
+This is good advice, and experienced programmers understand it. However the advice is more problematic if you don’t have so much experience in programming, because your ability to even estimate which parts of your project might be “non-critical” are not yet well developed. This makes the advice rather unhelpful to those who perhaps need it most. So, this article is an attempt to shed some light on the subject, as well as being an introduction to some of my optimization tests that I have been putting together.
+
+The specific goals of optimization in Unity tend to revolve around making your game run faster so that it plays at an acceptable rate. There are occasionally other goals, such as reducing memory usage, or even drawing less battery power, but as a starting point I will be focusing on optimizing for speed.
+
+For a game to run at an acceptable speed, it needs to reach a certain acceptable number of “Frames Per Second”. Each frame, your game has to execute all the relevant code, calculate physics, play sounds, and display the graphics in their current state. Each of those tasks takes a certain amount of time to complete, and to achieve a speed of (say) 30 frames per second, the computer must calculate everything it needs to display the next frame of your game in one-thirtieth of a second. The relative time taken for each task can be thought of as its “cost”, and the total time available to you each frame, can be thought of as your “budget”.
+
+Understanding and identifying the relative sizes of the costs in your project is a crucial first step. Without doing this, you are essentially working blind. Imagine trying to make a car go faster by adjusting the angle of its aerofoil, without noticing that there is a trailer full of rubble attached to the back. Or trying to balance your monthly food budget by selecting between the two cheapest brand of tea-bags, while at the same time forgetting to cancel your weekly delivery of caviare. The differences in scale within the operations in your game can be even larger than these examples.
+
+I regularly see questions in Unity forums and chat rooms which ask about whether a certain function is faster than some other function, or whether one kind of loop or data structure is faster than another. These kind of comparisons are sometimes valid, and there is a place for looking for optimizations at that level of detail – however it’s vastly more important to first be able to understand whether these things are relevant at all in the overall view of what is taking up time within your game each frame.
+
+The first thing you should know is that unless you’re doing something very unusual, your code is probably not taking up a large portion of that time. Back in 1974, and indeed in many modern day programs in the wider area of computer science, your own code would be the first place to look to speed things up, however things are very different when you’re working within a high-level games-focused environment like the Unity engine. For a typical Unity game – particularly a desktop or web game, there is usually an awful lot going on that isn’t connected to the speed of your own code at all. The rendering of the graphics and the physics engine calculations are likely to be taking up the majority of the time it takes for you game to complete a whole single “frame”.
+
+I can give you a couple of examples using the profiler which comes with the Pro version of Unity:
+
+
+
+The above game is a kind of aerial combat game. Listed under the screenshot is the output from Unity’s profiler, showing the relative time taken for each of the listed functions running in the game. You can see the camera render function at the top of the list, taking 38% of the frame time. Next is physics engine taking up a similar sized portion of time – there are lots of objects flying around, mostly debris in the above pic. After that comes the GUI rendering (which is drawing the radars, target sight and the on-screen text), then Particle system code (unity’s built in code, not code I wrote), then “Overhead” which is pretty vague but I guess it’s just some underlying cost of Unity doing its stuff.
+
+Finally we reach the first item in the list which contains any code at all that I wrote myself. The Jet’s FixedUpdate function, weighing in at 2.5% of the frame time.
+
+This is the main script for the player’s jet in the game, but also this script is on about 6 other enemy jets in the game too, and even has the AI code in there. So that single entry is actually running all 7 jets in the game.
+
+This isn’t a tiny script – the FixedUpdate function is about 500 lines long, dealing with applying forces to the jet object, targetting, firing, ammo, and also contains the AI code for the enemy jets!
+
+Here’s another example:
+
+
+
+At the top, you can see the RenderCubeMapReflection class is taking up a whopping 35% of the total frame time in the above game. Below that is the main camera’s rendering function, at 22%. TheRenderCubeMapReflection class is responsible for building a cubemap texture from 6 camera angles from the car’s position, which is then used as the reflection of the car in the game. The camera’s Render function then renders the single view from behind the car that we see in the screenshot.
+
+If we also add on GUI.Repaint (which is used to draw the GUI), this comes to about 67% of the frame time just used for rendering graphics in this game. The physics comes in much lower in this game, because there is basically only a single moving object in the game. The two most expensive script functions – which are basically responsible for pretty much all the gameplay (Car.FixedUpdate at 12.5% and Car.Update at 8.9%) come to just over 20% combined.
+
+And here’s an example of a simple racing game running on the iPhone (a 3GS model), using Unity’s iOS profiler output:
+
+
+
+iPhone Unity internal profiler stats:
+cpu-player> min: 13.8   max: 32.4   avg: 20.1
+frametime> min: 28.2   max: 52.1   avg: 34.9
+draw-call #> min:  13    max:  17    avg:  14 | batched:    80
+tris #> min:  5096  max:  6932  avg:  6100 | batched:  5358
+verts #> min:  4052  max:  5798  avg:  4950 | batched:  2920
+player-detail>
+physx:  8.4
+batching:  1.2
+render:  4.5
+mono-scripts> update:  2.3   fixedUpdate:  3.2 coroutines:  0.0
+This is an unreleased prototype car racing game with 3 AI opponents, collectible items and physics objects strewn around the track. The profiler output is different, and most of the numbers (except those marked with #) are measured in milliseconds. I’ve cut out a few of the less relevant things, plus the items which came in at zero (such as skinned mesh animation – since this game doesn’t use it). My average frame time is 34.9ms (which works out at roughly 30fps), and of that time, my scripts (update & fixedUpdate) take up about 15% of the total frame time, physics take 24%, and rendering takes about 12%. I’m assuming the remaining time is simply the overhead of the unity engine running on the iPhone.
+
+So again we can see that although the time taken to execute my code does have some significance, it’s certainly not the dominant factor in determining how fast the game runs. I think from these three examples, the take-away message should be:
+
+Make sure you know whether you need to optimize your code at all.
+
+Compared to everything else going on in your game, it’s entirely possible that all of your code falls into the “non-critical” part that Knuth was referring to. If the first two games above were running slowly, and they needed to be optimized, it would not be sensible to start optimizing the code first, or perhaps even at all in the case of the jet game. There are clearly other things which are massively more important in terms of framerate – the number of particles, the draw distance, the number of draw calls, the image effects (particularly the car’s reflection!), the number and complexity of physics objects, etc.
+
+As for the iPhone game above, there may be a case for optimizing the code, but only once the physics have been double checked to be as simple and efficient as they can possibly be – since they consume the most time per frame.
+
+Now, somewhat ironically, I started writing this article as an introduction to the low-level optimization tests I have been putting together which test the relative speeds of various common structures and techniques used in unity game programming. However this whole thing may have accidentally ended up sounding more like a warning to avoid code optimization altogether! This is not what I’m saying, because code optimization does have its place – particularly when targeting iOS or Android devices. It’s just important to make sure that you have a good overview of where the processing time is really being spent in your game before diving into the code to try to make it faster, and I guess this article will act as a primer for that.
+
+In my next post on the subject, I will be getting down to the nitty-gritty of code optimization in Unity,  including the results of my performance tests, and some examples of how you can measure the speed of your code yourself, even if you don’t have access to Unity Pro’s profiler – so stay tuned!
+
+About these ads
+
+Related
+Code Optimization in Unity : Part 2
+In "optimization unity script timing time profiler"
+Learning Unity - Where and How to Search
+In "Unity"
+Quick Tip : How to choose which way to turn?
+In "Code and Scripting"
+This entry was posted on 2011/07/26 at 8:30 am and is filed under Unity . You can follow any responses to this entry through the RSS 2.0 feed. You can leave a response, or trackback from your own site.
+
+11 Responses to “Code Optimization in Unity : Part 1”
+thismarty Says: 
+2011/07/27 at 2:53 am
+More, more, more. ;-)
+
+Reply
+Chris Marsh Says: 
+2011/08/04 at 3:01 pm
+Interesting post, and as @seb_ly said in his tweet, applicable to a bunch of scripting languages. I’m so used to loading Javascript libraries and jQuery plugins that it may well be that optimising the code I have written won’t have a huge difference!
+
+Looking forward to reading part 2…
+
+Reply
+Dan Stubbs Says: 
+2011/08/04 at 4:38 pm
+Great stuff. Can’t wait for part two.
+
+Reply
+ReJ Says: 
+2011/08/05 at 9:53 am
+Bear in mind that on iOS frame-time> stat is synced with screen refresh rate. 14ms difference between your cpu-player> and frame-time> is simply device doing nothing and waiting for VSync, but _not_ Unity overhead.
+
+Reply
+duck Says: 
+2011/08/05 at 4:43 pm
+Ah, I see – that’s a big difference, good to know! I’ll update the article when I have a chance.
+
+Reply
+Christer Ericson Says: 
+2011/08/05 at 10:59 pm
+Please don’t misquote Knuth!
+
+Reply
+Rory Says: 
+2011/08/06 at 8:48 am
+If you’re going to quote Knuth then at least quote in context!
+
+“We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil. Yet we should not pass up our opportunities in that critical 3%”
+
+Reply
+duck Says: 
+2011/08/07 at 3:38 pm
+Both quotes I used from Knuth’s paper are accurate, relevant to my post, and are not taken “out of context”. In fact the context from which they came is pretty much the entire point of this post. They could hardly be more *in* context. In case you didn’t read beyond the Knuth quote, my main point is that when using a high level game engine like Unity, the “critical 3%” may well not be within your own code at all. I’m simply pointing out that you should be aware of the relative costs of things like your physics and graphics commitments before worrying about whether “for” is faster than “foreach”. This may be obvious to you but there are a lot of first-timers starting out in Unity for whom this distinction is not intuitive.
+
+Reply
+waylonlathern Says: 
+2011/08/09 at 12:38 am
+Hi, just wanted to say, as my first time visiting this blog, I am very impressed! I am also a Unity user and found this a very interesting blog! you have a new follower :) keep up the great work!
+
+-Stopsecret
+
+Reply
+Anima Aeterna #1 & Link Dump Says: 
+2011/08/14 at 10:58 am
+[…] blog post, that while it’s titled “Code Optimization in Unity”, is actually about something much more important: whether you actually need to optimize your code […]
+
+Reply
+Tutorial Unity3D – Optimizacion de Codigo – Ingles | Codigo Fuente Says: 
+2011/08/16 at 11:35 pm
+[…] Acceder al Tutorial: Tutorial Unity3D – Optimizacion de Codigo […]
+
+Reply
