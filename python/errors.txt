@@ -1,0 +1,5 @@
+## error: command 'i686-linux-gnu-gcc' failed with exit status 1
+  sudo apt-get install python3-dev
+
+## raise CryptoUnavailableError('No crypto library available')
+  pip install PyOpenSSL

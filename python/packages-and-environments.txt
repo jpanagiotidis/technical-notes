@@ -1,0 +1,36 @@
+## Python Package Manager (pip)
+  ## install package
+    pip install django
+
+  ## uninstall package
+    pip uninstall django
+
+  ## list packages
+    pip list
+
+  ## install packages from a requirements file
+    pip install -r requirements.txt
+
+  ## create a requirements file
+    pip freeze > requirements.txt
+
+## Virtual Environment (virtualenv)
+  ## Install virtual environment
+    sudo pip install virtualenv
+
+  ## Create a new environment
+    go to project folder
+    virtualenv env (create a env folder with python binaries)
+    add env folder to .gitignore
+
+  ## Create virtual environment with specific python version
+    virtualenv -p /usr/bin/python2.6 env
+
+  ## Install package into environment
+    env/bin/pip install django
+
+  ## Avoid typing env/bin/pip (lasts for the current terminal session)
+    source env/bin/activate
+
+    ## Turn it off
+      source env/bin/deactivate
