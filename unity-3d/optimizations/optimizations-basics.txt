@@ -1,0 +1,3 @@
+vsync or frame rate
+screen resolution
+shadows

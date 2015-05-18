@@ -1,0 +1,20 @@
+## Finite State Machines
+	http://playmedusa.com/blog/a-finite-state-machine-in-c-for-unity3d/
+	http://playmedusa.com/blog/simple-fsm-like-structure-with-coroutines-in-c-unity3d/
+	https://github.com/thefuntastic/Unity3d-Finite-State-Machine
+	http://wiki.unity3d.com/index.php?title=Finite_State_Machine
+	http://forum.unity3d.com/threads/implementing-finite-state-machine-ai-c.287401/
+
+## Coroutines
+	http://unity3d.com/learn/tutorials/modules/intermediate/scripting/coroutines
+	http://docs.unity3d.com/Manual/Coroutines.html
+	http://docs.unity3d.com/ScriptReference/Coroutine.html
+	http://docs.unity3d.com/400/Documentation/ScriptReference/index.Coroutines_26_Yield.html
+
+## Optimizations
+	http://docs.unity3d.com/Manual/MobileOptimisation.html
+	http://docs.unity3d.com/Manual/MobileOptimizationPracticalGuide.html
+	http://blogs.unity3d.com/2012/03/23/shadowgun-optimizing-for-mobile-sample-level/
+
+## Shaders
+	https://cgcookie.com/unity/cgc-courses/noob-to-pro-shader-writing-for-unity-4-beginner/

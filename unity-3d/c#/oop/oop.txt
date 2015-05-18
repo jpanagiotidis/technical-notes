@@ -18,3 +18,27 @@
 		}
 	}
 
+## Inheritance
+	public class SomeBaseClass{
+		//the constructor
+		public SomeBaseClass(int val){
+			//code
+		}
+
+		// for a function to be overridable use virtual
+		public virtual void someFunc(){
+			//code
+		}
+	}
+
+	public class SomeChildClass : SomeBaseClass{
+
+		//constructor that calls the parent constructor
+		public SomeChildClass(int val) : base(val){
+			//code
+		}
+
+		public override void someFunc(){
+			//code
+		}
+	}
