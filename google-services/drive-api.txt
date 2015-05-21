@@ -1,0 +1,8 @@
+## Google drive API
+  1) go to:
+    https://console.developers.google.com
+  2) create a new project (or use an old one)
+  3) go to "APIs & auth" -> "APIs" -> "API Library" and enable the Drive API
+  4) go to "APIs & auth" -> "Credentials" and click: "Create new Client ID" (select "Service Account on the pop up")
+  5) store the json file
+  6) copy the email address and use it in every file/folder that you want to share
