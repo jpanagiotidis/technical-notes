@@ -1,0 +1,50 @@
+## SSL for Internet Information Services (IIS) 7
+  from: http://www.iis.net/learn/manage/configuring-security/configuring-ssl-in-iis-manager
+  certificates can be configured in 3 places
+    a) one on the server level (server certificates)
+    b) two can be found on each website
+      i) "Edit Bindings" on right click on a web site
+      ii) "SSL Settings" on a web site icons
+  ## self signed certificates for development/testing use:
+    1) open iis manager
+    2) select server certificates (server level)
+    3) click "create self-signed certificate"
+    4) add a name
+    5) right click on a website and select "Edit Bindings"
+    6) click "Add"
+    7) on type select "https" and on SSL Certificate select the test certificate
+    8) in order to make ssl required select the application and go to "SSL Settings"
+      i) tick "Require SSL" and "Require 128-bit SSL"
+      ii) click apply
+
+  ## Production certificates
+    1) open iis manager
+    2) select server certificates (server level)
+    3) click "create certificate request"
+    4) on common name enter the site address (eg: e-ntelligence.gr)
+    5) fill the other information
+    6) on the next page select default settings (Cryptographic service provider: Microsoft RSA SChannel Cryptographic Provider, Bit Length: 1024)
+    7) enter a folder to save the certificate request
+    8) go to http://contoso.com/certsrv
+    9) select "Request a certificate"
+    10) select "advanced certificate request"
+    11) select "Submit a certificate request by using a base 64-encoded CMC or PKCS#10 file, or submit a renewal request by using a base-64-encoded PKCS #7 file"
+    12) open the certificate request and copy its contents
+    13) paste them into "Saved Request" field
+    14) wait for a day or two
+    15) go to http://contoso.com/certsrv
+    16) select "View the status of a pending certificate request"
+    17) select "Saved-Request Certificate (issue date)"
+    18) download the certificate
+    19) go iis manager
+    20) select "Complete certificate request"
+    21) upload the file and fill the name
+    22) right click on a website and select "Edit Bindings"
+    23) click "Add"
+    24) on type select "https" and on SSL Certificate select the downloaded certificate
+    25) in order to make ssl required select the application and go to "SSL Settings"
+      i) tick "Require SSL" and "Require 128-bit SSL"
+      ii) click apply
+
+## Configure basic authentication
+  from: https://technet.microsoft.com/en-us/library/cc772009(v=ws.10).aspx
