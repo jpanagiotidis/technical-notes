@@ -1,3 +1,6 @@
+## Open IIS manager
+  1) go to "control panel" -> "system and security" 
+  -> "administrative tools" -> "internet information services (IIS) manager"
 ## SSL for Internet Information Services (IIS) 7
   from: http://www.iis.net/learn/manage/configuring-security/configuring-ssl-in-iis-manager
   certificates can be configured in 3 places
@@ -48,3 +51,12 @@
 
 ## Configure basic authentication
   from: https://technet.microsoft.com/en-us/library/cc772009(v=ws.10).aspx
+
+  1) open iis manager
+  2) in "features view" open "Authentication"
+  3) if "Anonymous Authentication" is enabled, disable it
+  4) enable "Basic Authentication"
+
+## Add users for basic authentication
+  1) go to "Control Panel" -> "Administrative Tools" -> "Computer Management"
+  2) under "Local users and Groups" add new users and groups

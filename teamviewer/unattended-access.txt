@@ -1,0 +1,8 @@
+## Add unattended access
+  1) click on the field "use your personal password to access this computer from anywhere"
+  2) add name and password
+
+## Remove unattended access
+  1) go to "Extras" -> "Options" -> "Security"
+  2) Erase "Personal Password (for unattended access)" password
+  3) click "ok"
