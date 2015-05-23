@@ -1,0 +1,4 @@
+## Call function from string
+	import foo
+	methodToCall = getattr(foo, 'bar')
+	result = methodToCall()
