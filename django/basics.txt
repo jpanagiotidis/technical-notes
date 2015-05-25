@@ -1,0 +1,97 @@
+## Create project
+	1) go to project folder
+	2) type:
+		django-admin startproject myproject
+
+## Set database
+	1) create database
+	2) create user with privileges on database
+	3) go to myproject/myproject/settings.py
+	4) edit:
+		DATABASES = {
+		    'default': {
+		        'ENGINE': 'django.db.backends.mysql',
+		        'NAME': 'mydatabase',
+		        'USER': 'mydatabaseuser',
+		        'PASSWORD': 'mypassword',
+		        'HOST': '127.0.0.1',
+		        'PORT': '',
+		    }
+		}
+	
+	## Mysql notes
+		use mysqlclient package
+			pip install mysqlclient
+
+## Initialize database
+	python manage.py migrate
+
+## Test site using development server
+	1) python manage.py runserver
+	2) go to localhost:8000
+
+	## change port
+		python manage.py runserver 8080
+	## visible on local network
+		python manage.py runserver 0.0.0.0:8000
+	## stop server
+		ctr+c
+
+## Create app
+	1) python manage.py startapp myapp
+
+## Create models
+	1) open myapp/models.py
+	2) edit file
+		example:
+			from django.db import models
+
+			class Director(models.Model):
+				name = models.CharField(max_length=200)
+
+			class Movie(models.Model):
+				name = models.CharField(max_length=200)
+				director = models.ForeignKey(Director)
+				date = models.DateTimeField('date published')
+				votes = models.IntegerField(default=0)
+
+## Install app
+	1) on myproject/settings.py edit INSTALLED_APPS 
+		example:
+			INSTALLED_APPS = (
+		    'django.contrib.admin',
+		    'django.contrib.auth',
+		    'django.contrib.contenttypes',
+		    'django.contrib.sessions',
+		    'django.contrib.messages',
+		    'django.contrib.staticfiles',
+		    'myapp',
+			)
+
+## Create migration sql code
+	python manage.py makemigrations myapp
+
+## View migration sql code
+	python manage.py sqlmigrate myapp 0001
+
+## Check for project problems before the migration
+	python manage.py check
+
+## Run sql migrations
+	python manage.py migrate
+
+## Run django shell
+	python manage.py shell
+
+## Database API examples
+	from myapp.models import Director, Movie
+
+	## View Directors
+		Director.objects.all()
+
+	## Add Director
+		d = Director(name="Kubrick")
+		d.save()
+
+	## Get field
+		d.id
