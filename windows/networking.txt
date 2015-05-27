@@ -1,0 +1,29 @@
+## View IP
+  ipconfig/all
+
+  ## release ip
+  	ipconfig /release
+
+  ## get new ip
+  	ipconfig /renew
+
+## View the ARP cache
+  arp -a
+
+## Current routing table
+  route print
+
+## Hosts file
+  c:\windows\system32\drivers\etc\hosts
+
+## DNS resolved name and dns server
+	nslookup cnn.com
+
+## DNS cache flush
+	ipconfig /flushdns
+
+## Check if IP is reachable
+	ping 55.32.12.54
+
+	## in case of failure use this for intermediary routers status
+		pathping 55.32.12.54

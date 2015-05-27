@@ -1,0 +1,37 @@
+## Stop MSSQL Server
+	https://technet.microsoft.com/en-us/library/ms190236(v=sql.105).aspx
+	## default instance
+		net stop "SQL Server (MSSQLSERVER)"
+
+		or
+
+		net stop MSSQLSERVER
+
+	## specific instance
+		net stop "SQL Server (instancename)"
+
+		or
+
+		net stop MSSQL$instancename
+
+## Start MSSQL Server
+	## default instance
+		net start "SQL Server (MSSQLSERVER)"
+
+		or
+
+		net start MSSQLSERVER
+
+	## specific instance
+		net start "SQL Server (instancename)"
+
+		or
+
+		net start MSSQL$instancename
+
+	## with startup options
+		net start "SQL Server (MSSQLSERVER)" /f /m
+		
+		or
+		
+		net start MSSQLSERVER /f /m

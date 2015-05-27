@@ -1,0 +1,5 @@
+## Check system files integrity (and restore if problem)
+	sfc /scannow
+
+## File signature verification
+	sigverif

@@ -1,0 +1,27 @@
+## View tasks
+	tasklist
+
+	## with associated DLLs
+		tasklist -m
+
+	## with associated services
+		tasklist -svc
+
+## Kill task
+	## by id
+		taskkill -pid 4104
+
+	## by image name
+		taskkill -im iexplore.exe
+
+## Get installed drive
+	driverquery
+
+	## more information
+		driverquery -v
+
+	## display signature information
+		driverquery -si
+
+## Recover BitLocker encrypted drive
+	repair-bde <source> <destination> -rk | rp <source>
