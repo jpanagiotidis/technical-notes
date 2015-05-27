@@ -10,3 +10,6 @@
 ## Get next day
   d = datetime.date(1992, 5, 23)
   d = d + datetime.timedelta(1)
+
+## Date from string
+	datetime.datetime.strptime('24052010', "%d%m%Y")

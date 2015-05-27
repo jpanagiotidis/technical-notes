@@ -1,0 +1,21 @@
+## Simple sort
+	myList.sort()
+
+## Sort using object key
+	myList.sort(key=lambda x: x.foo)
+	
+	or
+
+	import operator
+	alist.sort(key=operator.attrgetter('foo'))
+
+## Sort using comparator function
+	def cmp_items(a, b):
+		if a.foo > b.foo:
+			return 1
+		elif a.foo == b.foo:
+			return 0
+		else:
+			return -1
+	
+	myList.sort(cmp_items)

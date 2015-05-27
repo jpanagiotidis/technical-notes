@@ -95,3 +95,4 @@
 
 	## Get field
 		d.id
+		d.name
