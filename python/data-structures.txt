@@ -19,6 +19,8 @@
     myList[startIndex:endIndex] = myOtherList
   ## Get list length
     len(myList)
+  ## Merge a list into another
+    myList.extend(myOtherList)
 
   ## Loop list values
     for n in myList:
