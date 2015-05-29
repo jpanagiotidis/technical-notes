@@ -1,0 +1,80 @@
+## Create a dummy view with url
+	1) add myapp/views.py
+	2) type:
+		from django.http import HttpResponse
+
+		def index(request):
+			return HttpResponse("Hello, world. You're at the movies index.")
+	3) open myproject/urls.py file
+	4) type:
+		from django.conf.urls import url
+		from . import views
+
+		urlpatterns = [
+			url(r'^$', views.index, name='index'),
+		]
+	5) open myproject/urls.py
+	6) type:
+		from django.conf.urls import include, url
+		from django.contrib import admin
+
+		urlpatterns = [
+			url(r'^myapp/', include('myapp.urls')),
+			url(r'^admin/', include(admin.site.urls)),
+		]
+
+## View with arguments
+	1) open myapp/views.py
+	2) add:
+		...
+		def movie(request, movie_id):
+			return HttpResponse("This is movie %s." % movie_id)
+
+	3) open myapp/urls.py file
+	4) add:
+		urlpatterns = [
+			...
+			url(r'^movie/(?P<movie_id>[0-9]+)/$', views.movie, name='movie'),
+			...
+		]
+
+		** Notes
+			?P<movie_id> : associates value with view movie_id argument
+
+## Views with templates
+	1) create the following template file at myapp/templates/myapp/index.html
+		{% if movies_list %}
+			<ul>
+				{% for m in movies_list %}
+					<li><a href="/myapp/movies/{{ m.id }}/">{{ m.name }}</a></li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>No movies are available.</p>
+		{% endif %}
+	2) edit myapp/views.py
+		from django.http import HttpResponse
+		from django.template import RequestContext, loader
+
+		from .models import Movie
+
+		def index(request):
+			movies = Movie.objects.order_by('name')
+			output = ', '.join([m.name for m in movies])
+			template = loader.get_template('myapp/index.html')
+			context = RequestContext(request, {
+				'movies_list': movies,
+			})
+			return HttpResponse(template.render(context))
+
+	or (SHORTCUT VERSION)
+
+		from django.shortcuts import render
+
+		from .models import Movie
+
+		def index(request):
+			movies = Movie.objects.order_by('name')
+			output = ', '.join([m.name for m in movies])
+			context = {'movies_list': movies}
+			return render(request, 'myapp/index.html', context)

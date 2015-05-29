@@ -1,0 +1,149 @@
+## Create superuser
+	python manage.py createsuperuser
+
+## Go to admin page
+	1) start server
+	2) go to: site_url/admin
+	3) login
+
+## Add models administration
+	1) open myapp/admin.py
+	2) type:
+		from django.contrib import admin
+		from .models import Director, Movie
+
+		admin.site.register(Director)
+		admin.site.register(Movie)
+
+## Customize models administration
+	## Change field order
+		1) open myapp/admin.py
+		2) type:
+			from django.contrib import admin
+			from .models import Director, Movie
+
+			admin.site.register(Director)
+
+			class MovieAdmin(admin.ModelAdmin):
+			    fields = ['name', 'votes', 'director', 'date']
+
+			admin.site.register(Movie, MovieAdmin)
+
+	## Add fieldsets
+		1) open myapp/admin.py
+		2) type:
+			from django.contrib import admin
+			from .models import Director, Movie
+
+			admin.site.register(Director)
+
+			class MovieAdmin(admin.ModelAdmin):
+				fieldsets = [
+					(
+						None, {
+							'fields' : ['name', 'votes']
+						}
+					),
+					(
+						'Data Inforation', {
+							'fields' : ['date']
+						}
+					),
+					(
+						'Director', {
+							'fields' : ['director']
+						}
+					)
+				]
+
+			admin.site.register(Movie, MovieAdmin)
+
+	## Add collapsed fieldset
+		1) open myapp/admin.py
+		2) type:
+			from django.contrib import admin
+			from .models import Director, Movie
+
+			admin.site.register(Director)
+
+			class MovieAdmin(admin.ModelAdmin):
+				fieldsets = [
+					(
+						None, {
+							'fields' : ['name', 'votes']
+						}
+					),
+					(
+						'Data Inforation', {
+							'fields' : ['date'],
+							'classes' : ['collapse']
+						}
+					),
+					(
+						'Director', {
+							'fields' : ['director']
+						}
+					)
+				]
+
+			admin.site.register(Movie, MovieAdmin)
+
+	## Add related objects
+		1) open myapp/admin.py
+		2) type:
+			from django.contrib import admin
+			from .models import Director, Movie
+
+			class MovieInline(admin.StackedInline):
+				model = Movie
+				extra = 2
+
+			class DirectorAdmin(admin.ModelAdmin):
+				fieldsets = [
+					(
+						None, {'fields': ['name']}
+					)
+				]
+				inlines = [MovieInline]
+
+			admin.site.register(Director, DirectorAdmin)
+
+		or (more compact list)
+
+			from django.contrib import admin
+			from .models import Director, Movie
+
+			class MovieInline(admin.TabularInline):
+				model = Movie
+				extra = 2
+
+			class DirectorAdmin(admin.ModelAdmin):
+				fieldsets = [
+					(
+						None, {'fields': ['name']}
+					)
+				]
+				inlines = [MovieInline]
+
+			admin.site.register(Director, DirectorAdmin)
+			
+## Customize entries list
+	## Add fields on list
+		class MovieAdmin(admin.ModelAdmin):
+			...
+			list_display = ('name', 'date', 'director', 'votes')
+
+	## Add fields on list
+		class MovieAdmin(admin.ModelAdmin):
+			...
+			list_display = ('name', 'date', 'director', 'votes', 'isSuper')
+
+	## Add list filtering
+		class MovieAdmin(admin.ModelAdmin):
+			...
+			list_filter = ['date', 'director']
+
+	## Add list search
+		class MovieAdmin(admin.ModelAdmin):
+			...
+			search_fields = ['name']

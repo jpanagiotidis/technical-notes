@@ -40,21 +40,6 @@
 ## Create app
 	1) python manage.py startapp myapp
 
-## Create models
-	1) open myapp/models.py
-	2) edit file
-		example:
-			from django.db import models
-
-			class Director(models.Model):
-				name = models.CharField(max_length=200)
-
-			class Movie(models.Model):
-				name = models.CharField(max_length=200)
-				director = models.ForeignKey(Director)
-				date = models.DateTimeField('date published')
-				votes = models.IntegerField(default=0)
-
 ## Install app
 	1) on myproject/settings.py edit INSTALLED_APPS 
 		example:
@@ -82,17 +67,3 @@
 
 ## Run django shell
 	python manage.py shell
-
-## Database API examples
-	from myapp.models import Director, Movie
-
-	## View Directors
-		Director.objects.all()
-
-	## Add Director
-		d = Director(name="Kubrick")
-		d.save()
-
-	## Get field
-		d.id
-		d.name

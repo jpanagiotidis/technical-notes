@@ -1,0 +1,74 @@
+## Create models
+	1) open myapp/models.py
+	2) edit file
+		example:
+			from django.db import models
+
+			class Director(models.Model):
+				name = models.CharField(max_length=200)
+
+				def __str__(self): //for human readable descriptions
+					return self.name
+
+			class Movie(models.Model):
+				name = models.CharField(max_length=200)
+				director = models.ForeignKey(Director)
+				date = models.DateTimeField('date published')
+				votes = models.IntegerField(default=0)
+
+				def __str__(self):
+					return self.name
+
+				def isSuper(self): //custom function
+					if self.votes > 100:
+						return True
+					return False
+
+## Database API examples
+	from myapp.models import Director, Movie
+
+	## View Directors
+		Director.objects.all()
+
+	## Get ordered results
+		Director.objects.order_by('name')
+		Director.objects.order_by('-name') //for descending order
+
+	## Add db entries
+		d = Director(name="Kubrick")
+		d.save()
+
+		from django.utils import timezone
+		m = Movie(name="The Shinning", votes=152, director=d, date=timezone.now())
+		m.save()
+
+	## Delete an entry
+		m.delete()
+
+	## Get field
+		d.id
+		d.name
+
+	## Filter (returns a list of objects)
+		Director.objects.filter(id=1)
+		Director.objects.filter(name='Kubrick')
+
+	## Get (returns one object, if it has more than one, an error occurs)
+		Director.objects.get(id=1)
+
+	## Get entry by Primary Key
+		Director.objects.get(pk=1)
+
+	## Use __ to access nested fields
+		current_year = timezone.now().year
+		Movie.objects.get(date__year=current_year)
+
+	## Related Objects
+		## Get related object set
+			d.movie_set.all()
+
+		## Add related object
+			d.movie_set.create(name="Lolita", votes=89, director=d, date=timezone.now())
+
+		## Related objects count
+			d.movie_set.count()

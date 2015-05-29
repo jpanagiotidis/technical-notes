@@ -35,3 +35,25 @@
 		or
 		
 		net start MSSQLSERVER /f /m
+
+## Pause MSSQL Server
+	## default instance
+		net pause "SQL Server (MSSQLSERVER)"
+
+	## specific instance
+		net pause "SQL Server (instancename)"
+		
+		or
+		
+		net pause MSSQL$instancename
+
+## Resume MSSQL Server
+	## default instance
+		net continue MSSQLSERVER
+
+	## specific instance
+		net continue "SQL Server (instancename)"
+		
+		or
+		
+		net continue MSSQL$instancename
