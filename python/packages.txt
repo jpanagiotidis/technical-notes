@@ -1,0 +1,9 @@
+## Python Package Manager (pip)
+  ## install package
+    pip install django
+
+  ## uninstall package
+    pip uninstall django
+
+  ## list packages
+    pip list

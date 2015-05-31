@@ -1,19 +1,3 @@
-## Python Package Manager (pip)
-  ## install package
-    pip install django
-
-  ## uninstall package
-    pip uninstall django
-
-  ## list packages
-    pip list
-
-  ## install packages from a requirements file
-    pip install -r requirements.txt
-
-  ## create a requirements file
-    pip freeze > requirements.txt
-
 ## Virtual Environment (virtualenv)
   ## Install virtual environment
     sudo pip install virtualenv
@@ -29,8 +13,21 @@
   ## Install package into environment
     env/bin/pip install django
 
+  ## install packages from a requirements file
+    pip install -r requirements.txt
+
+  ## create a requirements file
+    pip freeze > requirements.txt
+
   ## Avoid typing env/bin/pip (lasts for the current terminal session)
     source env/bin/activate
 
     ## Turn it off
       source env/bin/deactivate
+
+## Node environment
+  ## Install nodeenv
+    pip install nodeenv
+
+  ## Create node environment
+    nodeenv env

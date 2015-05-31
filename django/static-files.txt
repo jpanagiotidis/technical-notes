@@ -1,0 +1,8 @@
+## App static files
+	1) create folders:
+		myapp/static/myapp/
+	2) add a static file (for example myapp/static/myapp/style.css)
+	3) on a template file add:
+		{% load staticfiles %}
+
+		<link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}" />

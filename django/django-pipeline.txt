@@ -1,0 +1,3 @@
+## django-pipeline
+	1) install django-pipeline
+	2) add 'pipeline' into settings.py at INSTALLED_APPS

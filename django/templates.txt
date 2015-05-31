@@ -35,3 +35,32 @@
 				myproject/myproject/templates/admin
 		2) from django source code copy the django/contrib/admin/templates/admin/base_site.html
 		3) edit the copied template
+
+## Template example
+	<h1>{{ question.question_text }}</h1>
+	<ul>
+	{% for choice in question.choice_set.all %}
+	    <li>{{ choice.choice_text }}</li>
+	{% endfor %}
+	</ul>
+
+## Remove hardcoded urls
+	on myapp/templates/myapp/index.html:
+	instead of:
+		<li><a href="/myapp/movie/{{ m.id }}/">{{ m.name }}</a></li>
+	use:
+		<li><a href="{% url 'movie' m.id %}">{{ m.name }}</a></li>
+			the movie name is defined into myapp/urls.py
+				url(r'^movie/(?P<movie_id>[0-9]+)/$', views.movie, name='movie'),
+
+## Add namespace
+	1) on myproject/urls.py
+		change:
+			url(r'^myapp/', include('myapp.urls')),
+		into:
+			url(r'^myapp/', include('myapp.urls', namespace='moviesapp')),
+	2) anytime you reference this url by name use:
+		moviesapp:<view_name>
+		for example:
+			on myapp/templates/myapp/index.html:
+				<li><a href="{% url 'moviesapp:movie' m.id %}">{{ m.name }}</a></li>

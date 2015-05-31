@@ -1,0 +1,18 @@
+## Add a simple test
+	1) edit myapp/tests.py
+	2) add:
+		from django.test import TestCase
+		from django.utils import timezone
+		from .models import Movie, Director
+
+		class MovieMethodTests(TestCase):
+			def test_is_super(self):
+				d = Director(name="TestDir")
+				d.save()
+				m1 = Movie(name="TestMovie", votes=101, director=d, date=timezone.now())
+				m2 = Movie(name="TestMovie", votes=99, director=d, date=timezone.now())
+				self.assertEqual(m1.is_super(), True)
+				self.assertEqual(m2.is_super(), False)
+
+## Run tests
+	python manage.py test myapp

@@ -60,7 +60,6 @@
 
 		def index(request):
 			movies = Movie.objects.order_by('name')
-			output = ', '.join([m.name for m in movies])
 			template = loader.get_template('myapp/index.html')
 			context = RequestContext(request, {
 				'movies_list': movies,
@@ -68,13 +67,33 @@
 			return HttpResponse(template.render(context))
 
 	or (SHORTCUT VERSION)
-
 		from django.shortcuts import render
 
 		from .models import Movie
 
 		def index(request):
 			movies = Movie.objects.order_by('name')
-			output = ', '.join([m.name for m in movies])
-			context = {'movies_list': movies}
-			return render(request, 'myapp/index.html', context)
+			return render(request, 'myapp/index.html', {'movies_list': movies})
+
+## 404 Page not found
+	1) edit myapp/views.py
+		from django.shortcuts import render
+		from django.http import Http404
+
+		from .models import Movie
+
+		def movie(request, movie_id):
+			try:
+				movie = Movie.objects.get(id=movie_id)
+			except Movie.DoesNotExist:
+				raise Http404("Movie does not exist")
+			return render(request, 'myapp/movie.html', {'movie': movie})
+
+	or (SHORTCUT VERSION)
+		from django.shortcuts import get_object_or_404, render
+
+		from .models import Movie
+
+		def movie(request, movie_id):
+			movie = get_object_or_404(Movie, id=movie_id)
+			return render(request, 'myapp/movie.html', {'movie': movie})
