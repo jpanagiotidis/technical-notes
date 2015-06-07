@@ -90,3 +90,6 @@
 
 ## Htaccess module change .htaccess file
   drush ht ht_name
+
+## Unblock blocked users
+  drush php-eval 'db_query("DELETE FROM `flood`");'

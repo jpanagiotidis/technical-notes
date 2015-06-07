@@ -1,0 +1,55 @@
+## URL
+  https://django-hvad.readthedocs.org/en/latest/
+
+## Examples
+  class Book(TranslatableModel):
+    author = models.ForeignKey(Author)
+    release = models.Date()
+
+    translations = TranslatedFields(
+        title = models.CharField(max_length=250)
+    )
+
+  # The recommended way:
+book = Book.objects.language('en').create(
+    author = Author.objects.get(name='Antoine de Saint Exupéry'),
+    release = datetime.date(1943, 4, 6),
+    title = "The Little Prince",
+)
+
+# Also works
+book = Book(language_code='en')
+book.author = Author.objects.get(name='Antoine de Saint Exupéry')
+book.release = datetime.date(1943, 4, 6)
+book.title = "The Little Prince"
+book.save()
+
+book.translate('fr')
+book.title = "Le Petit Prince"
+book.save()
+book.translate('de')
+book.title = "Der kleine Prinz"
+book.save()
+
+Every call to translate() creates a new translation from scratch and switches to that translation; save() only saves the latest translation. Let’s now perform some language-aware queries:
+
+Book.objects.all()
+Compatible by default: returns all objects, without any translated fields attached. Starting from v1.0, default behavior can be overriden to work like next query:
+
+Book.objects.language().all()
+Returns all objects as translated instances, but only the ones that are translated into the currect language. You can also specify which language to get, using e.g.:
+
+Book.objects.language("en").all()
+Usual queryset methods work like they always did: let’s get all books as translated instances, filtering on the title attribute, returning those that have Petit Prince in their French title, ordered by publication date (in their French edition):
+
+Book.objects.language("fr").filter(title__contains='Petit Prince').order_by('release')
+Other random examples:
+
+# last German book published in year 1948
+Book.objects.language("de").filter(release__year=1948).latest()
+
+# other books from the same author as mybook. Cache author as well.
+Book.objects.language().select_related('author').filter(author__books=mybook)
+
+# books that have "Django" in their title, regardless of the language
+Book.objects.language('all').filter(title__icontains='Django')

@@ -1,0 +1,2 @@
+## URL
+  http://django-modeltranslation.readthedocs.org/en/latest/

@@ -22,6 +22,10 @@
 	## Mysql notes
 		use mysqlclient package
 			pip install mysqlclient
+			** if OSError: mysql_config not found
+					use:
+						sudo apt-get install libmysqlclient-dev
+
 
 ## Initialize database
 	python manage.py migrate
@@ -36,22 +40,6 @@
 		python manage.py runserver 0.0.0.0:8000
 	## stop server
 		ctr+c
-
-## Create app
-	1) python manage.py startapp myapp
-
-## Install app
-	1) on myproject/settings.py edit INSTALLED_APPS 
-		example:
-			INSTALLED_APPS = (
-		    'django.contrib.admin',
-		    'django.contrib.auth',
-		    'django.contrib.contenttypes',
-		    'django.contrib.sessions',
-		    'django.contrib.messages',
-		    'django.contrib.staticfiles',
-		    'myapp',
-			)
 
 ## Create migration sql code
 	python manage.py makemigrations myapp

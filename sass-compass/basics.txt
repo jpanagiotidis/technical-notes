@@ -29,3 +29,12 @@
 
 ## Parent selector
   &
+
+## Image relative paths
+  1) edit config.rb
+    a) uncomment
+      relative_assets = true
+    b) set images_dir value
+  2) in scss file use image-url() compass function with a path relative to images_dir path
+    example:
+      background: #DADADA image-url("hatch.png") fixed;

@@ -1,0 +1,15 @@
+## Create app
+  1) python manage.py startapp myapp
+
+## Install app
+  1) on myproject/settings.py edit INSTALLED_APPS 
+    example:
+      INSTALLED_APPS = (
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'myapp',
+      )
