@@ -1,0 +1,12 @@
+## Documentation
+  https://www.drupal.org/node/1342238
+
+## Tutorials
+  http://atendesigngroup.com/blog/adding-js-libraries-drupal-project-libraries-api
+  http://engineeredweb.com/blog/10/5/3-tips-using-external-libraries-drupal/
+
+## Get library path
+  $path = libraries_get_path('modernizr');
+
+## Get library info
+  $data = libraries_info('modernizr');

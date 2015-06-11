@@ -18,3 +18,10 @@
 
 ## Get term parents by tid
 	taxonomy_get_parents($tid)
+
+## Iterate terms
+  $categs = taxonomy_vocabulary_machine_name_load('voc_name');
+  $terms = taxonomy_get_tree($categs->vid, 0, NULL, FALSE);
+  foreach ($terms as $value) {
+    print $value->name;
+  }

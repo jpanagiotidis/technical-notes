@@ -1,0 +1,4 @@
+## Special Characters
+  from: http://rabbit.eng.miami.edu/info/htmlchars.html
+  & : &amp;
+  copyright : &copy;
