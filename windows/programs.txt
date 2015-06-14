@@ -1,0 +1,15 @@
+## Hard disc cloning and backups
+  1) Todo Backup Free 8.3
+    http://www.todo-backup.com/products/home/free-backup-software.htm
+
+## Virtual drive
+  1) Virtual CloneDrive (Freeware)  5.4.7.0
+    http://www.slysoft.com/en/download.html
+
+## Hardware inspection
+  1) HWiNFO
+    http://www.hwinfo.com/download.php
+
+## File recovery
+  1) Recuva
+    https://www.piriform.com/recuva

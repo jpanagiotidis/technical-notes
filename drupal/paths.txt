@@ -10,7 +10,6 @@
 ## Get current theme path
   $GLOBALS['base_url'].'/'.$GLOBALS['theme_path']
 
-
 ## Get path from uri
 	file_create_url('uri-goes-here')
 
