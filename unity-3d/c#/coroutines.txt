@@ -1,0 +1,18 @@
+## A simple coroutine
+	private IEnumerator bounce(){
+		isBouncing = true;
+		yield return new WaitForSeconds(0.2f);
+
+		while(rb.velocity.y < -0.1f){
+			rb.drag += 0.2f;
+			yield return null;
+		}
+
+		rb.drag = 0f;
+		isBouncing = false;
+		yield return null;
+	}
+
+	public void triggerFunction(){
+		StartCoroutine(bounce());
+	}
