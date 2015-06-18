@@ -10,3 +10,7 @@
 ## Get remote branch
 	git pull origin branch_name
 	git checkout branch_name
+
+## Merge 2 branches (merge branch_name_2 into branch_name)
+	git checkout branch_name
+	git merge branch_name_2

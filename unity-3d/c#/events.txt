@@ -1,0 +1,25 @@
+## Trigger Class
+	## define event
+	public delegate void EventSwipeDelegate(TouchesState touchesState, float swipeDirection);
+	public static event EventSwipeDelegate EventSwipeCompleted;
+
+	## trigger event 
+	if(EventSwipeCompleted != null){
+		EventSwipeCompleted(touchesState, swipeDirection);
+	}
+
+## Listener Class
+	## enable listener function
+	void OnEnable(){
+		SwipeManager.EventSwipeCompleted += OnSwipe;
+	}
+	
+	## disable listener function
+	void OnDisable(){
+		SwipeManager.EventSwipeCompleted -= OnSwipe;
+	}
+
+	## define listener function
+	void OnSwipe(TouchesState touchesState, float swipeDirection){
+		board.OnSwipe(touchesState, swipeDirection);
+	}
