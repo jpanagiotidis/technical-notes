@@ -1,0 +1,2 @@
+## get game object by name
+	this.transform.Find("followers").gameObject.SetActive(false);

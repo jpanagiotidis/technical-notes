@@ -1,0 +1,2 @@
+## Add event listener in code
+	myButton.onClick.AddListener(() => { myCallbackFunc("some input"); });
