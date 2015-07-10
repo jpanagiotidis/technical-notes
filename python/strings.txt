@@ -1,2 +1,5 @@
 ## String concatenation
 	', '.join(myList)
+
+## Starts with
+  "hello world".startswith("hello")

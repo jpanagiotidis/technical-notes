@@ -46,3 +46,24 @@ export DRUSH_PHP=php55
   * instead of 1 + 2 you can also do (http://stackoverflow.com/questions/10268583/how-to-automate-download-and-installation-of-java-jdk-on-linux/10959815#10959815):
      wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u40-b26/jre-8u40-linux-x64.tar.gz
 
+## Install python pip
+  1) Create the destination directory, if it does not already exist: Enter mkdir -p $HOME/lib/pythonX.Y, where X.Y is the Python version, and press Enter.
+  2) Install pip. Enter easy_install-X.Y pip, where X.Y is the version of Python you wish to use, and press Enter.
+
+## Install python package using pip
+  1) pipX.Y install --user package
+
+## Upgrade python package using pip
+  1) pipX.Y install --user --upgrade package
+
+## Install python virtualenv
+  1) pip2.7 install --user virtualenv
+
+## Install python dev-tools on webfaction servers
+  1) easy_install-2.7 pip
+  2) pip2.7 install --user virtualenv
+  3) git clone https://jpanagiotidis-bot:'[password]'@bitbucket.org/jpanagiotidis/devel-tools.git
+  4) go to devel-tools directory
+  5) virtualenv -p /usr/local/bin/python2.7 env
+  6) env/bin/pip install -r requirements.txt
+  7) deploy data.json
