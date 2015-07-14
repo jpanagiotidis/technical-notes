@@ -1,2 +1,6 @@
 ## Install Grunt CLI
 	npm install -g grunt-cli
+
+## Add grunt (inside project)
+  1) if doesnt exists create package.json
+  2) npm install grunt --save-dev

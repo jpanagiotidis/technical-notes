@@ -1,0 +1,46 @@
+## Bootstrap sass
+  (from: http://blog.meredithunderell.com/2014/07/24/setting-up-twitter-bootstrap-sass-with-grunt-in-an-angularjs-project/)
+  1) bower install bootstrap-sass-official
+  2) npm install grunt-contrib-sass --save-dev
+  3) npm install grunt-contrib-watch --save-dev
+  4) add style.scss with:
+    @import 'public/app/libs/bootstrap-sass-official/assets/stylesheets/bootstrap';
+  5) add the following Gruntfile.js
+    'use strict';
+
+    module.exports = function(grunt) {
+      grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+
+        project: {
+          clientAssets: ['public/app'],
+          sassAssets: ['<%= project.clientAssets %>/sass'],
+          cssAssets: ['<%= project.clientAssets %>/css']
+        },
+        sass: {
+          dev: {
+            options: {
+              style: 'expanded',
+              compass: false
+            },
+            files: {
+              '<%= project.cssAssets %>/style.css':'<%= project.sassAssets %>/style.scss'
+            }
+          }
+        },
+        watch: {
+          sass: {
+          files: '<%= project.sassAssets %>/{,*/}*.{scss,sass}',
+          tasks: ['sass:dev']
+        }
+      }
+    });
+
+      grunt.loadNpmTasks('grunt-contrib-sass');
+      grunt.loadNpmTasks('grunt-contrib-watch');
+
+      grunt.registerTask('default', 
+        [
+          'watch'
+        ]);
+    };

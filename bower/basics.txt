@@ -1,2 +1,28 @@
 ## Install project dependencies from bower.json
 	bower install
+
+## Create bower.json
+  bower init
+
+## Install library
+  bower install jquery
+
+  ## also save it to bower.json
+    bower install jquery --save
+
+  ## specific version
+    bower install jquery#1.11.3
+
+## configurations (for more options go to: http://bower.io/docs/config/)
+  1) add an .bowerrc file
+  2) add:
+    {
+      "directory": "app/components/", //componentsinstallation folder
+      "analytics": false
+    }
+
+## update libs
+  bower update
+
+## update lib
+  bower update jquery
