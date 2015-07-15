@@ -44,3 +44,24 @@
           'watch'
         ]);
     };
+
+## Handelbars
+  (from: http://danburzo.ro/grunt/chapters/handlebars/)
+  1) npm install grunt-contrib-handlebars --save-dev
+  2) add to Gruntfile.js
+    a) inide grunt.initConfig add:
+      handlebars: {
+        options: {
+          namespace: 'emporiaApp.Templates',
+          processName: function(filePath) {
+            return filePath.replace(/^templates\//, '').replace(/\.hbs$/, '');
+          }
+        },
+        all: {
+          files: {
+            "js/templates.js": ["templates/**/*.hbs"]
+          }
+        }
+      }
+    b) add: 
+      grunt.loadNpmTasks('grunt-contrib-handlebars');

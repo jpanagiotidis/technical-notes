@@ -1,0 +1,12 @@
+## Run all specified tasks
+  grunt
+
+## Run specific task
+  grunt [task-name]
+
+## Show verbose output
+  grunt [task-name] --verbose
+
+  ## Log message
+    grunt.log.write("some message")
+    grunt.log.writeln("some message")

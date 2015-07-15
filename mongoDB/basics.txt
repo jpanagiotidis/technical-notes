@@ -9,6 +9,9 @@
 ## Run mongo shell
 	mongo
 
+## Exit shell
+	quit()
+
 ## Show databases
 	show databases
 
@@ -27,8 +30,17 @@
 ## Pretty Print
 	db.collection_name.find().pretty()
 
+## Create collection
+	db.createCollection('collection_name')
+
 ## Delete collection
 	db.collection_name.drop()
+
+## Insert document
+	db.collection_name.insert({
+		myattr:"ersadf",
+		somethingelse:23
+	})
 
 ## Update document
 	db.collection.update(

@@ -1,0 +1,13 @@
+## Create function with promise value
+  function a(){
+    var defer = $.Deferred();
+    setTimeout(function(){
+      defer.resolve(data);
+    }, 2000);
+    return defer.promise();
+  }
+
+## Usage of promise
+  $.when(a()).done(function(data){
+    //do something
+  });
