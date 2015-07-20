@@ -1,0 +1,22 @@
+## Create function with promise value
+  function a(){
+    var defer = Q.defer();
+    setTimeout(function(){
+      if(true){
+        defer.resolve(data);
+      }else{
+        defer.reject(err);
+      }
+    }, 2000);
+    return defer.promise;
+  }
+
+## Usage of promise
+  a().then(
+    function(results){ //success
+      
+    },
+    function(err){ //error
+      
+    }
+  );

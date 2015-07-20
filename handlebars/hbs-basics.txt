@@ -1,0 +1,14 @@
+## Loop
+  <ul>
+    {{#each this.months}}
+      <li>this.value</li>
+    {{/each}}
+  </ul>
+
+  ## use {{@index}} for index
+  ## use {{@key}} for key
+
+## If statements
+  {{#if this.isSelected}}
+    class="selected"
+  {{/if}}

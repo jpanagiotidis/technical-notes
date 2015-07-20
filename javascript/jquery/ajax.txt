@@ -1,6 +1,14 @@
 $.ajax({
+  method : 'post',
   url : 'some/path',
+  data: {
+    email: 'dasdasd', 
+    password: 'sadasd'
+  },
   success : function(data){
+    console.log(data);
+  },
+  error : function(data){
     console.log(data);
   }
 });
