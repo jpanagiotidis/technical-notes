@@ -12,3 +12,12 @@
   {{#if this.isSelected}}
     class="selected"
   {{/if}}
+
+## Helpers
+  ## Define helper
+    Handlebars.registerHelper('helper-name', function(obj) {
+      return 'something ' + obj.name;
+    });
+
+  ## Call helper inside template
+    {{helper-name this}}
