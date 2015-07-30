@@ -1,8 +1,14 @@
 ## Install latest version
-	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
-	echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
-	sudo apt-get update
-	sudo apt-get install mongodb-org
+	## Ubuntu 12.04
+		sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+		echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+		sudo apt-get update
+		sudo apt-get install mongodb-org
+	## MacOS
+		brew update
+		brew install mongodb
+		(or brew install mongodb --with-openssl for ssl support)
+
 
 ## Check if instance is running
 	ps -ef | grep mongo

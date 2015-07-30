@@ -8,6 +8,11 @@
 2. Install compass (it also installs sass)
   gem install compass
 
+  * If error on macos try:
+  	sudo gem update --system
+  	xcode-select --install
+  	gem install compass
+
 ##############################
 # Bootstrap Sass
 # INSTALLATION NIGHTMARE

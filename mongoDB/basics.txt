@@ -1,7 +1,14 @@
 ## Start, Restart, Stop mongodb
-	sudo service mongod start
-	sudo service mongod stop
-	sudo service mongod restart
+	## Ubuntu
+		sudo service mongod start
+		sudo service mongod stop
+		sudo service mongod restart
+	## MacOS
+		mongod --config /usr/local/etc/mongod.conf
+
+		or (To have launchd start mongodb at login)
+			ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
+			launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
 
 ## see version
 	mongo --version

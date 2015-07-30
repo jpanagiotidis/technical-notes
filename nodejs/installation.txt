@@ -8,7 +8,7 @@
   		1) echo prefix = ~/.node >> ~/.npmrc
   		2) edit ~/.bashrc and add:
   			export PATH="$PATH:$HOME/.node/bin"
-  	## Ubuntu 12.04
+  	## Ubuntu 12.04 & MacOS
       1) npm config set prefix '~/.npm-packages'
       2) edit ~/.bashrc and add:
         export PATH="$PATH:$HOME/.npm-packages/bin"
