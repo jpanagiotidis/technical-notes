@@ -1,0 +1,4 @@
+## Append element and keep reference
+  var ref = $('<div>This is the new element</div>');
+  $('#content').append(ref); //add the element
+  ref.remove(); //remove it by using reference
