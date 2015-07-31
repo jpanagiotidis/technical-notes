@@ -1,0 +1,10 @@
+## ERROR sh: mysql: command not found
+  vim ~/.bash_profile
+	export PATH=$PATH:/Applications/MAMP/Library/bin
+
+## Add MySQL cnf file
+	1) find cnf example files
+    cd /Applications/MAMP/
+    find . | grep cnf
+  2) copy one of them into MAMP Library folder
+    sudo cp /Applications/MAMP/Library/support-files/my-medium.cnf /Applications/MAMP/Library/my.cnf

@@ -21,6 +21,12 @@
       tar zxvf Console_Table-1.1.3.tgz
       sudo cp Console_Table-1.1.3/Table.php /home/jpanagiotidis/.composer/vendor/drush/drush/lib/
 
+## ERROR (doesnt bootstrap drupal site MacOs)
+  (from: https://www.drupal.org/node/1428638)
+  edit settings.php
+    in db settings change host into:
+      'host' => php_sapi_name() == 'cli' ? '127.0.0.1' : 'localhost',
+
 ## Install registry rebuild
   drush dl registry_rebuild
 
