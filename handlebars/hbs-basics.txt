@@ -11,6 +11,8 @@
 ## If statements
   {{#if this.isSelected}}
     class="selected"
+  {{else}}
+    class="something-else"
   {{/if}}
 
 ## Helpers
