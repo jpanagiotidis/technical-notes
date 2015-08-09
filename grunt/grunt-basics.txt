@@ -1,3 +1,16 @@
+## Hello world
+  1) inside Gruntfile.js put:
+    'use strict';
+
+    module.exports = function(grunt) {
+      grunt.registerTask('hello', function(){
+        grunt.log.writeln('world');
+      });
+    };
+
+  2) type:
+    grunt hello
+
 ## Run all specified tasks
   grunt
 

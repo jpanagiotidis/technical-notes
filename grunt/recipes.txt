@@ -4,7 +4,7 @@
   2) npm install grunt-contrib-sass --save-dev
   3) npm install grunt-contrib-watch --save-dev
   4) add style.scss with:
-    @import 'public/app/libs/bootstrap-sass-official/assets/stylesheets/bootstrap';
+    @import 'bootstrap';
   5) add the following Gruntfile.js
     'use strict';
 
@@ -21,7 +21,8 @@
           dev: {
             options: {
               style: 'expanded',
-              compass: false
+              compass: true,
+              loadPath: 'path/to/bootstrap-sass-official/assets/stylesheets/bootstrap'
             },
             files: {
               '<%= project.cssAssets %>/style.css':'<%= project.sassAssets %>/style.scss'
