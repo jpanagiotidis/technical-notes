@@ -6,6 +6,18 @@
 ## Add javascript file
   drupal_add_js('path/to/js/file', 'file');
 
+## Add javascript file with options
+  drupal_add_js(
+    drupal_get_path('theme', 'simplicio_base_theme').'/js/simplicio-tools/simplicio-tools.accordion.js', 
+    array(
+      'type' => 'file',
+      'scope' => 'footer',
+      'group' => 'JS_THEME',
+      'every_page' => TRUE,
+      'weight' => 9999
+    )
+  );
+
 ## Add data into Drupal.settings
   $custom_settings = array(
     'some-setting' => 12,
