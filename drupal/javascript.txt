@@ -18,6 +18,9 @@
     )
   );
 
+## Add js from url
+   drupal_add_js('http://example.com/example.js', 'external');
+
 ## Add data into Drupal.settings
   $custom_settings = array(
     'some-setting' => 12,

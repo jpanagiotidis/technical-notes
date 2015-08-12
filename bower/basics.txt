@@ -26,3 +26,6 @@
 
 ## update lib
   bower update jquery
+
+## register package
+  bower register my-package git-url
