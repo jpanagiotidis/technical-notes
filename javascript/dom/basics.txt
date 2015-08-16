@@ -1,0 +1,5 @@
+## Detect if obj is dom node
+  obg.nodeType !== undefined
+
+## Get node type
+  obj.nodeType //return an integer representing the type, e.g: 1 is element (p or div)

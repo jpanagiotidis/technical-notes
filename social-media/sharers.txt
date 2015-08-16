@@ -1,0 +1,11 @@
+## Sharers URLs (http://www.sharelinkgenerator.com/)
+  facebook:
+    https://www.facebook.com/sharer/sharer.php?u=http://quietroom.gr/
+  twitter
+    https://twitter.com/home?status=http://quietroom.gr/
+  google-plus
+    https://plus.google.com/share?url=http://quietroom.gr/
+  linkedin
+    https://www.linkedin.com/shareArticle?mini=true&url=http://quietroom.gr/&title=Quiet%20Room%20Studio&summary=blah%20blah&source=jljklj
+  pinterest
+    https://pinterest.com/pin/create/button/?url=bbbbb&media=aaaaa&description=cccc

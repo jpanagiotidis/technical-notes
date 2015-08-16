@@ -1,0 +1,5 @@
+## Detect if object is jquery object
+  obj instanceof jQuery
+
+## Type detection
+  jQuery.type(something); //returns a strig with the type eg: 'boolean', 'object' etc.
