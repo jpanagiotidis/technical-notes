@@ -27,9 +27,6 @@
     in db settings change host into:
       'host' => php_sapi_name() == 'cli' ? '127.0.0.1' : 'localhost',
 
-## Install registry rebuild
-  drush dl registry_rebuild
-
 ## Modules, Themes
   ## Download
     drush dl module_name
