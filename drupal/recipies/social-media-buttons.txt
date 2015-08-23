@@ -1,0 +1,17 @@
+## Create Social Media Buttons
+  <?php
+    $lang_pref = '';
+    if($GLOBALS['language']->prefix != ''){
+      $lang_pref .= $GLOBALS['language']->prefix.'/';
+    }
+    $temp_link = $GLOBALS['base_url'].'/'.$lang_pref.drupal_get_path_alias(current_path(), $GLOBALS['language']->language);
+  ?>
+  <a href="http://www.facebook.com/sharer.php?u=<?php print $temp_link; ?>" target="_blank">
+    <i class="fa fa-facebook fa-2x"></i>
+  </a>
+  <a href="http://twitter.com/share?url=<?php print $temp_link; ?>" target="_blank">
+    <i class="fa fa-twitter fa-2x"></i>
+  </a>
+  <a href="https://plus.google.com/share?url=<?php print $temp_link; ?>" target="_blank">
+    <i class="fa fa-google-plus-square fa-2x"></i>
+  </a>

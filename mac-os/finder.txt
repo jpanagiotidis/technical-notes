@@ -6,3 +6,7 @@
 			press alt + right click finder and choos relaunch
 	## Hide
 		defaults write com.apple.finder AppleShowAllFiles NO
+
+## Relaunch finder
+  hold alt + right click
+  choose relaunch

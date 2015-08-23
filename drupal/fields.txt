@@ -1,0 +1,41 @@
+## View available field types
+  field_info_field_types()''
+
+## Create a field
+  $field = array(
+    'field_name' => 'field_something',
+    'type' => 'text',
+    'settings' => array(
+      'max_length' => 64,
+    ),
+  );
+
+  field_create_field($field);
+
+## Delete field
+  field_delete_field($field_name);
+
+## Create field instance (in other words attach it to an entity bundle(for example node))
+  $instance = array(
+    'field_name' => $field_name,
+    'entity_type' => 'node',
+    'bundle' => 'article',
+    'label' => 'Alias',
+    'description' => 'The article alias.',
+    'required' => TRUE,
+  );
+ 
+  field_create_instance($instance);
+
+## Delete field instance
+  field_delete_instance($instance, $field_cleanup = TRUE);
+
+  ## Parameters
+    $instance: An instance structure.
+    $field_cleanup: If TRUE, the field will be deleted as well if its last instance is being deleted. If FALSE, it is the caller's responsibility to handle the case of fields left without instances. Defaults to TRUE.
+
+## Get field info
+  field_info_field('field_name');
+
+## Get field instance info
+  field_info_instance($entity_type, $field_name, $bundle_name)

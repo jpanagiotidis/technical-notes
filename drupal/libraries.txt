@@ -5,8 +5,82 @@
   http://atendesigngroup.com/blog/adding-js-libraries-drupal-project-libraries-api
   http://engineeredweb.com/blog/10/5/3-tips-using-external-libraries-drupal/
 
+## Declare Library
+  ## Method A (hook_libraries_info):
+    inside a module add the hook_libraries_info:
+      <?php
+        /**
+         * Implements hook_libraries_info().
+         *
+         * For defining external libraries.
+         */
+
+        function simple_libraries_info() {
+
+          // A very simple library. No changing APIs (hence, no versions), no variants.
+          // Expected to be extracted into 'sites/all/libraries/simple'.
+          $libraries['simple'] = array(
+            'name' => 'Simple library',
+            'vendor url' => 'http://example.com/simple',
+            'download url' => 'http://example.com/simple',
+            'version arguments' => array(
+              'file' => 'simple.js', // Could be any file with version info 
+              'pattern' => '/Version (\d+)/', 
+              'lines' => 5,
+            ),
+            'files' => array(
+              'js' => array('simple.js'), //this can be a path to the file location like array('lib/simple.js')
+            ),
+          );
+
+          return $libraries;
+        }
+
+      or (no version detection)
+
+      <?php
+        function simple_libraries_info() {
+
+          // A very simple library. No changing APIs (hence, no versions), no variants.
+          // Expected to be extracted into 'sites/all/libraries/simple'.
+          $libraries['simple'] = array(
+            'name' => 'Simple library',
+            'vendor url' => 'http://example.com/simple',
+            'download url' => 'http://example.com/simple',
+            'version callback' => 'simple_version_callback',
+            'files' => array(
+              'js' => array('simple.js'), //this can be a path to the file location like array('lib/simple.js')
+            ),
+          );
+
+          return $libraries;
+        }
+
+        function simple_version_callback() {
+          //use some fancy magic to get the version number... or don't
+          return TRUE;
+        }
+  ## Method B (info file)
+    add at the libraries top level (eg: sites/all/libraries) the underscore.libraries.info that contains
+      name = Underscore
+      machine name = underscore
+      description = The Underscore JS library
+      version = 1.8.3
+      files[js][] = underscore.js
+      variants[source][files][js][] = underscore.js
+      variants[minified][files][js][] = underscore-min.js
+
+## Load library
+  libraries_load('underscore');
+
+## load library variant
+  libraries_load('underscore', 'minified');
+
 ## Get library path
   $path = libraries_get_path('modernizr');
 
 ## Get library info
   $data = libraries_info('modernizr');
+
+## View libraries using drush
+  drush libraries-list

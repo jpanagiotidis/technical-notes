@@ -50,6 +50,12 @@
 		}
 	?>
 
+## UI String Translation
+  1) Enable Translation template extractor (potx)
+  2) Go to admin/config/regional/translate/extract and extract translations for modules/themes
+  3) Edit po files and add the translations
+  4) Go to admin/config/regional/translate/import and import the edited po files
+
 ## Add language filter into taxonomy term views
 	function my_module_name_views_query_alter(&$view, &$query) {
 	  global $language;

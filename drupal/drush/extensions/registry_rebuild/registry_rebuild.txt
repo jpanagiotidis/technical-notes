@@ -1,0 +1,2 @@
+## Installation
+  drush dl registry_rebuild

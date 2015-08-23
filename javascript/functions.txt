@@ -1,0 +1,8 @@
+## Pass a function's arguments into another function
+  function a(){
+    b.apply(this, arguments);
+  }
+
+  function b(){
+  
+  }
