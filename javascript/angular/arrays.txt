@@ -1,0 +1,10 @@
+## Filter array
+  $scope.pictures = $filter('filter')(
+    $scope.pictures, 
+    {
+      id:"!"+picture.id
+    }, 
+    function(actual, expected){
+      return actual + "" === expected;
+    }
+  );

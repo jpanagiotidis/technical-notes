@@ -1,0 +1,9 @@
+## Remove root directive element
+  restrict: 'E',
+  replace: true,
+
+## Get event object
+  <a href ng-click="someFunc($event);">click</a>
+
+## ng-class ternary
+  ng-class="isSelected ? 'selected' : 'unselected'"

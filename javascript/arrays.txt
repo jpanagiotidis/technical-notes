@@ -6,3 +6,18 @@
 
 ## Add element
   fruits.push("Orange");
+
+## Add emelent at start
+  fruits.unshift("Orange");
+
+## Remove and get last element
+  fruits.pop();
+
+## Remove and get first element
+  fruits.shift();
+
+## Get sub-array
+  Array.slice([begin[, end]])
+
+## Remove element at index
+  Array.splice(index, numOfElems [, item, ...])
