@@ -7,3 +7,6 @@
 
 ## ng-class ternary
   ng-class="isSelected ? 'selected' : 'unselected'"
+
+## Evaluate and get attribute
+  $scope.$eval(attrs['g2gTemplate']);

@@ -1,0 +1,48 @@
+## Solution A
+  from: https://github.com/angular/angular.js/issues/1039#issuecomment-10673465
+
+  var linkFn = function(scope, element, attrs) {//directive link function
+    var templateUrl = $scope.$eval(attr['g2gTemplate']);
+
+    $http.get(
+      templateUrl, 
+      {
+        cache:$templateCache
+      }
+    ).then(
+      function(result){
+        var _linkFn = $compile(result.data);
+        var _content = _linkFn($scope);
+        el.html(_content);
+      }
+    );
+  }
+
+## Solution B (el not correct...)
+  from: https://medium.com/angularjs-meetup-south-london/angular-directives-using-a-dynamic-template-c3fb16d03c6d
+
+  .directive(“profile”, function() {
+    return {
+      template: ‘<ng-include src=”getTemplateUrl()”/>’,
+      scope: {
+        user: ‘=data’
+      },
+      restrict: ‘E’,
+      controller: function($scope) {
+        //function used on the ng-include to resolve the template
+        $scope.getTemplateUrl = function() {
+          //basic handling
+          if ($scope.user.type == “twitter”)
+            return “twitter.tpl.html”;
+          if ($scope.user.type == “facebook”)
+            return “facebook.tpl.html”;
+        }
+      }
+    };
+  });
+
+## Solution (scope not available)
+  
+  templateUrl: function(tElem, tAttrs){//templateUrl attribute on directive definition
+    return 'template/url';
+  }
