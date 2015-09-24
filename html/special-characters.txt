@@ -3,3 +3,4 @@
   & : &amp;
   copyright : &copy;
   euro: &euro;
+  quotes: &quot;

@@ -1,2 +1,7 @@
 ## Random images services
-  http://loremflickr.com/600/600/paris?random=423423
+  ## Single keyword
+    http://loremflickr.com/600/600/paris?random=423423
+  ## Keywords with OR
+    http://loremflickr.com/600/600/man,woman?random=423423
+  ## Keywords with AND
+    http://loremflickr.com/600/600/funny,face/all?random=423423

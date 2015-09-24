@@ -1,0 +1,5 @@
+## Pull element on the right
+  add "pull-right" class
+
+## Align text to the right
+  add "text-right" class

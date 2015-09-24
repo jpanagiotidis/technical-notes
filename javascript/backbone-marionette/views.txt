@@ -6,3 +6,10 @@
       return 'project-preview-' + this.model.attributes.some-attribute;
     },
     ...
+
+## Layout views
+  ## Catch childviews custom events
+    use:
+      this.triggerMethod(events.SCROLL_TO, selector);
+    instead of:
+      this.trigger(events.SCROLL_TO, selector);

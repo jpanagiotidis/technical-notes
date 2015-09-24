@@ -21,5 +21,8 @@
       return 'something ' + obj.name;
     });
 
+    ## Return html
+      return new Handlebars.SafeString('<h1>fasdf</h1>');
+
   ## Call helper inside template
     {{helper-name this}}
