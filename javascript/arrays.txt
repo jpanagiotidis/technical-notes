@@ -1,3 +1,8 @@
+## Detect if it is an array
+  if(Object.prototype.toString.call(val) === '[object Array]'){
+    //do something
+  }
+  
 ## Create array
   var fruits = ["Apple", "Banana"];
 
