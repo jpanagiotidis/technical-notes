@@ -1,0 +1,17 @@
+## Simple CSS animation (needs CSS plugin)
+  TweenLite.to(jQuery('#kappa-map'), 1, {'height': '0px'});
+
+## Scroll Page
+  TweenLite.to(
+    window, 
+    2, 
+    {
+      scrollTo:{
+        y: ($(elemSelector).position().top - $('.simplicioNavigation .simplicioNavigationHeader').outerHeight())
+      }, 
+      ease:Power4.easeOut
+    }
+  );
+
+  ## Get srcoll position
+    $(window).scrollTop();
