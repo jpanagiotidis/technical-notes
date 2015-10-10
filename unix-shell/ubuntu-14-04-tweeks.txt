@@ -21,3 +21,12 @@
 	sudo init 3
 	install drivers
 	restart
+
+## Install NVIDIA drivers from ppa
+	## 14.04
+		sudo apt-add-repository ppa:xorg-edgers/ppa
+	## 12.04
+		sudo apt-add-repository ppa:ubuntu-x-swat/x-updates
+	## all	
+	sudo apt-get update
+	sudo apt-get install nvidia-current nvidia-settings
