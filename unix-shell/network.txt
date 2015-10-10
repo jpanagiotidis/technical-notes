@@ -9,3 +9,6 @@
 
 ## Hosts file
   /etc/hosts
+
+## Network speed test
+  nload
