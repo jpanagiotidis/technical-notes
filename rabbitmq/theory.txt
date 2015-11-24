@@ -1,0 +1,10 @@
+## Mantra
+  You cant sent a message directly to a queue. 
+  You send the message to an exchange and the exchange delivers the message to the queue.
+
+## Message Durability (survive across rabbitmq server restarts)
+  1) Message should be durable (delivery mode = 2)
+  2) Passing Exchanges should be durable (durable = true)
+  3) Arriving Queue should be durable (durable = true)
+
+  *This option is 10x slower, so in cases where perfomance AND durability are crucial implement custom solution. 

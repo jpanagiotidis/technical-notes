@@ -1,0 +1,270 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"fun",
+				"function"
+			],
+			[
+				"connection",
+				"connectionAddress	app.js"
+			],
+			[
+				"l",
+				"log	JS - Log to console"
+			],
+			[
+				"log",
+				"log()	node.js"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "basics.txt",
+			"settings":
+			{
+				"buffer_size": 165,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "in",
+		"selected_items":
+		[
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/johnathan/Documents/technical-notes",
+		"/Users/johnathan/Documents/technical-notes/rabbitmq"
+	],
+	"file_history":
+	[
+		"/Users/johnathan/Documents/projects/node-playground/src/mq-handler/rabbit-handler.js",
+		"/Users/johnathan/Documents/projects/node-playground/src/rabbitmq.js",
+		"/Users/johnathan/Documents/projects/bd-account-finder/app.js",
+		"/Users/johnathan/Documents/projects/bd-account-finder/src/message_queue.js",
+		"/Users/johnathan/Documents/projects/bd-account-finder/src/rabbitmq.js",
+		"/Users/johnathan/Documents/projects/ws/package.json",
+		"/Users/johnathan/Documents/projects/ws/app.js",
+		"/Users/johnathan/Documents/projects/exchange/app.js",
+		"/Users/johnathan/Documents/projects/bd-account-finder/.gitignore",
+		"/Users/johnathan/Documents/projects/bd-account-finder/src/routes.js",
+		"/Users/johnathan/Documents/projects/bd-account-finder/const/index.js",
+		"/Users/johnathan/Documents/projects/bd-account-finder/config/index.js",
+		"/Users/johnathan/Documents/projects/bd-account-finder/config/global.js",
+		"/Users/johnathan/Documents/projects/bd-account-finder/src/logger.js",
+		"/Users/johnathan/Documents/projects/exchange/src/libs/logger.js",
+		"/Users/johnathan/Documents/projects/exchange/config/index.js",
+		"/Users/johnathan/Documents/projects/playground/rabbitmq/03-publish-subscribe/receive-logs.js",
+		"/Users/johnathan/Documents/projects/playground/rabbitmq/03-publish-subscribe/emit-log.js",
+		"/Users/johnathan/Documents/projects/exchange/src/message_queue.js",
+		"/Users/johnathan/Documents/projects/exchange/src/rabbitmq.js",
+		"/Users/johnathan/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/johnathan/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/johnathan/Documents/projects/playground/receive.js",
+		"/Users/johnathan/Documents/projects/playground/send.js",
+		"/Users/johnathan/Documents/projects/exchange/src/models/index.js",
+		"/Users/johnathan/Documents/projects/vox/source/app.js",
+		"/Users/johnathan/Documents/projects/playground/index.js"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"data",
+			"module",
+			"rmq",
+			"DYNO",
+			"assertExchange",
+			"mq",
+			"amqplib",
+			"mq",
+			"//"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "basics.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 165,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "helper.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 243.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
