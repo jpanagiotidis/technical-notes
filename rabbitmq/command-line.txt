@@ -1,0 +1,26 @@
+## Start Server
+	rabbitmq-server
+
+## List Queues
+	rabbitmqctl list_queues
+
+## List exchanges
+	rabbitmqctl list_exchanges
+
+## List bindings
+	rabbitmqctl list_bindings
+
+## List connections
+	rabbitmqctl list_connections
+
+## List channels
+	rabbitmqctl list_channels
+
+## List vhosts
+	rabbitmqctl list_vhosts
+
+## Delete Everything (queues, users, vhost etc)
+	rabbitmqctl stop_app
+	rabbitmqctl reset
+	rabbitmqctl start_app
+
