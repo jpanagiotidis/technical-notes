@@ -34,6 +34,9 @@
 ## Search collection
 	db.collection_name.find()
 
+## Search collection and display specific fields
+	db.collection_name.find({}, {field_a:1, field_b:1})
+
 ## Pretty Print
 	db.collection_name.find().pretty()
 
