@@ -1,0 +1,50 @@
+number_of_items = 3;
+
+import { branch } from 'baobab-react/higher-order';
+import { EventBus } from "managers"
+
+class Blah extends Component {
+
+  constructor() {
+    setInterval(function(){
+      this.setState({
+        color: Math.random()
+      }, 1000)
+    })
+  }
+
+  addItem() {
+    EventBus.emit('addItem','random');
+  }
+  
+  render() {
+    let output = [];
+    for(var i = 0; i < this.props.number_of_items; i++) {
+      output.push(<li>this.props.items[i]</li>);
+    }
+    return (
+    <ul>
+      {output}
+      <a onClick=this.addItem.bind(this)>Add item</a>
+    </ul>
+    )
+  }
+}
+
+let BranchedBlah = branch(Blah, {
+  cursors: {
+    number_of_items: ['show_number_of_items'],
+    items: ['items']
+  }
+})
+
+Parent:
+
+<Blah number_of_items=4>
+
+Baobab:
+
+{
+  items: ['a','b','c','d','e','f']
+  show_number_of_items: 4
+}

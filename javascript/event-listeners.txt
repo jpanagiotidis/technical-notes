@@ -1,0 +1,6 @@
+## Cross browser on dom load 
+  if (window.addEventListener) {
+    window.addEventListener('DOMContentLoaded', this.render.bind(this));
+  } else {
+    window.attachEvent('onload', this.render.bind(this));
+  }
