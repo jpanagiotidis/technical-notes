@@ -1,0 +1,40 @@
+#Less Basics
+##Mixins
+###Multiple Arguments
+from http://stackoverflow.com/questions/14987968/less-transition-mixin
+```
+.someMixin(...){
+  -webkit-transition: @arguments;
+}
+
+.someMixin(top 2s, left 2s;);
+```
+
+###Placeholder
+####Definition
+```
+.placeholder(@rules) {
+
+  &::-webkit-input-placeholder {
+    @rules();
+  }
+  &:-moz-placeholder {
+    @rules();
+  }
+  &::-moz-placeholder {
+    @rules();
+  }
+  &:-ms-input-placeholder {
+    @rules();
+  }
+}
+```
+####Usage
+```
+input{
+  .placeholder({
+    color: red;
+    background-color: yellow;
+  });
+}
+```
