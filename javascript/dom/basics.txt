@@ -1,5 +1,31 @@
+# DOM manipulations
+
+## Get html element
+```
+document.documentElement
+```
+
+## Get body element
+```
+document.body
+```
+
+## Create Element
+```
+var p = document.createElement("p");
+```
+
+## Append Element
+```
+document.body.appendChild(p);
+```
+
 ## Detect if obj is dom node
-  obg.nodeType !== undefined
+```
+obg.nodeType !== undefined
+```
 
 ## Get node type
-  obj.nodeType //return an integer representing the type, e.g: 1 is element (p or div)
+```
+obj.nodeType //return an integer representing the type, e.g: 1 is element (p or div)
+```
