@@ -1,0 +1,5 @@
+## Backup
+  mongodump --db emporia_db --out /home/ec2-user/emporia_backup_15-12-09
+
+## Restore
+  mongorestore /path/to/backup

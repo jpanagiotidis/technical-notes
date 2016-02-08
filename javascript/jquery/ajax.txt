@@ -4,11 +4,11 @@ $.ajax({
   data: {
     email: 'dasdasd', 
     password: 'sadasd'
-  },
-  success : function(data){
-    console.log(data);
-  },
-  error : function(data){
-    console.log(data);
   }
+}).done(function(data){
+  console.log(data);
+}).fail(function(data){
+  console.log(data);
+}).always(function(data){
+  console.log(data);
 });
