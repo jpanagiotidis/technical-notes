@@ -35,6 +35,21 @@ cordova platforms ls
 cordova platform rm [platform_name]
 ```
 
+#Add plugin
+```
+cordova plugin add [plugin] --save
+```
+##example:
+```
+cordova plugin add cordova-plugin-crosswalk-webview --save
+```
+
+#Prepare cordova
+Adds plugins and platforms
+```
+cordova prepare
+```
+
 #Build project
 ```
 cordova build android
