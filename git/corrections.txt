@@ -1,5 +1,11 @@
+# Corrections
+
 ## reset file from stage
-	git reset HEAD <file>
+```
+git reset HEAD <file>
+```
 
 ## remove file from repository
-	git rm --cached <file>
+```
+git rm --cached <file>
+```

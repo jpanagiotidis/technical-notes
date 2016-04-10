@@ -1,5 +1,11 @@
+# Diff
+
 ## View changes
-  git diff
+```
+git diff
+```
 
 ## View changed filenames only
-  git diff --name-only
+```
+git diff --name-only
+```
