@@ -1,3 +1,0 @@
-## On "couldn't connect to server"
-1) sudo rm -rf /var/lib/mongodb/mongod.lock
-2) sudo service mongod restart
