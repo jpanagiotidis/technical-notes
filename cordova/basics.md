@@ -1,66 +1,68 @@
-#Create Project
+# Cordova Basics
+
+## Create Project
 ```
 cordova create [project_directory] [reverse_domain-style_identifier] [project_title]
 ```
-##example:
+### example:
 ```
 cordova create hello com.example.hello HelloWorld
 ```
 
-#Add platforms
+## Add platforms
 ```
 cordova platform add [platform_name] --save
 ```
-##example:
+### example:
 ```
 cordova platform add android --save
 ```
 
-#Add specific platform version
+## Add specific platform version
 ```
 cordova platform add [platform_name]@[version] --save
 ```
-##example:
+### example:
 ```
 cordova platform add android@4.1.0 --save
 ```
 
-#List added platforms
+## List added platforms
 ```
 cordova platforms ls
 ```
 
-#Remove platforms
+## Remove platforms
 ```
 cordova platform rm [platform_name]
 ```
 
-#Add plugin
+## Add plugin
 ```
 cordova plugin add [plugin] --save
 ```
-##example:
+### example:
 ```
 cordova plugin add cordova-plugin-crosswalk-webview --save
 ```
 
-#Prepare cordova
+## Prepare cordova
 Adds plugins and platforms
 ```
 cordova prepare
 ```
 
-#Build project
+## Build project
 ```
 cordova build android
 ```
 
-#Run project on device
+## Run project on device
 ```
 cordova run android
 ```
 
-#Create debug release
+## Create debug release
 ```
 cordova build android --release
 ```
