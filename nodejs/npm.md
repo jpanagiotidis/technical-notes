@@ -24,3 +24,13 @@ npm install [package-name] --save
 ```
 npm install [package-name] --save-dev
 ```
+
+## View outdated modules
+```
+npm outdated
+```
+
+## View current version for specific module
+```
+npm show [module_name] version
+```
