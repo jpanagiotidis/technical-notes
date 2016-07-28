@@ -21,6 +21,9 @@
 ## Open Face Menu
 * press ctrl + f
 
+## Triangulate
+* press ctrl + t
+
 ## Join Objects
 * go to Object Mode
 * press ctrl + j

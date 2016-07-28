@@ -1,0 +1,3 @@
+# device without dev server
+project-name/ios/project-name/AppDelegate.m and uncomment jsCodeLocation line
+in case of nvm run "which node" and replace NODE_BINARY into xcode project - build phases tab
