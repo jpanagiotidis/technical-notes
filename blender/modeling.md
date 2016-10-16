@@ -3,15 +3,6 @@
 ## Switch Mode (from object mode to edit mode)
 * press tab
 
-## Translate
-* press g
-
-## Rotate
-* press r
-
-## Scale
-* press s
-
 ## Open Vertex Menu
 * press ctrl + v
 

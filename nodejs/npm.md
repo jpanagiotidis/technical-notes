@@ -34,3 +34,10 @@ npm outdated
 ```
 npm show [module_name] version
 ```
+
+## Update package.json modules
+```
+npm install -g npm-check-updates
+npm-check-updates -u
+npm update
+```
