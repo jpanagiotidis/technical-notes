@@ -8,3 +8,13 @@
     find . | grep cnf
   2) copy one of them into MAMP Library folder
     sudo cp /Applications/MAMP/Library/support-files/my-medium.cnf /Applications/MAMP/Library/my.cnf
+
+## .bash_profile
+```
+# Use MAMP version of PHP
+PHP_VERSION=`ls /Applications/MAMP/bin/php/ | sort -n | tail -1`
+
+export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH=/Applications/MAMP/Library/bin/:$PATH
+```

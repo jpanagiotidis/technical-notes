@@ -26,17 +26,6 @@ scp path/to.file user@address:/remote/path
 scp user@address:/remote/path/to.file local/path
 ```
 
-## Change an environment variable (for the session only)
-```
-export $VAR_NAME=some/path
-```
-
-## Change an environment variable (permanent change)
-edit ~/.bashrc file and add:
-```
-export $VAR_NAME=some/path
-```
-
 ## Empty trash (ubuntu 12.04)
 ```
 rm -rf ~/.local/share/Trash/*
@@ -60,4 +49,9 @@ which somecommand
 ## Print path variable
 ```
 echo "$PATH"
+```
+
+## Reload profile
+```
+source ~/.bashrc
 ```
