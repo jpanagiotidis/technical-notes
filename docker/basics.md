@@ -18,6 +18,9 @@ docker ps -a
 ```
 
 ### View ids of exited containers
+```
+docker ps -a -q -f status=exited
+```
 
 ## List available images
 ```

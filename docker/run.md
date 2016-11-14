@@ -13,3 +13,4 @@ docker run <options> <imageName> <command> <arguments>
 * --name (the container name)
 * --env or -e (pass environment variable)
 * --volume (mount host path into the container file system using <hostPath>:<containerPath>)
+* --net (the container network)
