@@ -1,5 +1,0 @@
-## Search in file
-  grep search_string file
-
-## View line numbers
-  grep -n search_string file

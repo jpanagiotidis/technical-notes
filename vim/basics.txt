@@ -10,3 +10,5 @@
   :wq
 ## Goto line
   :256
+## Delete line
+  dd (in command mode)
