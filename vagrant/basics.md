@@ -55,6 +55,11 @@ vagrant halt ${MACHINE_NAME}
 vagrant destroy ${MACHINE_NAME}
 ```
 
+## List machines
+```
+vagrant global-status
+```
+
 ## SSH into the machine
 
 ### Start SSH
