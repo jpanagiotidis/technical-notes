@@ -24,3 +24,8 @@ git push origin tagName
 ```
 git push origin --tags
 ```
+
+## Get tags sorted as versions
+```
+git tag --sort=v:refname
+```

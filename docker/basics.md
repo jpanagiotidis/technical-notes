@@ -42,9 +42,19 @@ docker start <containerName>
 docker stop <containerName>
 ```
 
+## Stop all containers
+```
+docker stop $(docker ps -a -q)
+```
+
 ## Remove container
 ```
 docker rm -f <containerID>|<containerName>
+```
+
+## Remove all containers
+```
+docker rm $(docker ps -a -q)
 ```
 
 ## Remove all exited containers
