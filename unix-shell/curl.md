@@ -16,3 +16,8 @@ curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","password
 ```
 curl -O https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz
 ```
+
+# POST with file contents as body
+```
+curl -H "Content-Type: application/json" -X POST --data "@path/to/file.json" http://localhost:3000/empty -i
+```
