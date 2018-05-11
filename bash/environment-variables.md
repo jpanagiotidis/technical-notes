@@ -1,8 +1,17 @@
-# Environmental Variables
+# Environment Variables
 
-## View current Variables
+## View terminal variables
 ```
 printenv
+```
+
+## View process environment variables (Linux only)
+```
+cat /proc/[pid]/environ
+```
+### Beautify output
+```
+cat /proc/[pid]/environ | tr '\0' '\n'
 ```
 
 ## Create variable
@@ -29,4 +38,9 @@ ${VAR_NAME}
 for example:
 ```
 echo ${VAR_NAME}
+```
+
+## Add value to PATH environment variable
+```
+export PATH="$PATH:/my/new/path"
 ```
