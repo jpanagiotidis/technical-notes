@@ -1,5 +1,10 @@
 # psql
 
+## Connection
+```
+psql -h my-host -U postgres -W
+```
+
 ## Basic operations
 ### List Users and permissions
 ```
@@ -12,4 +17,9 @@
 or
 ```
 \l
+```
+
+## Exit
+```
+\q
 ```

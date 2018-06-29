@@ -1,9 +1,0 @@
-## Print system information
-  uname -a
-
-## Report file system disk space usage
-  df -h
-
-## RAM statistics
-  ## Free ram
-    free -m

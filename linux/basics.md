@@ -16,16 +16,6 @@ shopt -s dotglob
 mv [from_directory_path]* [to_directory_path]
 ```
 
-## secure copy scp
-### from local to remote
-```
-scp path/to.file user@address:/remote/path
-```
-### from remote to local
-```
-scp user@address:/remote/path/to.file local/path
-```
-
 ## Empty trash (ubuntu 12.04)
 ```
 rm -rf ~/.local/share/Trash/*
