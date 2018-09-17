@@ -1,13 +1,50 @@
 # HDFS administration
+[Link](https://hadoop.apache.org/docs/r2.7.5/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html)
 
-## Create checkpoint
+## Version
+```
+hdfs version
+```
 
-1. Put the NameNode in Safe Mode (read-only mode)
+## Report
+```
+sudo su hdfs -l -c 'hdfs dfsadmin -report'
+```
+
+## Print cluster topology
+```
+sudo su hdfs -l -c 'hdfs dfsadmin -printTopology'
+```
+
+## Balancer
+Rebalances the datanode's blocks.
+[Guide+Design](https://issues.apache.org/jira/browse/HADOOP-1652)
+```
+sudo su hdfs -l -c 'hdfs balancer'
+```
+
+## Check for filesystem inconsistencies
+```
+hdfs fsck /hdfs/path
+```
+
+## Check files blocks metadata
+```
+hdfs fsck /hdfs/path -files -blocks -locations
+```
+
+## Enter safe mode (read-only)
 ```
 sudo su hdfs -l -c 'hdfs dfsadmin -safemode enter'
 ```
 
-2. Once in Safe Mode, create a Checkpoint:
+## Exit safe mode
+```
+sudo su hdfs -l -c 'hdfs dfsadmin -safemode leave'
+```
+
+## Create checkpoint
 ```
 sudo su hdfs -l -c 'hdfs dfsadmin -saveNamespace'
 ```
+Must run in Safe Mode

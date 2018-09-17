@@ -25,6 +25,7 @@ ssh-add -K ~/.ssh/mykey &> /dev/null
 ```
 ssh b@B mkdir -p .ssh
 cat .ssh/id_rsa.pub | ssh b@B 'cat >> ~/.ssh/authorized_keys'
+ssh b@B "chmod 700 .ssh; chmod 640 .ssh/authorized_keys"
 ```
 
 ## View the added identities
