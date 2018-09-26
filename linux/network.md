@@ -35,3 +35,17 @@ run as root in order to view PID/Program name
 ```
 netstat -tulpn
 ```
+### Check for specific port
+```
+netstat -tulpn | grep {PORT_NUM}
+```
+
+### Check for specific port (nmap)
+```
+nmap {HOST} -p{PORT_NUM}
+```
+
+### Check for specific port (nmap)
+```
+telnet {HOST} {PORT_NUM}
+```
