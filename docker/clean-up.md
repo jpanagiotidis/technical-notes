@@ -18,7 +18,15 @@ Once in a while, you may need to cleanup resources (containers, volumes, images,
     $ docker network rm $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
 
 ## remove docker images
-
+### Delete dangling images (without tags)
+```
+docker image prune
+```
+### Delete dangling and unused images
+```
+docker image prune -a
+```
+### Old commands
     // see: http://stackoverflow.com/questions/32723111/how-to-remove-old-and-unused-docker-images
 
     $ docker images

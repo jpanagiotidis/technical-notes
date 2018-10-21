@@ -40,6 +40,10 @@ netstat -tulpn
 netstat -tulpn | grep {PORT_NUM}
 ```
 
+```
+netstat -ntap | grep {PORT_NUM}
+```
+
 ### Check for specific port (nmap)
 ```
 nmap {HOST} -p{PORT_NUM}
