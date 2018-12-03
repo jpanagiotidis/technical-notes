@@ -53,3 +53,31 @@ A && B  # Run B if A succeeded
 A || B  # Run B if A failed
 A &     # Run A in background.
 ```
+
+## Globbing (wildcards)
+### ```*```
+Matches any number of arbitrary characters. Examples:
+
+```
+echo *
+echo /etc/*.conf
+```
+### ```?```
+Match one arbitrary character. Examples:
+```
+echo /etc/host?
+```
+
+### Catch all . files
+```
+echo .*
+```
+
+### Catch all . files except . and .. files
+```
+echo .??*
+```
+or
+```
+echo .[^.]*
+```

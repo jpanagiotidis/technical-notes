@@ -1,2 +1,0 @@
-## Run a local script through ssh
-  ssh user@host 'bash -s' < /path/to/script/file.sh arg1

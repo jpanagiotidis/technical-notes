@@ -1,5 +1,10 @@
 # Zookeeper CLI
 
+## Connect
+```
+bin/zkCli.sh -server 127.0.0.1:2181
+```
+
 ## List tree
 ```
 ls /some/path

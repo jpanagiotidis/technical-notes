@@ -5,6 +5,11 @@
 yarn application -list
 ```
 
+## Application status
+```
+yarn application -status [APPLICATION_ID]
+```
+
 ## Kill application
 ```
 yarn application -kill [APPLICATION_ID]

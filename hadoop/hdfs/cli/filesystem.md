@@ -11,6 +11,23 @@ hdfs dfs -ls /some/path
 hdfs dfs -lsr /some/path
 ```
 
+## File sizes
+
+### File sizes per file
+```
+hdfs dfs -du /some/path/abc/
+```
+
+### Human readable file sizes per file
+```
+hdfs dfs -du -h /some/path/abc/
+```
+
+### Directory size human readable summary
+```
+hdfs dfs -du -h -s /some/path/abc/
+```
+
 ## Create directory
 ```
 hdfs dfs -mkdir /some/path/abc/

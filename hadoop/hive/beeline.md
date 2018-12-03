@@ -2,25 +2,45 @@
 
 ## Connect
 ```
-beeline -u jdbc:hive2://[HOST]:10000 -n [USER]
+beeline -u jdbc:hive2://${HOST}:${PORT} -n ${USER}
 ```
 
-## Help
+### Help
 ```
 !help
 ```
 
-## Show tables
+### Show tables
 ```
 !tables
 ```
 
-## Table schema
+### Table schema
 ```
 !describe [TABLE_NAME]
 ```
 
-## Quit
+### Quit
 ```
 !quit
+```
+
+### Set configuration
+```
+set ${CONF_KEY}=${CONF_VALUE}
+```
+
+### View configuration
+```
+set -v
+```
+
+## CLI execution
+```
+beeline -u jdbc:hive2://${HOST}:${PORT} -n ${USER} -e "${QUERY}"
+```
+
+### Set configuration
+```
+beeline -u jdbc:hive2://${HOST}:${PORT} -n ${USER} -e "${QUERY}" --hiveconf=${CONF_KEY}=${CONF_VALUE}
 ```
