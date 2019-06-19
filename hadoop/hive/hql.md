@@ -62,3 +62,14 @@ SELECT ${COLUMN_NAME}, COUNT(*) FROM ${DATABASE_NAME}.${TABLE_NAME} GROUP BY ${C
 ```
 
 export table sbx.tdata_enc_sqoop_contracts to '/tmp/exported/tdata_enc_sqoop_contracts'
+
+SHOW PARTITIONS ${DATABASE_NAME}.${TABLE_NAME};
+
+SHOW PARTITIONS employees PARTITION(country='US', state='AK');
+
+INSERT OVERWRITE TABLE employees PARTITION (country, state) SELECT ..., se.cnty, se.st
+FROM staged_employees se;
+
+INSERT OVERWRITE TABLE employees PARTITION (country = 'US', state) SELECT ..., se.cnty, se.st
+FROM staged_employees se
+WHERE se.cnty = 'US';

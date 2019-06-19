@@ -5,6 +5,11 @@
 beeline -u jdbc:hive2://${HOST}:${PORT} -n ${USER}
 ```
 
+### example
+```
+beeline -u jdbc:hive2://localhost:10000/default
+```
+
 ### Help
 ```
 !help

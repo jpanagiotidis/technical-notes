@@ -2,7 +2,7 @@
 
 ## Connection
 ```
-psql -h my-host -U postgres -W
+psql ${DATABASE} -h my-host -U postgres -W
 ```
 
 ## Basic operations

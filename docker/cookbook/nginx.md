@@ -1,0 +1,1 @@
+docker run --name halo -v {PATH_TO_FILES}:/usr/share/nginx/html:ro -d nginx
