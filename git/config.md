@@ -10,3 +10,8 @@ git config --local -e
 ```
 git config --local http.sslCert "/mycert.crt"
 ```
+
+## View config with path
+```
+git config --list --show-origin
+```

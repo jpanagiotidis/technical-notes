@@ -10,3 +10,7 @@
 * [HiveServer2 Clients](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients)
 * [LanguageManual WindowingAndAnalytics](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+WindowingAndAnalytics)
 * [Configuration Properties](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties)
+
+## Hive Hooks
+* [How to write a Hive Hook](http://dharmeshkakadia.github.io/hive-hook/)
+* [Apache Hive Hooks and Metastore Listeners](https://towardsdatascience.com/apache-hive-hooks-and-metastore-listeners-a-tale-of-your-metadata-903b751ee99f)

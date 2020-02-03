@@ -23,7 +23,7 @@ class A:
   def __init__(self, valA):
     self.valA = valA
 
-class B:
+class B(A):
   def __init__(self, valA, valB):
     super(A, self).__init__(valA)
     self.valB = valB

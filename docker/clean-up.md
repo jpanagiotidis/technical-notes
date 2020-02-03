@@ -46,3 +46,8 @@ docker image prune -a
 ## Resize disk space for docker vm
 
     $ docker-machine create --driver virtualbox --virtualbox-disk-size "40000" default
+
+## Get image children
+```
+docker inspect --format='{{.Id}} {{.Parent}}' $(docker images --filter since=${IMAGE_ID} --quiet)
+```
