@@ -49,3 +49,9 @@ beeline -u jdbc:hive2://${HOST}:${PORT} -n ${USER} -e "${QUERY}"
 ```
 beeline -u jdbc:hive2://${HOST}:${PORT} -n ${USER} -e "${QUERY}" --hiveconf=${CONF_KEY}=${CONF_VALUE}
 ```
+
+
+## Execute hql file
+```
+beeline -u jdbc:hive2://${HOST}:${PORT} -n ${USER} -i path/to/file.hql
+```
