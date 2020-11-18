@@ -3,6 +3,9 @@
 ## List applications
 ```
 yarn application -list
+
+yarn application -list -appStates FINISHED
+yarn application -list -appStates FAILED
 ```
 
 ## Application status

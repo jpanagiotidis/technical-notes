@@ -57,3 +57,8 @@ hdfs dfs -rmdir /hdfs/path/to/directory
 ```
 hdfs dfs -rm -r /hdfs/path/to/directory
 ```
+
+## Download file to local fs
+```
+hdfs dfs -get /hdfs/path/to/file /local/path
+```
