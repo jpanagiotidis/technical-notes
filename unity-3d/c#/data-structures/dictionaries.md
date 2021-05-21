@@ -10,6 +10,14 @@ private Dictionary<string, int> dict;
 dict = new Dictionary<string, int>();
 ```
 
+## Initilize with values
+```
+dict = new Dictionary<string, int>(){
+	{"A", 12},
+	{"C", 34}
+};
+```
+
 ## Add key value pair
 ```
 dict.Add("something", 34);
@@ -32,7 +40,7 @@ Debug.Log(dict["something"]);
 
 ## Iterate
 ```
-foreach(KeyValuePair<String, Vector3> entry in dict){
+foreach(KeyValuePair<string, Vector3> entry in dict){
 	Debug.Log(entry.Key);
 	Debug.Log(entry.Value);
 }

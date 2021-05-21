@@ -1,0 +1,5 @@
+# Redis CLI
+
+```
+redis-cli
+```
